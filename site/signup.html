@@ -63,18 +63,36 @@
             <div class="col-md-5 relative align-self-center">
 
                 <form id="register" action="#" class="bg-white rounded pb_form_v1">
-                    <h2 class="mb-4 mt-0 text-center">Administrator Login</h2>
+                    <h2 class="mb-4 mt-0 text-center">Admin Sign Up</h2>
                     <div class="form-group">
                         <input id="companyUsername" type="text" class="form-control pb_height-50 reverse" placeholder="Company Username">
                     </div>
                     <div class="form-group">
-                        <input id= "address" type="text" class="form-control pb_height-50 reverse" placeholder="Password">
+                        <input id= "street" type="text" class="form-control pb_height-50 reverse" placeholder="Street">
                     </div>
                     <div class="form-group">
-                        <button id="lotBtn" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue"> Register </button>
+                        <input id= "zipcode" type="text" class="form-control pb_height-50 reverse" placeholder="Zip Code">
                     </div>
                     <div class="form-group">
-                      <button id="signUpInstead" class="btn-form-switch"> Sign Up Instead </button>
+                        <input id= "city" type="text" class="form-control pb_height-50 reverse" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                        <Select class="form-control pb_height-50 reverse">
+                            <option value="selectState">Select State</option>
+                            <option value="ohio">Ohio</option>
+                        </Select>
+                    </div>
+                    <div class="form-group">
+                        <input id= "password1" type="password" class="form-control pb_height-50 reverse" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input id= "password2" type="password" class="form-control pb_height-50 reverse" placeholder="Re-Enter Password">
+                    </div>
+                    <div class="form-group">
+                        <button id="lotBtn" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue"> Sign Up </button>
+                    </div>
+                    <div class="form-group">
+                      <button id="signUpInstead" class="btn-form-switch"> Login Instead</button>
                     </div>
                 </form>
 

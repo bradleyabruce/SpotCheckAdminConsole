@@ -1709,4 +1709,17 @@ a {
 .overflow-hidden {
   overflow: hidden; }
 
-/*# sourceMappingURL=style.css.map */
+/***************** User Created CSS ***************/
+
+.btn-form-switch{
+  float: right;
+  vertical-align: top;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  /*input has OS specific font-family*/
+  color: #1d82ff;
+  cursor: pointer;
+
+}

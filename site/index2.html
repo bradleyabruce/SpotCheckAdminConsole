@@ -37,7 +37,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#section-home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#section-features">Features</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#section-reviews">Reviews</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#section-reviews">Reviews</a></li>
                 <li class="nav-item"><a class="nav-link" href="#section-faq">FAQ</a></li>
             </ul>
         </div>
@@ -55,7 +55,7 @@
                 <h2 class="heading mb-3">SpotCheck Helps You Get There Faster</h2>
                 <div class="sub-heading">
                     <p class="mb-4">Using computer vision SpotCheck helps parking lots visualize how many open spots they have available so drivers can get where they need to go faster </p>
-                    <!--<p class="mb-5"><a class="btn btn-success btn-lg pb_btn-pill smoothscroll" href="#section-pricing"><span class="pb_font-14 text-uppercase pb_letter-spacing-1">See Spots!</span></a></p>-->
+                    <p class="mb-5"><a class="btn btn-success btn-lg pb_btn-pill smoothscroll" href="#section-pricing"><span class="pb_font-14 text-uppercase pb_letter-spacing-1">See Spots!</span></a></p>
                 </div>
             </div>
             <div class="col-md-1">
@@ -63,18 +63,27 @@
             <div class="col-md-5 relative align-self-center">
 
                 <form id="register" action="#" class="bg-white rounded pb_form_v1">
-                    <h2 class="mb-4 mt-0 text-center">Administrator Login</h2>
+                    <h2 class="mb-4 mt-0 text-center">Add Your Lots</h2>
                     <div class="form-group">
-                        <input id="companyUsername" type="text" class="form-control pb_height-50 reverse" placeholder="Company Username">
+                        <input id="lotName" type="text" class="form-control pb_height-50 reverse" placeholder="Lot Name">
                     </div>
                     <div class="form-group">
-                        <input id= "address" type="text" class="form-control pb_height-50 reverse" placeholder="Password">
+                        <input id= "address" type="text" class="form-control pb_height-50 reverse" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <input id= "city" type="text" class="form-control pb_height-50 reverse" placeholder="city">
+                    </div>
+                    <div class="form-group">
+                        <input id="state" type="text" class="form-control pb_height-50 reverse" placeholder="State">
+                    </div>
+                    <div class="form-group">
+                        <input id="zip" type="text" class="form-control pb_height-50 reverse" placeholder="Zip">
+                    </div>
+                    <div class="form-group">
+                        <input id="totalSpots" type="text" class="form-control pb_height-50 reverse" placeholder="Total Spots">
                     </div>
                     <div class="form-group">
                         <button id="lotBtn" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue"> Register </button>
-                    </div>
-                    <div class="form-group">
-                      <button id="signUpInstead" class="btn-form-switch"> Sign Up Instead </button>
                     </div>
                 </form>
 
@@ -246,7 +255,7 @@
     </section>
     <!-- END section -->
 
-<!--<section class="pb_section pb_slant-light pb_pb-220" id="section-reviews">
+<section class="pb_section pb_slant-light pb_pb-220" id="section-reviews">
     <div class="container">
         <div class="row justify-content-center mb-1">
             <div class="col-md-6 text-center mb-5">
@@ -350,10 +359,10 @@
 
                 </div>
                 <!-- END sync_v1 -->
-            <!--</div>
+            </div>
         </div>
     </div>
-</section>-->
+</section>
 <!-- END section -->
 
 <!--
