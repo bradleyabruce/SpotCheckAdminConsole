@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/Models/IoC.cs">
+    <Files>
+      <File FileName="SpotCheckAdminPortal/Views/Web.config" Line="32" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Login.aspx" Line="193" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Global.asax.cs" Line="14" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Signup.aspx" Line="34" Column="56" />
+      <File FileName="SpotCheckAdminPortal/Signup.aspx.cs" Line="12" Column="37" />
+      <File FileName="SpotCheckAdminPortal/App_Start/RouteConfig.cs" Line="17" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Global.asax" Line="1" Column="1" />
+      <File FileName="../../../../../../Users/bruceba/Library/Caches/VisualStudio/8.0/Symbols/mono/mono/07c23f2ca43c01651fca00644e6638dd0050e4cf/mcs/class/System.Web/System.Web/HttpApplicationFactory.cs" Line="173" Column="83" />
+      <File FileName="SpotCheckAdminPortal/index.aspx" Line="34" Column="56" />
+      <File FileName="SpotCheckAdminPortal/index.aspx.cs" Line="44" Column="42" />
+      <File FileName="SpotCheckAdminPortal/index.aspx.designer.cs" Line="1" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Login.aspx.cs" Line="14" Column="14" />
+      <File FileName="SpotCheckAdminPortal/Models/IoC.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SpotCheckAdminPortal" expanded="True">
+            <Node name="SpotCheckAdminPortal" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../SpotCheckAdminPortal/DataLayer/Company_dl.cs" line="83" offsetX="-1" offsetY="-1" expression="response.StatusCode" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.SpotCheckAdminPortal PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/Models/cgib2i9q.u0h~" relfile="SpotCheckAdminPortal/Models/cgib2i9q.u0h~" line="43" column="1" />
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/4dtaysw6.6bn~" relfile="SpotCheckAdminPortal/4dtaysw6.6bn~" line="38" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
