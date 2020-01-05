@@ -11,8 +11,8 @@
 namespace SpotCheckAdminPortal {
 	
 	
-	public partial class Dashboard {
+	public partial class index {
 		
-		protected System.Web.UI.HtmlControls.HtmlForm frmDashboard;
+		protected System.Web.UI.HtmlControls.HtmlForm dashboardForm;
 	}
 }

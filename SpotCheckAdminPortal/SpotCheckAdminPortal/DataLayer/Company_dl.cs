@@ -1,12 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Web.Configuration;
-using SpotCheckAdminPortal.Models;
-using System.Configuration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Net;
+using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal.DataLayer
 {

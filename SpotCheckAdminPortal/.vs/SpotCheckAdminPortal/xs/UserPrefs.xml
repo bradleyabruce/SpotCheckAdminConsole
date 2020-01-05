@@ -1,25 +1,20 @@
 ﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/DataLayer/Company_dl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/Dashboard.aspx">
     <Files>
-      <File FileName="SpotCheckAdminPortal/Signup.aspx" Line="75" Column="145" />
-      <File FileName="SpotCheckAdminPortal/Signup.aspx.cs" Line="33" Column="91" />
-      <File FileName="SpotCheckAdminPortal/index.aspx.cs" Line="37" Column="10" />
-      <File FileName="SpotCheckAdminPortal/Signup.aspx.designer.cs" Line="41" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Models/Company.cs" Line="48" Column="1" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" Line="33" Column="1" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" Line="13" Column="56" />
+      <File FileName="SpotCheckAdminPortal/Models/Device.cs" Line="13" Column="40" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" Line="8" Column="16" />
+      <File FileName="SpotCheckAdminPortal/Models/IoC.cs" />
+      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" Line="158" Column="39" />
+      <File FileName="SpotCheckAdminPortal/index.aspx.cs" Line="1" Column="1" />
+      <File FileName="SpotCheckAdminPortal/index.aspx" Line="193" Column="1" />
+      <File FileName="SpotCheckAdminPortal/css/sb-admin-2.css" Line="15" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SpotCheckAdminPortal" expanded="True">
             <Node name="SpotCheckAdminPortal" expanded="True">
-              <Node name="DataLayer" expanded="True">
-                <Node name="Company_dl.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True" />
-              <Node name="Global.asax" expanded="True" />
+              <Node name="Dashboard.aspx" selected="True" />
               <Node name="index.aspx" expanded="True" />
               <Node name="Signup.aspx" expanded="True" />
             </Node>
@@ -37,8 +32,6 @@
     <BreakpointStore>
       <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/Models/cgib2i9q.u0h~" relfile="SpotCheckAdminPortal/Models/cgib2i9q.u0h~" line="43" column="1" />
       <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/4dtaysw6.6bn~" relfile="SpotCheckAdminPortal/4dtaysw6.6bn~" line="38" column="1" />
-      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/DataLayer/Company_dl.cs" relfile="SpotCheckAdminPortal/DataLayer/Company_dl.cs" line="33" column="1" />
-      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/DataLayer/Company_dl.cs" relfile="SpotCheckAdminPortal/DataLayer/Company_dl.cs" line="85" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

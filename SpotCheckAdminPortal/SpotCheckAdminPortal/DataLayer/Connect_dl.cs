@@ -40,7 +40,6 @@ namespace SpotCheckAdminPortal.DataLayer
             return json;
         }
 
-
         public static HttpWebRequest BuildRequest(string url, string method, string json)
         {
             try

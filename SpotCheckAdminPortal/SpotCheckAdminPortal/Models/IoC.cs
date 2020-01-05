@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace SpotCheckAdminPortal.Models
 {
     public static class IoC
@@ -13,6 +15,19 @@ namespace SpotCheckAdminPortal.Models
             set
             {
                 _currentCompany = value;
+            }
+        }
+
+        static List<Device> _deviceList;
+        public static List<Device> DeviceList
+        {
+            get
+            {
+                return _deviceList;
+            }
+            set
+            {
+                _deviceList = value;
             }
         }
     }
