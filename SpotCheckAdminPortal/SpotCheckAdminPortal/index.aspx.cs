@@ -36,7 +36,6 @@ namespace SpotCheckAdminPortal
             }
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //on page load, assume we have logged out and clear the global variables
@@ -46,9 +45,11 @@ namespace SpotCheckAdminPortal
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            Company company = new Company();
-            company.CompanyUsername = TextBoxCompanyUsername.Text;
-            company.CompanyPassword = TextBoxCompanyPassword.Text;
+            Company company = new Company
+            {
+                CompanyUsername = TextBoxCompanyUsername.Text,
+                CompanyPassword = TextBoxCompanyPassword.Text
+            };
 
             LoginResult = company.Login();
         }

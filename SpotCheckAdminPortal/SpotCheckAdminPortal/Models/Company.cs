@@ -42,6 +42,12 @@ namespace SpotCheckAdminPortal.Models
             return company_dl.Login();
         }
 
+        public bool? SignUp()
+        {
+            Company_dl company_dl = new Company_dl(this);
+            return company_dl.SignUp();
+        }
+
         #endregion
     }
 }

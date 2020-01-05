@@ -17,6 +17,8 @@ namespace SpotCheckAdminPortal {
 		
 		protected System.Web.UI.WebControls.TextBox TextBoxCompanyUsername;
 		
+		protected System.Web.UI.WebControls.TextBox TextBoxCompanyName;
+		
 		protected System.Web.UI.WebControls.TextBox TextBoxCompanyStreet;
 		
 		protected System.Web.UI.WebControls.TextBox TextBoxCompanyCity;

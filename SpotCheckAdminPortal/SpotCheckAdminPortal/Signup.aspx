@@ -63,13 +63,16 @@
                                     <asp:TextBox id="TextBoxCompanyUsername" CssClass="form-control pb_height-50 reverse" placeholder="Company Username" runat="server"/>
                                 </div>
                                 <div class="form-group">
+                                    <asp:TextBox id="TextBoxCompanyName" CssClass="form-control pb_height-50 reverse" placeholder="Company Name" runat="server"/>
+                                </div>
+                                <div class="form-group">
                                     <asp:TextBox id="TextBoxCompanyStreet" CssClass="form-control pb_height-50 reverse" placeholder="Street" runat="server"/>
                                 </div>
                                 <div class="form-group">
                                     <asp:TextBox id="TextBoxCompanyCity" CssClass="form-control pb_height-50 reverse" placeholder="City" runat="server"/>
                                 </div>
                                 <div class="form-group">
-                                    <asp:TextBox id="TextBoxCompanyZipCode" CssClass="form-control pb_height-50 reverse" placeholder="Zip Code" TextMode="Number" runat="server"/>
+                                    <asp:TextBox id="TextBoxCompanyZipCode" CssClass="form-control pb_height-50 reverse" placeholder="Zip Code" runat="server"/>
                                 </div>
                                 <div class="form-group">
                                     <asp:DropDownList id="DropDownState" CssClass="form-control pb_height-50 reverse" runat="server"/>

@@ -4,6 +4,9 @@ using System.Net;
 using System.Web.Configuration;
 using SpotCheckAdminPortal.Models;
 using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace SpotCheckAdminPortal.DataLayer
 {
@@ -11,16 +14,13 @@ namespace SpotCheckAdminPortal.DataLayer
     {
         string API_URL = "http://173.91.255.135:8080/SpotCheckServer-2.1.8.RELEASE/";
 
-        private string httpError;
-        private bool isResponseOK;
-
-
         public Company_dl(Company company)
         {
             this.CompanyID = company.CompanyID;
             this.CompanyName = company.CompanyName;
             this.Address = company.Address;
             this.City = company.City;
+            this.ZipCode = company.ZipCode;
             this.State = company.State;
             this.CompanyUsername = company.CompanyUsername;
             this.CompanyPassword = company.CompanyPassword;
@@ -31,29 +31,35 @@ namespace SpotCheckAdminPortal.DataLayer
         public new bool? Login()
         {
             string url = API_URL + "company/login";
-            HttpWebRequest request = this.BuildRequest(url);
+            string json = Connect_dl.BuildJson(this);
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
 
             if (request != null)
             {
-                string response = GetResponse(request);
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
 
-                if (isResponseOK)
+                if (code == HttpStatusCode.OK)
                 {
-                    //save company in IoC
-                    Company currentCompany = Newtonsoft.Json.JsonConvert.DeserializeObject<Company>(response);
+                    //save company in IoC, return true
+                    Company currentCompany = Newtonsoft.Json.JsonConvert.DeserializeObject<Company>(httpResponse);
                     IoC.CurrentCompany = currentCompany;
                     return true;
                 }
                 else
                 {
-                    if (httpError == "Incorrect Username or Password")
+                    if (httpResponse == "Incorrect Username or Password")
                     {
+                        //clear company, return false for incorrect username/password
                         Company company = new Company();
                         IoC.CurrentCompany = company;
                         return false;
                     }
                     else
                     {
+                        //clear company, return null for server error
                         Company company = new Company();
                         IoC.CurrentCompany = company;
                         return null;
@@ -62,96 +68,63 @@ namespace SpotCheckAdminPortal.DataLayer
             }
             else
             {
+                //clear company, return null for server error
                 Company company = new Company();
                 IoC.CurrentCompany = company;
                 return null;
             }
         }
 
-        private HttpWebRequest BuildRequest(string url)
+        #endregion Login
+
+        #region SignUp
+
+        public new bool? SignUp()
         {
-            try
+            string url = API_URL + "company/signUp";
+            string json = Connect_dl.BuildJson(this);
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+            if (request != null)
             {
-                Uri uri = new Uri(url);
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-                request.Method = "POST";
-                request.ContentType = "application/json";
-
-                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                if (code == HttpStatusCode.OK)
                 {
-                    string json = "";
-                    json += "{\"companyUsername\":\"" + this.CompanyUsername + "\",";
-                    json += "\"companyPassword\":\"" + this.CompanyPassword + "\"}";
-
-                    streamWriter.Write(json);
+                    //clear company in IoC, return true
+                    Company company = new Company();
+                    IoC.CurrentCompany = company;
+                    return true;
                 }
-
-                return request;
+                else
+                {
+                    if (httpResponse == "Company already exists with specified username.")
+                    {
+                        //clear company, return false for incorrect username/password
+                        Company company = new Company();
+                        IoC.CurrentCompany = company;
+                        return false;
+                    }
+                    else
+                    {
+                        //clear company, return null for server error
+                        Company company = new Company();
+                        IoC.CurrentCompany = company;
+                        return null;
+                    }
+                }
             }
-            catch (Exception e)
+            else
             {
-                string error = e.Message;
+                //clear company, return null for server error
+                Company company = new Company();
+                IoC.CurrentCompany = company;
                 return null;
             }
-
         }
 
-        private string GetResponse(HttpWebRequest request)
-        {
-            string httpResponse = "";
-
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    //return json
-                    isResponseOK = true;
-                    using (var streamReader = new StreamReader(response.GetResponseStream()))
-                    {
-                        httpResponse = streamReader.ReadToEnd();
-                        return httpResponse;
-                    }
-                }
-                else
-                {
-                    //return error string
-                    isResponseOK = false;
-                    using (var streamReader = new StreamReader(response.GetResponseStream()))
-                    {
-                        httpResponse = streamReader.ReadToEnd();
-                    }
-
-                    httpError = httpResponse.Substring(10);
-                    return httpError;
-                }
-            }
-            //(this will catch if the api returns a 400 and it does that a whole lot)
-            catch (WebException wex)
-            {
-                //return error message
-                isResponseOK = false;
-                if (wex.Response != null)
-                {
-                    using (var errorResponse = (HttpWebResponse)wex.Response)
-                    {
-                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
-                        {
-                            httpError = reader.ReadToEnd().Substring(10);
-                            return httpError;
-                        }
-                    }
-                }
-                else
-                {
-                    httpError = "Server offline.";
-                    return httpError;
-                }
-            }
-        }
-
-        #endregion Login
+        #endregion SignUp
     }
 }

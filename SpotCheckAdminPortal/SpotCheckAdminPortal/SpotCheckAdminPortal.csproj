@@ -102,12 +102,6 @@
     <Content Include="assets\css\components\_pricing.css" />
     <Content Include="assets\css\components\_team.css" />
     <Content Include="assets\css\components\_testimonial.css" />
-    <Content Include="assets\images\1900x1200_img_5.jpg" />
-    <Content Include="assets\images\person_1.jpg" />
-    <Content Include="assets\images\person_2.jpg" />
-    <Content Include="assets\images\person_5.jpg" />
-    <Content Include="assets\images\person_6.jpg" />
-    <Content Include="assets\images\phone_3.png" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\google-map.js" />
     <Content Include="assets\js\jquery.easing.1.3.js" />
@@ -267,6 +261,7 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataLayer\Connect_dl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\css\style.css.map" />
