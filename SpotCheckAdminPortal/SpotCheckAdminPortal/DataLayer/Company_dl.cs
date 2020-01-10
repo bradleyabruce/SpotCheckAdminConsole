@@ -7,8 +7,6 @@ namespace SpotCheckAdminPortal.DataLayer
 {
     public class Company_dl : Company
     {
-        string API_URL = "http://173.91.255.135:8080/SpotCheckServer-2.1.8.RELEASE/";
-
         public Company_dl(Company company)
         {
             this.CompanyID = company.CompanyID;
@@ -25,7 +23,7 @@ namespace SpotCheckAdminPortal.DataLayer
 
         public new bool? Login()
         {
-            string url = API_URL + "company/login";
+            string url = IoC.API_URL + "company/login";
             string json = Connect_dl.BuildJson(this);
 
             HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
@@ -48,15 +46,13 @@ namespace SpotCheckAdminPortal.DataLayer
                     if (httpResponse == "Incorrect Username or Password")
                     {
                         //clear company, return false for incorrect username/password
-                        Company company = new Company();
-                        IoC.CurrentCompany = company;
+                        IoC.ClearSessionIoC();
                         return false;
                     }
                     else
                     {
                         //clear company, return null for server error
-                        Company company = new Company();
-                        IoC.CurrentCompany = company;
+                        IoC.ClearSessionIoC();
                         return null;
                     }
                 }
@@ -64,8 +60,7 @@ namespace SpotCheckAdminPortal.DataLayer
             else
             {
                 //clear company, return null for server error
-                Company company = new Company();
-                IoC.CurrentCompany = company;
+                IoC.ClearSessionIoC();
                 return null;
             }
         }
@@ -76,7 +71,7 @@ namespace SpotCheckAdminPortal.DataLayer
 
         public new bool? SignUp()
         {
-            string url = API_URL + "company/signUp";
+            string url = IoC.API_URL + "company/signUp";
             string json = Connect_dl.BuildJson(this);
 
             HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
@@ -98,15 +93,13 @@ namespace SpotCheckAdminPortal.DataLayer
                     if (httpResponse == "Company already exists with specified username.")
                     {
                         //clear company, return false for incorrect username/password
-                        Company company = new Company();
-                        IoC.CurrentCompany = company;
+                        IoC.ClearSessionIoC();
                         return false;
                     }
                     else
                     {
                         //clear company, return null for server error
-                        Company company = new Company();
-                        IoC.CurrentCompany = company;
+                        IoC.ClearSessionIoC();
                         return null;
                     }
                 }
@@ -114,8 +107,7 @@ namespace SpotCheckAdminPortal.DataLayer
             else
             {
                 //clear company, return null for server error
-                Company company = new Company();
-                IoC.CurrentCompany = company;
+                IoC.ClearSessionIoC();
                 return null;
             }
         }

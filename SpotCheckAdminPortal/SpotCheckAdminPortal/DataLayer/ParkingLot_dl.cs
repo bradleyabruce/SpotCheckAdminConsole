@@ -6,34 +6,35 @@ using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal.DataLayer
 {
-    public class Device_dl : Device
+    public class ParkingLot_dl : ParkingLot
     {
-        public Device_dl(Device device)
+        public ParkingLot_dl(ParkingLot parkingLot)
         {
-            this.DeviceID = device.DeviceID;
-            this.DeviceName = device.DeviceName;
-            this.LocalIpAddress = device.LocalIpAddress;
-            this.ExternalIpAddress = device.ExternalIpAddress;
-            this.MacAddress = device.MacAddress;
-            this.LotID = device.LotID;
-            this.FloorNumber = device.FloorNumber;
-            this.LastUpdateDate = device.LastUpdateDate;
-            this.CompanyID = device.CompanyID;
-            this.TakeNewImage = device.TakeNewImage;
+            this.LotID = parkingLot.LotID;
+            this.LotName = parkingLot.LotName;
+            this.Address = parkingLot.Address;
+            this.City = parkingLot.City;
+            this.ZipCode = parkingLot.ZipCode;
+            this.State = parkingLot.State;
+            this.CompanyID = parkingLot.CompanyID;
+            this.OpenSpots = parkingLot.OpenSpots;
+            this.TotalSpots = parkingLot.TotalSpots;
+            this.Lat = parkingLot.Lat;
+            this.Lon = parkingLot.Lon;
         }
 
-        #region GetDeviceListFromCompanyID
+        #region GetParkingLotListFromCompanyID
 
-        public new List<Device> GetDeviceListFromCompanyID(int companyID)
+        public new List<ParkingLot> GetParkingLotListFromCompanyID(int companyID)
         {
-            List<Device> devices = new List<Device>();
+            List<ParkingLot> parkingLots = new List<ParkingLot>();
 
-            string url = IoC.API_URL + "device/getDevicesByCompanyID";
+            string url = IoC.API_URL + "parkingLot/getParkingLotsByCompanyId";
             string json = companyID.ToString();
 
             HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
 
-            if(request != null)
+            if (request != null)
             {
                 Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
                 HttpStatusCode code = response.FirstOrDefault().Key;
@@ -42,15 +43,15 @@ namespace SpotCheckAdminPortal.DataLayer
                 if (code == HttpStatusCode.OK)
                 {
                     //return devices
-                    devices = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(httpResponse);
-                    return devices;
+                    parkingLots = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ParkingLot>>(httpResponse);
+                    return parkingLots;
                 }
                 else
                 {
                     if (httpResponse == "No devices are linked to this company.")
                     {
                         //Return empty list
-                        return devices;
+                        return parkingLots;
                     }
                     else
                     {
@@ -66,6 +67,6 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
-        #endregion GetDeviceListFromCompanyID
+        #endregion
     }
 }

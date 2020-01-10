@@ -1993,6 +1993,8 @@
     <Compile Include="DataLayer\Connect_dl.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="DataLayer\Device_dl.cs" />
+    <Compile Include="Models\ParkingLot.cs" />
+    <Compile Include="DataLayer\ParkingLot_dl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\css\style.css.map" />

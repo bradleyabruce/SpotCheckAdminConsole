@@ -11,8 +11,18 @@
 namespace SpotCheckAdminPortal {
 	
 	
-	public partial class index {
+	public partial class Dashboard {
 		
 		protected System.Web.UI.HtmlControls.HtmlForm dashboardForm;
+		
+		protected System.Web.UI.WebControls.Literal CompanyNameLiteral;
+		
+		protected System.Web.UI.WebControls.Literal CameraDeploymentCountLiteral;
+		
+		protected System.Web.UI.WebControls.Literal ParkingLotsCountLiteral;
+		
+		protected System.Web.UI.WebControls.Literal ParkingSpotAvailabilityLiteral;
+		
+		protected System.Web.UI.HtmlControls.HtmlGenericControl ParkingSpotAvailabilityBar;
 	}
 }
