@@ -59,6 +59,18 @@ namespace SpotCheckAdminPortal.Models
             ParkingLotList = null;
         }
 
+        public static bool ValidateInfo()
+        {
+            bool result = true;
+
+            if(CurrentCompany.CompanyID == null || DeviceList == null || ParkingLotList == null)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }

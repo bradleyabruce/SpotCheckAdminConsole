@@ -18,3 +18,4 @@
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csproj.CopyComplete
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.pdb
+/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csprojAssemblyReference.cache

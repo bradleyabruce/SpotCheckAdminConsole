@@ -1963,6 +1963,7 @@
     <Content Include="vendor\bootstrap\scss\utilities\_text.scss" />
     <Content Include="vendor\bootstrap\scss\utilities\_visibility.scss" />
     <Content Include="vendor\bootstrap\scss\vendor\_rfs.scss" />
+    <Content Include="ViewParkingLots.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -1995,6 +1996,12 @@
     <Compile Include="DataLayer\Device_dl.cs" />
     <Compile Include="Models\ParkingLot.cs" />
     <Compile Include="DataLayer\ParkingLot_dl.cs" />
+    <Compile Include="ViewParkingLots.aspx.cs">
+      <DependentUpon>ViewParkingLots.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewParkingLots.aspx.designer.cs">
+      <DependentUpon>ViewParkingLots.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\css\style.css.map" />

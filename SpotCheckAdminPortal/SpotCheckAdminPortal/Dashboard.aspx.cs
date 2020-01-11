@@ -29,7 +29,11 @@ namespace SpotCheckAdminPortal
             parkingLots = pl.GetParkingLotListFromCompanyID((int)company.CompanyID);
 
 
-            ValidateInfo();
+            bool validate = IoC.ValidateInfo();
+            if (validate)
+            {
+                Response.Redirect("index.aspx");
+            }
             SetLabels();
             
         }
@@ -38,15 +42,6 @@ namespace SpotCheckAdminPortal
 
 
         #region Methods
-
-        private void ValidateInfo()
-        {
-            if(company.CompanyID == null || devices == null || parkingLots == null)
-            {
-                IoC.ClearSessionIoC();
-                Response.Redirect("index.aspx");
-            }
-        }
 
         private void SetLabels()
         {
@@ -70,7 +65,6 @@ namespace SpotCheckAdminPortal
             {
                 spotAvailability = 0;
             }
-
 
             //set page info per user
             CompanyNameLiteral.Text = company.CompanyName;

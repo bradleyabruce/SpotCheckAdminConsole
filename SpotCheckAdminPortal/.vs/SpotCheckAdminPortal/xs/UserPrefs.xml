@@ -1,23 +1,16 @@
 ﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs">
-    <Files>
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx.cs" Line="58" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" Line="396" Column="115" />
-      <File FileName="SpotCheckAdminPortal/index.aspx.cs" Line="32" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="39" Column="21" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="23" Column="38" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SpotCheckAdminPortal" expanded="True">
             <Node name="SpotCheckAdminPortal" expanded="True">
-              <Node name="DataLayer" expanded="True">
-                <Node name="ParkingLot_dl.cs" selected="True" />
-              </Node>
+              <Node name="DataLayer" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Dashboard.aspx" expanded="True" />
-              <Node name="index.aspx" expanded="True" />
+              <Node name="Dashboard.aspx" expanded="True">
+                <Node name="Dashboard.aspx.cs" selected="True" />
+              </Node>
+              <Node name="ViewParkingLots.aspx" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -30,9 +23,7 @@
   <MonoDevelop.Ide.ItemProperties.SpotCheckAdminPortal PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/Dashboard.aspx.cs" relfile="SpotCheckAdminPortal/Dashboard.aspx.cs" line="56" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
