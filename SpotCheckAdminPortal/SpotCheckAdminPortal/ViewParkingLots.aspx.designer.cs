@@ -17,6 +17,6 @@ namespace SpotCheckAdminPortal {
 		
 		protected System.Web.UI.WebControls.Literal CompanyNameLiteral;
 		
-		protected System.Web.UI.HtmlControls.HtmlGenericControl divContainer;
+		protected System.Web.UI.HtmlControls.HtmlGenericControl parkingLotContainer;
 	}
 }

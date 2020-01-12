@@ -49,6 +49,8 @@ namespace SpotCheckAdminPortal.Models
             return parkingLot_dl.GetParkingLotListFromCompanyID(companyID);
         }
 
+
+
         #endregion
     }
 }

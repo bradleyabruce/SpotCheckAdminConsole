@@ -335,12 +335,58 @@
                         <!-- End of Topbar -->
                         
                         <!-- Begin Page Content -->
-                        <div class="container-fluid" runat="server" id="divContainer">
+                        <div class="container-fluid" runat="server" id="parkingLotContainer">
+                            
+                             <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
+                            </div>
                             
                             
-                            
+                             <!-- Modal for Edit popup -->
+                        <!--<div class="modal" tabindex="-1" role="dialog" id="editModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Parking Lot</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <asp:Label id="editNameLabel" runat="server" Text="Name:"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:TextBox id="editNameTextBox" runat="server"></asp:TextBox>
+                                        <br>
+                                        <br>
+                                        <asp:Label id="editAddressLabel" runat="server" Text="Address:"></asp:Label>
+                                        <asp:TextBox id="editAddressTextBox" runat="server"></asp:TextBox>
+                                        <br>
+                                        <br>
+                                        <asp:Label id="editCityLabel" runat="server" Text="City:"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:TextBox id="editCityTextBox" runat="server"></asp:TextBox>
+                                        <br>
+                                        <br>
+                                        <asp:Label id="editStateLabel" runat="server" Text="State:"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:TextBox id="editStateTextBox" runat="server"></asp:TextBox>
+                                        <br>
+                                        <br>
+                                        <asp:Label id="editZipCodeLabel" runat="server" Text="Zip Code:"></asp:Label>
+                                        <asp:TextBox id="editZipCodeTextBox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!-- End Modal for Edit popup -->
                         </div>
                         <!-- /.container-fluid -->
+                        
+                       
+                        
+                        
                     </div>
                     <!-- End of Main Content -->
                     
@@ -395,6 +441,14 @@
         
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
+        
+        <script>
+            function editWindow(object e)
+            {
+                
+                alert!("Hello I am an alert box")
+            }
+        </script>
         
     </body>
 </html>
