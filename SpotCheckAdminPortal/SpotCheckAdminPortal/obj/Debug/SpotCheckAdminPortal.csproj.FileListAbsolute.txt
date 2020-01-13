@@ -15,7 +15,7 @@
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.xml
+/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csprojAssemblyReference.cache
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csproj.CopyComplete
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.pdb
-/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csprojAssemblyReference.cache

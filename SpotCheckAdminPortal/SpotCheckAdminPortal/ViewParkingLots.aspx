@@ -335,13 +335,37 @@
                         <!-- End of Topbar -->
                         
                         <!-- Begin Page Content -->
-                        <div class="container-fluid" runat="server" id="parkingLotContainer">
-                            
+                        <div class="container-fluid" runat="server" id="parkingLotBody">
+
+                            <div runat="server" id="alertDiv">
+
+                                <!-- Success Alert -->
+                                <!--<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSuccess">
+                                    Parking lot successfully updated!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>-->
+
+                                <!-- Error Alert -->
+                                <!--<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertError">
+                                    Parking lot could not be updated!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>-->
+
+                            </div>
+
                              <!-- Page Heading -->
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
                             </div>
-                            
+
+                            <!-- Container to Hold all Programmatically Created HTML -->
+                            <div runat="server" id="parkingLotContainer">
+
+                            </div>
                             
                              <!-- Modal for Edit popup -->
                         <!--<div class="modal" tabindex="-1" role="dialog" id="editModal">

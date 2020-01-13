@@ -111,9 +111,18 @@ namespace SpotCheckAdminPortal
             //update Lot
             editLot = editLot.UpdateParkingLot();
 
-            //reload parkingLotList
-            parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
-            LoadPage();
+            if(editLot != null)
+            {
+                //reload parkingLotList
+                parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
+                LoadPage();
+                ShowMessage("success");
+            }
+            else
+            {
+                ShowMessage("danger");
+                //ShowErrorMessage();
+            }            
         }
 
         #endregion
@@ -125,6 +134,44 @@ namespace SpotCheckAdminPortal
             parkingLotContainer.Controls.Clear();
             CreateParkingLotDropDowns();
             CreateEditModals();
+        }
+
+        private void ShowMessage(string type)
+        {
+            HtmlGenericControl outerDiv = new HtmlGenericControl("div");
+            if(type == "success")
+            {
+                outerDiv.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
+                outerDiv.InnerHtml = "Parking lot successfully updated!";
+            }
+            if(type == "warning")
+            {
+                outerDiv.Attributes.Add("class", "alert alert-warning alert-dismissible fade show");
+                outerDiv.InnerHtml = "Warning!";
+            }
+            if(type == "danger")
+            {
+                outerDiv.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
+                outerDiv.InnerHtml = "Error Occurred. Parking lot was not updated!";
+            }
+
+            outerDiv.Attributes.Add("role", "alert");
+           
+
+            HtmlGenericControl btnDismiss = new HtmlGenericControl("button");
+            btnDismiss.Attributes.Add("type", "button");
+            btnDismiss.Attributes.Add("class", "close");
+            btnDismiss.Attributes.Add("data-dismiss", "alert");
+            btnDismiss.Attributes.Add("aria-label", "Close");
+
+            HtmlGenericControl span = new HtmlGenericControl("span");
+            span.Attributes.Add("aria-hidden", "true");
+            span.InnerHtml = "&times;";
+
+            btnDismiss.Controls.Add(span);
+            outerDiv.Controls.Add(btnDismiss);
+
+            alertDiv.Controls.Add(outerDiv);
         }
 
 
