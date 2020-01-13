@@ -23,6 +23,45 @@ namespace SpotCheckAdminPortal.DataLayer
             this.Lon = parkingLot.Lon;
         }
 
+        #region Fill
+
+        public new ParkingLot Fill()
+        {
+            ParkingLot parkingLot = new ParkingLot();
+            parkingLot.LotID = this.LotID;
+
+            string url = IoC.API_URL + "parkingLot/fill";
+            string json = this.LotID.ToString();
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+
+            if(request != null)
+            {
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
+
+                if (code == HttpStatusCode.OK)
+                {
+                    //return parkingLot
+                    parkingLot = Newtonsoft.Json.JsonConvert.DeserializeObject<ParkingLot>(httpResponse);
+                    return parkingLot;
+                }
+                else
+                {
+                    //return parkingLots with no info
+                    return parkingLot;
+                }
+            }
+            else
+            {
+                //return parkingLots with no info
+                return parkingLot;
+            }
+        }
+
+        #endregion
+
         #region GetParkingLotListFromCompanyID
 
         public new List<ParkingLot> GetParkingLotListFromCompanyID(int companyID)
@@ -63,6 +102,43 @@ namespace SpotCheckAdminPortal.DataLayer
             else
             {
                 //return null
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region UpdateParkingLot
+
+        public new ParkingLot UpdateParkingLot()
+        {
+            ParkingLot parkingLot = new ParkingLot();
+
+            string url = IoC.API_URL + "parkingLot/updateParkingLot";
+            string json = Connect_dl.BuildJson(this);
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+
+            if (request != null)
+            {
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
+
+                if (code == HttpStatusCode.OK)
+                {
+                    //return parking lot
+                    parkingLot = Newtonsoft.Json.JsonConvert.DeserializeObject<ParkingLot>(httpResponse);
+                    return parkingLot;
+                }
+                else
+                {
+                    //return null
+                    return null;
+                }
+            }
+            else
+            {
                 return null;
             }
         }

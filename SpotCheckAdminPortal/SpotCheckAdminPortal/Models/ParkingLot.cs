@@ -43,12 +43,24 @@ namespace SpotCheckAdminPortal.Models
 
         #region Methods
 
+        public ParkingLot Fill()
+        {
+            ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            return parkingLot_dl.Fill();
+        }
+
         public List<ParkingLot> GetParkingLotListFromCompanyID(int companyID)
         {
             ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            parkingLot_dl.LotID = companyID;
             return parkingLot_dl.GetParkingLotListFromCompanyID(companyID);
         }
 
+        public ParkingLot UpdateParkingLot()
+        {
+            ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            return parkingLot_dl.UpdateParkingLot();
+        }
 
 
         #endregion

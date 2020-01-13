@@ -14,7 +14,7 @@ namespace SpotCheckAdminPortal.DataLayer
         public static string BuildJson(Object o)
         {
             string json = "{";
-            List<Dictionary<string, string>> objectPropertyNameValuePairs = new List<Dictionary<string, string>>();
+            List<Dictionary<string, object>> objectPropertyNameValuePairs = new List<Dictionary<string, object>>();
 
             foreach (PropertyInfo propertyInfo in o.GetType().GetProperties())
             {
@@ -22,14 +22,14 @@ namespace SpotCheckAdminPortal.DataLayer
                 object propertyValue = propertyInfo.GetValue(o);
                 if (propertyValue != null)
                 {
-                    Dictionary<string, string> nameValuePair = new Dictionary<string, string>();
+                    Dictionary<string, object> nameValuePair = new Dictionary<string, object>();
                     propertyName = propertyName.Substring(0, 1).ToLower() + propertyName.Substring(1);
-                    nameValuePair.Add(propertyName, propertyValue.ToString());
+                    nameValuePair.Add(propertyName, propertyValue);
                     objectPropertyNameValuePairs.Add(nameValuePair);
                 }
             }
 
-            foreach (Dictionary<string, string> nameValuePair in objectPropertyNameValuePairs)
+            foreach (Dictionary<string, object> nameValuePair in objectPropertyNameValuePairs)
             {
                 json += "\"" + nameValuePair.FirstOrDefault().Key + "\":\"" + nameValuePair.FirstOrDefault().Value + "\",";
             }

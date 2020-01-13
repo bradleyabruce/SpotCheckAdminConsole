@@ -1,21 +1,23 @@
 ﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/DataLayer/Connect_dl.cs">
     <Files>
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx.cs" Line="1" Column="1" />
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="107" Column="15" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="1" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="52" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" Line="340" Column="28" />
+      <File FileName="SpotCheckAdminPortal/Dashboard.aspx.cs" Line="23" Column="1" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="106" Column="30" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="117" Column="65" />
+      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="56" Column="74" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SpotCheckAdminPortal" expanded="True">
             <Node name="SpotCheckAdminPortal" expanded="True">
-              <Node name="DataLayer" expanded="True" />
+              <Node name="DataLayer" expanded="True">
+                <Node name="Connect_dl.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
               <Node name="Dashboard.aspx" expanded="True" />
-              <Node name="ViewParkingLots.aspx" expanded="True" selected="True" />
+              <Node name="ViewParkingLots.aspx" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -23,12 +25,16 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="../../../SpotCheckAdminPortal/DataLayer/Company_dl.cs" line="83" offsetX="-1" offsetY="-1" expression="response.StatusCode" liveUpdate="False" />
+    <Watch file="../../../SpotCheckAdminPortal/DataLayer/Company_dl.cs" line="83" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="response.StatusCode" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.SpotCheckAdminPortal PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/ViewParkingLots.aspx.cs" relfile="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" line="53" column="1" />
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/ViewParkingLots.aspx.cs" relfile="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" line="113" column="1" />
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" relfile="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" line="117" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

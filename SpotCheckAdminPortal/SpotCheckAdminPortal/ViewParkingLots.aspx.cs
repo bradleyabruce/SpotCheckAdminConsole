@@ -43,8 +43,7 @@ namespace SpotCheckAdminPortal
             //set label
             CompanyNameLiteral.Text = company.CompanyName;
 
-            CreateParkingLotDropDowns();
-            CreateEditModals();
+            LoadPage();
 
         }
 
@@ -53,11 +52,9 @@ namespace SpotCheckAdminPortal
             Button button = sender as Button;
             string lotID = button.CommandArgument.Substring(7);
 
-            string lotName = "";
-            string lotAddress = "";
-            string lotCity = "";
-            string lotState = "";
-            string lotZip = "";
+            ParkingLot editLot = new ParkingLot();
+            editLot.LotID = int.Parse(lotID);
+            editLot = editLot.Fill();
 
             string[] controlIDsToFind = { "editNameTextBox" + lotID, "editAddressTextBox" + lotID, "editCityTextBox" + lotID, "editStateTextBox" + lotID, "editZipCodeTextBox" + lotID };
 
@@ -73,43 +70,63 @@ namespace SpotCheckAdminPortal
                     switch (controlID)
                     {
                         case string a when controlID.Contains("Name"):
-                            lotName = tb.Text;
-                            tb.Text = "";
+                            if (tb.Text != "")
+                            {
+                                editLot.LotName = tb.Text;
+                                tb.Text = "";
+                            }
                             break;
                         case string a when controlID.Contains("Address"):
-                            lotAddress = tb.Text;
-                            tb.Text = "";
+                            if (tb.Text != "")
+                            {
+                                editLot.Address = tb.Text;
+                                tb.Text = "";
+                            }
                             break;
                         case string a when controlID.Contains("City"):
-                            lotCity = tb.Text;
-                            tb.Text = "";
+                            if (tb.Text != "")
+                            {
+                                editLot.City = tb.Text;
+                                tb.Text = "";
+                            }
                             break;
                         case string a when controlID.Contains("State"):
-                            lotState = tb.Text;
-                            tb.Text = "";
+                            if (tb.Text != "")
+                            {
+                                editLot.State = tb.Text;
+                                tb.Text = "";
+                            }
                             break;
                         case string a when controlID.Contains("ZipCode"):
-                            lotZip = tb.Text;
-                            tb.Text = "";
+                            if (tb.Text != "")
+                            {
+                                editLot.ZipCode = tb.Text;
+                                tb.Text = "";
+                            }
                             break;
                     }
                 }
             }
 
-            ParkingLot editLot = new ParkingLot();
-            editLot.LotID = int.Parse(lotID);
-            editLot.LotName = lotName;
-            editLot.Address = lotAddress;
-            editLot.City = lotCity;
-            editLot.State = lotState;
-            editLot.ZipCode = lotZip;
+            //update Lot
+            editLot = editLot.UpdateParkingLot();
 
-            //editLot.UpdateLot();
+            //reload parkingLotList
+            parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
+            LoadPage();
         }
 
         #endregion
 
         #region Methods
+
+        private void LoadPage()
+        {
+            parkingLotContainer.Controls.Clear();
+            CreateParkingLotDropDowns();
+            CreateEditModals();
+        }
+
 
         private void CreateParkingLotDropDowns()
         {
