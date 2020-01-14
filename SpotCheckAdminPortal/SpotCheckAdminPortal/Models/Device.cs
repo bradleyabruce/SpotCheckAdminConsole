@@ -18,6 +18,8 @@ namespace SpotCheckAdminPortal.Models
         public DateTime LastUpdateDate { get; set; }
         public int? CompanyID { get; set; }
         public bool? TakeNewImage { get; set; }
+        public bool? IsDeployed { get; set; }
+        public int? ParkingLotID { get; set; }
 
         #endregion
 

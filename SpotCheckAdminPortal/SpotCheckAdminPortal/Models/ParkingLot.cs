@@ -62,6 +62,12 @@ namespace SpotCheckAdminPortal.Models
             return parkingLot_dl.UpdateParkingLot();
         }
 
+        public List<Device> GetCamerasDeployed()
+        {
+            ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            return parkingLot_dl.GetCamerasDeployed();
+        }
+
 
         #endregion
     }

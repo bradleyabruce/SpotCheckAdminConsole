@@ -179,6 +179,13 @@ namespace SpotCheckAdminPortal
         {
             foreach (ParkingLot parkingLot in parkingLots)
             {
+                List<Device> deployedCameras = parkingLot.GetCamerasDeployed();
+                int cameraCount = 0;
+                if(deployedCameras != null)
+                {
+                    cameraCount = deployedCameras.Count;
+                }
+
                 //outer div
                 HtmlGenericControl outerDiv = new HtmlGenericControl("div");
                 outerDiv.Attributes.Add("class", "card shadow mb");
@@ -205,6 +212,7 @@ namespace SpotCheckAdminPortal
                 string innerHtml = "<p><strong>" + parkingLot.Address + ", " + parkingLot.City + ", " + parkingLot.State + " " + parkingLot.ZipCode + "</strong></p> ";
                 innerHtml += "<p>Total Spots: " + parkingLot.TotalSpots + "</p>";
                 innerHtml += "<p>Open Spots: " + parkingLot.OpenSpots + "</p>";
+                innerHtml += "<p> Cameras Deployed: " + cameraCount + "</p>";
                 innerDiv.InnerHtml = innerHtml;
 
                 HtmlGenericControl editButton = new HtmlGenericControl("button");

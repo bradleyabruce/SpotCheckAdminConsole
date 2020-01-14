@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using SpotCheckAdminPortal.Models;
@@ -23,7 +22,7 @@ namespace SpotCheckAdminPortal.DataLayer
             this.Lon = parkingLot.Lon;
         }
 
-        #region Fill
+        #region Methods
 
         public new ParkingLot Fill()
         {
@@ -59,10 +58,6 @@ namespace SpotCheckAdminPortal.DataLayer
                 return parkingLot;
             }
         }
-
-        #endregion
-
-        #region GetParkingLotListFromCompanyID
 
         public new List<ParkingLot> GetParkingLotListFromCompanyID(int companyID)
         {
@@ -106,10 +101,6 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
-        #endregion
-
-        #region UpdateParkingLot
-
         public new ParkingLot UpdateParkingLot()
         {
             ParkingLot parkingLot = new ParkingLot();
@@ -143,6 +134,47 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
-        #endregion
+        public new List<Device> GetCamerasDeployed()
+        {
+            List<Device> devicesToLot = new List<Device>();
+
+            string url = IoC.API_URL + "parkingLot/getCamerasDeployedAtParkingLot";
+            string json = Connect_dl.BuildJson(this);
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+
+            if (request != null)
+            {
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
+
+                if (code == HttpStatusCode.OK)
+                {
+                    //return parking lot
+                    devicesToLot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(httpResponse);
+                    return devicesToLot;
+                }
+                else
+                {
+                    if (httpResponse == "No deployed devices found")
+                    {
+                        //Return empty list
+                        return devicesToLot;
+                    }
+                    else
+                    {
+                        //return null
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        #endregion Methods
     }
 }
