@@ -59,7 +59,7 @@ namespace SpotCheckAdminPortal
         private void btnEditSubmit_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            string lotID = button.CommandArgument.Substring(7);
+            string lotID = button.CommandArgument;
 
             ParkingLot editLot = new ParkingLot();
             editLot.LotID = int.Parse(lotID);
@@ -137,7 +137,7 @@ namespace SpotCheckAdminPortal
         private void btnDeleteSubmit_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            string lotID = button.CommandArgument.Substring(9);
+            string lotID = button.CommandArgument;
 
             ParkingLot deleteLot = new ParkingLot();
             deleteLot.LotID = int.Parse(lotID);
@@ -164,6 +164,18 @@ namespace SpotCheckAdminPortal
             }
         }
 
+        private void btnCameraHyperlinkSubmit_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            string lotID = button.CommandArgument;
+        }
+
+
+        private void btnAddSubmit_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+        }
+
         #endregion End Events
 
         #region Methods
@@ -171,9 +183,10 @@ namespace SpotCheckAdminPortal
         private void LoadPage()
         {
             parkingLotContainer.Controls.Clear();
-            CreateParkingLotDropDowns();
+            CreateParkingLotDivs();
             CreateEditModals();
             CreateDeleteModals();
+            CreateAddModal();
         }
 
         private void ShowMessage(string type, string message)
@@ -214,19 +227,24 @@ namespace SpotCheckAdminPortal
             alertDiv.Controls.Add(outerDiv);
         }
 
-        private void CreateParkingLotDropDowns()
+        private void CreateParkingLotDivs()
         {
             foreach (ParkingLot parkingLot in parkingLots)
             {
                 List<Device> deployedCameras = parkingLot.GetCamerasDeployed();
-                string cameraHyperLink = "";
+                Button btnCameraHyperlink = null;
                 int cameraCount = 0;
                 if(deployedCameras != null)
                 {
                     cameraCount = deployedCameras.Count;
                     if(cameraCount > 0)
                     {
-                       //cameraHyperLink
+                        btnCameraHyperlink = new Button();
+                        btnCameraHyperlink.ID = "cameraHyperLink" + parkingLot.LotID;
+                        btnCameraHyperlink.CssClass = "btn btn-primary btn-sm";
+                        btnCameraHyperlink.Text = "View Camera";
+                        btnCameraHyperlink.Click += new EventHandler(btnCameraHyperlinkSubmit_Click);
+                        btnCameraHyperlink.CommandArgument = Convert.ToString(parkingLot.LotID);
                     } 
                 }
 
@@ -264,7 +282,11 @@ namespace SpotCheckAdminPortal
                 openSpotsDiv.InnerHtml = "<strong>Open Spots:</strong> " + parkingLot.OpenSpots;
 
                 HtmlGenericControl camerasDiv = new HtmlGenericControl("div");
-                camerasDiv.InnerHtml = "<p><strong>Cameras Deployed:</strong> " + cameraCount + "</p>";              
+                camerasDiv.InnerHtml = "<p><strong>Cameras Deployed:</strong> " + cameraCount + "</p>";
+                if(btnCameraHyperlink != null)
+                {
+                    camerasDiv.Controls.Add(btnCameraHyperlink);
+                }
                 
                 HtmlGenericControl editButton = new HtmlGenericControl("button");
                 editButton.Attributes.Add("data-toggle", "modal");
@@ -294,6 +316,136 @@ namespace SpotCheckAdminPortal
 
                 parkingLotContainer.Controls.Add(outerDiv);
             }
+        }
+
+        public void CreateAddModal()
+        {
+            HtmlGenericControl div1 = new HtmlGenericControl("div");
+            div1.Attributes.Add("class", "modal");
+            div1.Attributes.Add("tabindex", "-1");
+            div1.Attributes.Add("role", "dialog");
+            div1.Attributes.Add("id", "addModal");
+
+            HtmlGenericControl div2 = new HtmlGenericControl("div");
+            div2.Attributes.Add("class", "modal-dialog");
+            div2.Attributes.Add("role", "document");
+
+            HtmlGenericControl div3 = new HtmlGenericControl("div");
+            div3.Attributes.Add("class", "modal-content");
+
+            //header controls
+            HtmlGenericControl divHeader = new HtmlGenericControl("div");
+            divHeader.Attributes.Add("class", "modal-header");
+
+            HtmlGenericControl h5 = new HtmlGenericControl("h5");
+            h5.Attributes.Add("class", "modal-title");
+            h5.InnerHtml = "New Parking Lot";
+
+            HtmlGenericControl btnTopClose = new HtmlGenericControl("button");
+            btnTopClose.Attributes.Add("type", "button");
+            btnTopClose.Attributes.Add("class", "close");
+            btnTopClose.Attributes.Add("data-dismiss", "modal");
+            btnTopClose.Attributes.Add("aria-label", "Close");
+
+            HtmlGenericControl btnCloseSpan = new HtmlGenericControl("span");
+            btnCloseSpan.Attributes.Add("aria-hidden", "true");
+            btnCloseSpan.InnerHtml = "&times;";
+
+            btnTopClose.Controls.Add(btnCloseSpan);
+            divHeader.Controls.Add(h5);
+            divHeader.Controls.Add(btnTopClose);
+
+            //body controls
+            HtmlGenericControl divBody = new HtmlGenericControl("div");
+            divBody.Attributes.Add("class", "modal-body");
+
+            //name
+            Label nameLabel = new Label();
+            nameLabel.ID = "addNameLabel";
+            nameLabel.Text = "Name: ";
+            TextBox addNameTextBox = new TextBox();
+            addNameTextBox.ID = "addNameTextBox";
+
+            //address
+            Label addressLabel = new Label();
+            addressLabel.ID = "addAddressLabel";
+            addressLabel.Text = "Address: ";
+            TextBox addAddressTextBox = new TextBox();
+            addAddressTextBox.ID = "addAddressTextBox";
+
+            //city
+            Label cityLabel = new Label();
+            cityLabel.ID = "addCityLabel";
+            cityLabel.Text = "City: ";
+            TextBox addCityTextBox = new TextBox();
+            addCityTextBox.ID = "addCityTextBox";
+
+            //state
+            Label stateLabel = new Label();
+            stateLabel.ID = "addStateLabel";
+            stateLabel.Text = "State: ";
+            TextBox addStateTextBox = new TextBox();
+            addStateTextBox.ID = "addStateTextBox";
+
+            //zip
+            Label zipCodeLabel = new Label();
+            zipCodeLabel.ID = "addZipCodeLabel";
+            zipCodeLabel.Text = "Zip Code: ";
+            TextBox addZipCodeTextBox = new TextBox();
+            addZipCodeTextBox.ID = "addZipCodeTextBox";
+
+            divBody.Controls.Add(nameLabel);
+            divBody.Controls.Add(addNameTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            divBody.Controls.Add(addressLabel);
+            divBody.Controls.Add(addAddressTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            divBody.Controls.Add(cityLabel);
+            divBody.Controls.Add(addCityTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            divBody.Controls.Add(stateLabel);
+            divBody.Controls.Add(addStateTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            divBody.Controls.Add(zipCodeLabel);
+            divBody.Controls.Add(addZipCodeTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            //footer controls
+            HtmlGenericControl divFooter = new HtmlGenericControl("div");
+            divFooter.Attributes.Add("class", "modal-footer");
+
+            HtmlGenericControl btnCloseFooter = new HtmlGenericControl("button");
+            btnCloseFooter.Attributes.Add("type", "button");
+            btnCloseFooter.Attributes.Add("class", "btn btn-secondary");
+            btnCloseFooter.Attributes.Add("data-dismiss", "modal");
+            btnCloseFooter.InnerHtml = "Cancel";
+
+            Button btnEditSubmit = new Button();
+            btnEditSubmit.ID = "btnAddSubmit";
+            btnEditSubmit.CssClass = "btn btn-primary";
+            btnEditSubmit.Text = "Add";
+            btnEditSubmit.Click += new EventHandler(btnAddSubmit_Click);
+
+            divFooter.Controls.Add(btnEditSubmit);
+            divFooter.Controls.Add(btnCloseFooter);
+
+            div3.Controls.Add(divHeader);
+            div3.Controls.Add(divBody);
+            div3.Controls.Add(divFooter);
+
+            div2.Controls.Add(div3);
+            div1.Controls.Add(div2);
+
+            parkingLotContainer.Controls.Add(div1);
         }
 
         public void CreateEditModals()
@@ -419,7 +571,7 @@ namespace SpotCheckAdminPortal
                 btnEditSubmit.CssClass = "btn btn-primary";
                 btnEditSubmit.Text = "Save";
                 btnEditSubmit.Click += new EventHandler(btnEditSubmit_Click);
-                btnEditSubmit.CommandArgument = Convert.ToString("btnEdit" + parkingLot.LotID);
+                btnEditSubmit.CommandArgument = Convert.ToString(parkingLot.LotID);
 
                 divFooter.Controls.Add(btnEditSubmit);
                 divFooter.Controls.Add(btnCloseFooter);
@@ -510,7 +662,7 @@ namespace SpotCheckAdminPortal
                 btnEditSubmit.CssClass = "btn btn-danger";
                 btnEditSubmit.Text = "Delete";
                 btnEditSubmit.Click += new EventHandler(btnDeleteSubmit_Click);
-                btnEditSubmit.CommandArgument = Convert.ToString("btnDelete" + parkingLot.LotID);
+                btnEditSubmit.CommandArgument = Convert.ToString(parkingLot.LotID);
 
                 divFooter.Controls.Add(btnEditSubmit);
                 divFooter.Controls.Add(btnCloseFooter);

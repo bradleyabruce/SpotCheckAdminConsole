@@ -360,6 +360,7 @@
                              <!-- Page Heading -->
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
+                                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add Parking Lot</button>
                             </div>
 
                             <!-- Container to Hold all Programmatically Created HTML -->

@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/ViewParkingLots.aspx.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/ViewParkingLots.aspx">
     <Files>
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="356" Column="42" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="363" Column="162" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="144" Column="32" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="189" Column="30" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="193" Column="1" />
+      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="54" Column="1" />
       <File FileName="SpotCheckAdminPortal/Models/Device.cs" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" />
+      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" Line="343" Column="173" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" />
     </Files>
     <Pads>
@@ -18,9 +18,7 @@
             <Node name="SpotCheckAdminPortal" expanded="True">
               <Node name="DataLayer" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="ViewParkingLots.aspx" expanded="True">
-                <Node name="ViewParkingLots.aspx.cs" selected="True" />
-              </Node>
+              <Node name="ViewParkingLots.aspx" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>
@@ -33,7 +31,9 @@
   <MonoDevelop.Ide.ItemProperties.SpotCheckAdminPortal PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/ViewParkingLots.aspx.cs" relfile="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" line="139" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
