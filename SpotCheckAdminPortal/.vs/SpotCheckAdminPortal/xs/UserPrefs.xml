@@ -2,12 +2,14 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/ViewParkingLots.aspx.cs">
     <Files>
       <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="356" Column="42" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" Line="1" Column="1" />
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="215" Column="68" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="160" Column="67" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="68" Column="55" />
-      <File FileName="SpotCheckAdminPortal/Models/Device.cs" Line="22" Column="45" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" Line="1" Column="1" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="144" Column="32" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" />
+      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" />
+      <File FileName="SpotCheckAdminPortal/Models/Device.cs" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" />
+      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

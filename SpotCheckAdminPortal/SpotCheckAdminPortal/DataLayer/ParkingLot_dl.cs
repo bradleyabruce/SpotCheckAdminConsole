@@ -175,6 +175,47 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
+        public new bool? Delete()
+        {
+            bool? deleteResult = false;
+
+            string url = IoC.API_URL + "parkingLot/delete";
+            string json = Connect_dl.BuildJson(this);
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+
+            if (request != null)
+            {
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
+
+                if (code == HttpStatusCode.OK)
+                {
+                    //return parking lot
+                    deleteResult = Newtonsoft.Json.JsonConvert.DeserializeObject<bool?>(httpResponse);
+                    return deleteResult;
+                }
+                else
+                {
+                    if (httpResponse == "Devices still deployed to parking lot.")
+                    {
+                        //Return empty list
+                        return false;
+                    }
+                    else
+                    {
+                        //return null
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion Methods
     }
 }

@@ -43,7 +43,16 @@ namespace SpotCheckAdminPortal
             //set label
             CompanyNameLiteral.Text = company.CompanyName;
 
-            LoadPage();
+            if(parkingLots.Count > 0    )
+            {
+                LoadPage();
+            }
+            else
+            {
+                ShowMessage("warning", "You do not have any parking lots set up yet.");
+            }
+
+
 
         }
 
@@ -116,16 +125,46 @@ namespace SpotCheckAdminPortal
                 //reload parkingLotList
                 parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
                 LoadPage();
-                ShowMessage("success");
+                ShowMessage("success", "Parking lot successfully updated!");
             }
             else
             {
-                ShowMessage("danger");
+                ShowMessage("danger", "Error Occurred. Parking lot was not updated!");
                 //ShowErrorMessage();
             }            
         }
 
-        #endregion
+        private void btnDeleteSubmit_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            string lotID = button.CommandArgument.Substring(9);
+
+            ParkingLot deleteLot = new ParkingLot();
+            deleteLot.LotID = int.Parse(lotID);
+            deleteLot = deleteLot.Fill();
+
+            bool? deleteResult = deleteLot.Delete();
+
+            if(deleteResult != null)
+            {
+                if ((bool)deleteResult)
+                {
+                    ShowMessage("success", "Parking lot successfully deleted!");
+                    parkingLots = deleteLot.GetParkingLotListFromCompanyID((int)company.CompanyID);
+                    LoadPage();
+                }
+                else
+                {
+                    ShowMessage("warning", "You must undeploy all cameras from parking lot before deleting.");
+                }
+            }
+            else
+            {
+                ShowMessage("danger", "Error occurred while attempting to delete parking lot.");
+            }
+        }
+
+        #endregion End Events
 
         #region Methods
 
@@ -134,25 +173,26 @@ namespace SpotCheckAdminPortal
             parkingLotContainer.Controls.Clear();
             CreateParkingLotDropDowns();
             CreateEditModals();
+            CreateDeleteModals();
         }
 
-        private void ShowMessage(string type)
+        private void ShowMessage(string type, string message)
         {
             HtmlGenericControl outerDiv = new HtmlGenericControl("div");
             if(type == "success")
             {
                 outerDiv.Attributes.Add("class", "alert alert-success alert-dismissible fade show");
-                outerDiv.InnerHtml = "Parking lot successfully updated!";
+                outerDiv.InnerHtml = message;
             }
             if(type == "warning")
             {
                 outerDiv.Attributes.Add("class", "alert alert-warning alert-dismissible fade show");
-                outerDiv.InnerHtml = "Warning!";
+                outerDiv.InnerHtml = message;
             }
             if(type == "danger")
             {
                 outerDiv.Attributes.Add("class", "alert alert-danger alert-dismissible fade show");
-                outerDiv.InnerHtml = "Error Occurred. Parking lot was not updated!";
+                outerDiv.InnerHtml = message;
             }
 
             outerDiv.Attributes.Add("role", "alert");
@@ -174,16 +214,20 @@ namespace SpotCheckAdminPortal
             alertDiv.Controls.Add(outerDiv);
         }
 
-
         private void CreateParkingLotDropDowns()
         {
             foreach (ParkingLot parkingLot in parkingLots)
             {
                 List<Device> deployedCameras = parkingLot.GetCamerasDeployed();
+                string cameraHyperLink = "";
                 int cameraCount = 0;
                 if(deployedCameras != null)
                 {
                     cameraCount = deployedCameras.Count;
+                    if(cameraCount > 0)
+                    {
+                       //cameraHyperLink
+                    } 
                 }
 
                 //outer div
@@ -209,19 +253,39 @@ namespace SpotCheckAdminPortal
 
                 HtmlGenericControl innerDiv = new HtmlGenericControl("div");
                 innerDiv.Attributes.Add("class", "card-body");
-                string innerHtml = "<p><strong>" + parkingLot.Address + ", " + parkingLot.City + ", " + parkingLot.State + " " + parkingLot.ZipCode + "</strong></p> ";
-                innerHtml += "<p>Total Spots: " + parkingLot.TotalSpots + "</p>";
-                innerHtml += "<p>Open Spots: " + parkingLot.OpenSpots + "</p>";
-                innerHtml += "<p> Cameras Deployed: " + cameraCount + "</p>";
-                innerDiv.InnerHtml = innerHtml;
 
+                HtmlGenericControl addressDiv = new HtmlGenericControl("div");
+                addressDiv.InnerHtml = "<p><strong>" + parkingLot.Address + ", " + parkingLot.City + ", " + parkingLot.State + " " + parkingLot.ZipCode + "</strong></p> ";
+
+                HtmlGenericControl totalSpotsDiv = new HtmlGenericControl("div");
+                totalSpotsDiv.InnerHtml = "<strong>Total Spots:</strong> " + parkingLot.TotalSpots;
+
+                HtmlGenericControl openSpotsDiv = new HtmlGenericControl("div");
+                openSpotsDiv.InnerHtml = "<strong>Open Spots:</strong> " + parkingLot.OpenSpots;
+
+                HtmlGenericControl camerasDiv = new HtmlGenericControl("div");
+                camerasDiv.InnerHtml = "<p><strong>Cameras Deployed:</strong> " + cameraCount + "</p>";              
+                
                 HtmlGenericControl editButton = new HtmlGenericControl("button");
                 editButton.Attributes.Add("data-toggle", "modal");
                 editButton.Attributes.Add("data-target", "#editModal" + parkingLot.LotID);
                 editButton.Attributes.Add("type", "button");
                 editButton.Attributes.Add("class", "btn btn-primary");
                 editButton.InnerHtml = "Edit Parking Lot";
+
+                HtmlGenericControl deleteButton = new HtmlGenericControl("button");
+                deleteButton.Attributes.Add("data-toggle", "modal");
+                deleteButton.Attributes.Add("data-target", "#deleteModal" + parkingLot.LotID);
+                deleteButton.Attributes.Add("type", "button");
+                deleteButton.Attributes.Add("class", "btn btn-danger");
+                deleteButton.InnerHtml = "Delete Parking Lot";
+
+                innerDiv.Controls.Add(addressDiv);
+                innerDiv.Controls.Add(totalSpotsDiv);
+                innerDiv.Controls.Add(openSpotsDiv);
+                innerDiv.Controls.Add(camerasDiv);
                 innerDiv.Controls.Add(editButton);
+                innerDiv.Controls.Add(deleteButton);
 
                 middleDiv.Controls.Add(innerDiv);
 
@@ -351,7 +415,7 @@ namespace SpotCheckAdminPortal
                 btnCloseFooter.InnerHtml = "Cancel";
 
                 Button btnEditSubmit = new Button();
-                btnEditSubmit.ID = "btnSubmit" + parkingLot.LotID;
+                btnEditSubmit.ID = "btnEditSubmit" + parkingLot.LotID;
                 btnEditSubmit.CssClass = "btn btn-primary";
                 btnEditSubmit.Text = "Save";
                 btnEditSubmit.Click += new EventHandler(btnEditSubmit_Click);
@@ -368,6 +432,97 @@ namespace SpotCheckAdminPortal
                 div1.Controls.Add(div2);
 
                 parkingLotContainer.Controls.Add(div1);              
+            }
+        }
+
+        public void CreateDeleteModals()
+        {
+            foreach (ParkingLot parkingLot in parkingLots)
+            {
+                HtmlGenericControl div1 = new HtmlGenericControl("div");
+                div1.Attributes.Add("class", "modal");
+                div1.Attributes.Add("tabindex", "-1");
+                div1.Attributes.Add("role", "dialog");
+                div1.Attributes.Add("id", "deleteModal" + parkingLot.LotID);
+
+                HtmlGenericControl div2 = new HtmlGenericControl("div");
+                div2.Attributes.Add("class", "modal-dialog");
+                div2.Attributes.Add("role", "document");
+
+                HtmlGenericControl div3 = new HtmlGenericControl("div");
+                div3.Attributes.Add("class", "modal-content");
+
+                //header controls
+                HtmlGenericControl divHeader = new HtmlGenericControl("div");
+                divHeader.Attributes.Add("class", "modal-header");
+
+                HtmlGenericControl h5 = new HtmlGenericControl("h5");
+                h5.Attributes.Add("class", "modal-title");
+                h5.InnerHtml = "Delete Parking Lot";
+
+                HtmlGenericControl btnTopClose = new HtmlGenericControl("button");
+                btnTopClose.Attributes.Add("type", "button");
+                btnTopClose.Attributes.Add("class", "close");
+                btnTopClose.Attributes.Add("data-dismiss", "modal");
+                btnTopClose.Attributes.Add("aria-label", "Close");
+
+                HtmlGenericControl btnCloseSpan = new HtmlGenericControl("span");
+                btnCloseSpan.Attributes.Add("aria-hidden", "true");
+                btnCloseSpan.InnerHtml = "&times;";
+
+                btnTopClose.Controls.Add(btnCloseSpan);
+                divHeader.Controls.Add(h5);
+                divHeader.Controls.Add(btnTopClose);
+
+                //body controls
+                HtmlGenericControl divBody = new HtmlGenericControl("div");
+                divBody.Attributes.Add("class", "modal-body");
+
+                //name
+                Label nameLabel = new Label();
+                nameLabel.ID = "deleteNameLabel" + parkingLot.LotID;
+                nameLabel.Text = parkingLot.LotName;
+                nameLabel.CssClass = "text-align: center;";
+
+                //warning
+                Label warningLabel = new Label();
+                nameLabel.ID = "warningDeleteLabel" + parkingLot.LotID;
+                nameLabel.Text = "Warning! Deleting a Parking Lot can not be undone! Make sure all cameras are undeployed from the Lot first.";
+                nameLabel.CssClass = "text-align: center;";
+
+                divBody.Controls.Add(nameLabel);
+                divBody.Controls.Add(new LiteralControl("<br />"));
+                divBody.Controls.Add(new LiteralControl("<br />"));
+                divBody.Controls.Add(warningLabel);                
+
+                //footer controls
+                HtmlGenericControl divFooter = new HtmlGenericControl("div");
+                divFooter.Attributes.Add("class", "modal-footer");
+
+                HtmlGenericControl btnCloseFooter = new HtmlGenericControl("button");
+                btnCloseFooter.Attributes.Add("type", "button");
+                btnCloseFooter.Attributes.Add("class", "btn btn-secondary");
+                btnCloseFooter.Attributes.Add("data-dismiss", "modal");
+                btnCloseFooter.InnerHtml = "Cancel";
+
+                Button btnEditSubmit = new Button();
+                btnEditSubmit.ID = "btnDeleteSubmit" + parkingLot.LotID;
+                btnEditSubmit.CssClass = "btn btn-danger";
+                btnEditSubmit.Text = "Delete";
+                btnEditSubmit.Click += new EventHandler(btnDeleteSubmit_Click);
+                btnEditSubmit.CommandArgument = Convert.ToString("btnDelete" + parkingLot.LotID);
+
+                divFooter.Controls.Add(btnEditSubmit);
+                divFooter.Controls.Add(btnCloseFooter);
+
+                div3.Controls.Add(divHeader);
+                div3.Controls.Add(divBody);
+                div3.Controls.Add(divFooter);
+
+                div2.Controls.Add(div3);
+                div1.Controls.Add(div2);
+
+                parkingLotContainer.Controls.Add(div1);
             }
         }
 

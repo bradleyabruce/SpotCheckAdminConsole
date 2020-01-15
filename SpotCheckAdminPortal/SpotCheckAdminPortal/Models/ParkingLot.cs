@@ -68,6 +68,12 @@ namespace SpotCheckAdminPortal.Models
             return parkingLot_dl.GetCamerasDeployed();
         }
 
+        public bool? Delete()
+        {
+            ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            return parkingLot_dl.Delete();
+        }
+
 
         #endregion
     }
