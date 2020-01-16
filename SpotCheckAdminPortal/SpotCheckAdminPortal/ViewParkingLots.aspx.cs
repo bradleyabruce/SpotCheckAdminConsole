@@ -125,11 +125,11 @@ namespace SpotCheckAdminPortal
                 //reload parkingLotList
                 parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
                 LoadPage();
-                ShowMessage("success", "Parking lot successfully updated!");
+                ShowMessage("success", "Parking lot successfully updated.");
             }
             else
             {
-                ShowMessage("danger", "Error Occurred. Parking lot was not updated!");
+                ShowMessage("danger", "Error Occurred. Parking lot could not be updated.");
                 //ShowErrorMessage();
             }            
         }
@@ -149,18 +149,18 @@ namespace SpotCheckAdminPortal
             {
                 if ((bool)deleteResult)
                 {
-                    ShowMessage("success", "Parking lot successfully deleted!");
+                    ShowMessage("success", "Parking lot successfully deleted.");
                     parkingLots = deleteLot.GetParkingLotListFromCompanyID((int)company.CompanyID);
                     LoadPage();
                 }
                 else
                 {
-                    ShowMessage("warning", "You must undeploy all cameras from parking lot before deleting.");
+                    ShowMessage("warning", "You must un-deploy all cameras from parking lot before deleting.");
                 }
             }
             else
             {
-                ShowMessage("danger", "Error occurred while attempting to delete parking lot.");
+                ShowMessage("danger", "Error Occurred. Parking Lot could not be deleted.");
             }
         }
 
@@ -174,6 +174,75 @@ namespace SpotCheckAdminPortal
         private void btnAddSubmit_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
+
+            ParkingLot newLot = new ParkingLot();
+
+            string[] controlIDsToFind = { "addNameTextBox", "addAddressTextBox", "addCityTextBox", "addStateTextBox", "editZipCodeTextBox" };
+            Control match = null;
+
+            foreach (string controlID in controlIDsToFind)
+            {
+                match = FindControlRecursive(parkingLotContainer, controlID);
+                if (match != null)
+                {
+                    TextBox tb = match as TextBox;
+
+                    switch (controlID)
+                    {
+                        case string a when controlID.Contains("Name"):
+                            if (tb.Text != "")
+                            {
+                                newLot.LotName = tb.Text;
+                                tb.Text = "";
+                            }
+                            break;
+                        case string a when controlID.Contains("Address"):
+                            if (tb.Text != "")
+                            {
+                                newLot.Address = tb.Text;
+                                tb.Text = "";
+                            }
+                            break;
+                        case string a when controlID.Contains("City"):
+                            if (tb.Text != "")
+                            {
+                                newLot.City = tb.Text;
+                                tb.Text = "";
+                            }
+                            break;
+                        case string a when controlID.Contains("State"):
+                            if (tb.Text != "")
+                            {
+                                newLot.State = tb.Text;
+                                tb.Text = "";
+                            }
+                            break;
+                        case string a when controlID.Contains("ZipCode"):
+                            if (tb.Text != "")
+                            {
+                                newLot.ZipCode = tb.Text;
+                                tb.Text = "";
+                            }
+                            break;
+                    }
+                }
+            }
+
+            newLot.CompanyID = company.CompanyID;
+            newLot = newLot.Create();
+
+            if (newLot != null)
+            {
+                //reload parkingLotList
+                parkingLots = newLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
+                LoadPage();
+                ShowMessage("success", "Parking lot successfully added.");
+            }
+            else
+            {
+                ShowMessage("danger", "Error Occurred. Parking lot could not be added.");
+                //ShowErrorMessage();
+            }
         }
 
         #endregion End Events
@@ -394,6 +463,11 @@ namespace SpotCheckAdminPortal
             TextBox addZipCodeTextBox = new TextBox();
             addZipCodeTextBox.ID = "addZipCodeTextBox";
 
+            //Warning Label
+            Label addWarning = new Label();
+            addWarning.ID = "addWarningLabel";
+            addWarning.Text = "Parking Lots will not be visible to users on the iOS and Android App until you deploy a camera.";
+
             divBody.Controls.Add(nameLabel);
             divBody.Controls.Add(addNameTextBox);
             divBody.Controls.Add(new LiteralControl("<br />"));
@@ -416,6 +490,10 @@ namespace SpotCheckAdminPortal
 
             divBody.Controls.Add(zipCodeLabel);
             divBody.Controls.Add(addZipCodeTextBox);
+            divBody.Controls.Add(new LiteralControl("<br />"));
+            divBody.Controls.Add(new LiteralControl("<br />"));
+
+            divBody.Controls.Add(addWarning);
             divBody.Controls.Add(new LiteralControl("<br />"));
             divBody.Controls.Add(new LiteralControl("<br />"));
 

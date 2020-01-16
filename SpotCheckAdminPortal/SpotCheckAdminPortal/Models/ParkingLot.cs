@@ -74,6 +74,12 @@ namespace SpotCheckAdminPortal.Models
             return parkingLot_dl.Delete();
         }
 
+        public ParkingLot Create()
+        {
+            ParkingLot_dl parkingLot_dl = new ParkingLot_dl(this);
+            return parkingLot_dl.Create();
+        }
+
 
         #endregion
     }

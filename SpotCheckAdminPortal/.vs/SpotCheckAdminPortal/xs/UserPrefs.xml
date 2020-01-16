@@ -3,12 +3,12 @@
     <Files>
       <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="363" Column="162" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="189" Column="30" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" Line="193" Column="1" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" Line="54" Column="1" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" />
+      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" />
+      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" />
       <File FileName="SpotCheckAdminPortal/Models/Device.cs" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" Line="343" Column="173" />
+      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" />
       <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" />
     </Files>
     <Pads>
