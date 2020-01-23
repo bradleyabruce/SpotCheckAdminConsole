@@ -19,7 +19,7 @@
         
     </head>
     
-    <body id="page-top">
+    <body id="viewParkingLotBody" runat="server">
         <form id="dashboardForm" runat="server">
             <!-- Page Wrapper -->
             <div id="wrapper">
@@ -362,11 +362,15 @@
                                 <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
                                 <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add Parking Lot</button>
                             </div>
-
-                            <!-- Container to Hold all Programmatically Created HTML -->
-                            <div runat="server" id="parkingLotContainer">
-
-                            </div>
+                                <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+                                <asp:UpdatePanel runat="server" id="parkingLotUpdatePanel">
+                                    <ContentTemplate runat="server" id="parkingLotContentTemplate">
+                                        <!-- Container to Hold all Programmatically Created HTML -->
+                                        <div runat="server" id="parkingLotContainer">
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            
                             
                              <!-- Modal for Edit popup -->
                         <!--<div class="modal" tabindex="-1" role="dialog" id="editModal">
@@ -466,14 +470,6 @@
         
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
-        
-        <script>
-            function editWindow(object e)
-            {
                 
-                alert!("Hello I am an alert box")
-            }
-        </script>
-        
     </body>
 </html>

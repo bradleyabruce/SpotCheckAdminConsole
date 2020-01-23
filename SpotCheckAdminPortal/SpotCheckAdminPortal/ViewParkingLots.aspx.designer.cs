@@ -12,7 +12,9 @@ namespace SpotCheckAdminPortal {
 	
 	
 	public partial class ViewParkingLots {
-		
+
+		protected System.Web.UI.HtmlControls.HtmlGenericControl viewParkingLotBody;
+
 		protected System.Web.UI.HtmlControls.HtmlForm dashboardForm;
 		
 		protected System.Web.UI.WebControls.Literal CompanyNameLiteral;

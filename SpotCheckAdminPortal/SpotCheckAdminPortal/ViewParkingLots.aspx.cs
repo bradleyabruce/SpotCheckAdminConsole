@@ -130,7 +130,6 @@ namespace SpotCheckAdminPortal
             else
             {
                 ShowMessage("danger", "Error Occurred. Parking lot could not be updated.");
-                //ShowErrorMessage();
             }            
         }
 
@@ -177,7 +176,7 @@ namespace SpotCheckAdminPortal
 
             ParkingLot newLot = new ParkingLot();
 
-            string[] controlIDsToFind = { "addNameTextBox", "addAddressTextBox", "addCityTextBox", "addStateTextBox", "editZipCodeTextBox" };
+            string[] controlIDsToFind = { "addNameTextBox", "addAddressTextBox", "addCityTextBox", "addStateTextBox", "addZipCodeTextBox" };
             Control match = null;
 
             foreach (string controlID in controlIDsToFind)
@@ -256,6 +255,14 @@ namespace SpotCheckAdminPortal
             CreateEditModals();
             CreateDeleteModals();
             CreateAddModal();
+
+            HtmlGenericControl body = viewParkingLotBody;
+            //body = this.Controls[2];    //Controls are <html>, <head>, <body>, <form>, and then the back half of the rest??
+
+            var wow = "s";
+            //var body = FindControlRecursive(this as Control, "page-top");
+            //HtmlGenericControl stupidAssDiv = FindControlRecursiveByClass(body, "modal-backdrop show");
+            //body.Controls.Remove(stupidAssDiv);
         }
 
         private void ShowMessage(string type, string message)
@@ -766,7 +773,20 @@ namespace SpotCheckAdminPortal
                 if (controlToReturn != null) return controlToReturn;
             }
             return null;
-        }    
+        }
+
+        private HtmlGenericControl FindControlRecursiveByClass(HtmlGenericControl rootControl, string controlClass)
+        {
+            var wow = rootControl.Attributes;
+            if (rootControl.Attributes["class"] == controlClass) return rootControl;
+
+            foreach (HtmlGenericControl controlToSearch in rootControl.Controls)
+            {
+                HtmlGenericControl controlToReturn = FindControlRecursiveByClass(controlToSearch, controlClass);
+                if (controlToReturn != null) return controlToReturn;
+            }
+            return null;
+        }
 
         #endregion
     }

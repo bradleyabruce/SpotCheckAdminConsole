@@ -1,15 +1,9 @@
 ﻿<Properties StartupConfiguration="{B66E7864-45EE-4A9F-87C8-6EC125F858EF}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/ViewParkingLots.aspx">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpotCheckAdminPortal/ViewParkingLots.aspx.cs">
     <Files>
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="363" Column="162" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Company_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/ParkingLot_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/Models/ParkingLot.cs" />
-      <File FileName="SpotCheckAdminPortal/Models/Device.cs" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Device_dl.cs" />
-      <File FileName="SpotCheckAdminPortal/Dashboard.aspx" />
-      <File FileName="SpotCheckAdminPortal/DataLayer/Connect_dl.cs" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx" Line="22" Column="33" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" Line="57" Column="1" />
+      <File FileName="SpotCheckAdminPortal/ViewParkingLots.aspx.designer.cs" Line="16" Column="78" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,7 +12,9 @@
             <Node name="SpotCheckAdminPortal" expanded="True">
               <Node name="DataLayer" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="ViewParkingLots.aspx" expanded="True" selected="True" />
+              <Node name="ViewParkingLots.aspx" expanded="True">
+                <Node name="ViewParkingLots.aspx.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -32,7 +28,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/ViewParkingLots.aspx.cs" relfile="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" line="139" column="1" />
+      <Breakpoint file="/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/ViewParkingLots.aspx.cs" relfile="SpotCheckAdminPortal/ViewParkingLots.aspx.cs" line="780" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
