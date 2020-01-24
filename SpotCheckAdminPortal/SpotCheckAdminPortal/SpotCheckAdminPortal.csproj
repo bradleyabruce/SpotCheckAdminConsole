@@ -1996,10 +1996,10 @@
     <Compile Include="DataLayer\Device_dl.cs" />
     <Compile Include="Models\ParkingLot.cs" />
     <Compile Include="DataLayer\ParkingLot_dl.cs" />
-    <Compile Include="ViewParkingLots.aspx.cs">
+    <Compile Include="ViewParkingLots.aspx.designer.cs">
       <DependentUpon>ViewParkingLots.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewParkingLots.aspx.designer.cs">
+    <Compile Include="ViewParkingLots.aspx.cs">
       <DependentUpon>ViewParkingLots.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

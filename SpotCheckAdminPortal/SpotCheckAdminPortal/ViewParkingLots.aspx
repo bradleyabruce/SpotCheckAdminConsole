@@ -336,38 +336,19 @@
                         
                         <!-- Begin Page Content -->
                         <div class="container-fluid" runat="server" id="parkingLotBody">
+                        	<asp:ScriptManager ID="parkingLotScriptManager" runat="server"></asp:ScriptManager>
+                             <asp:UpdatePanel runat="server" id="parkingLotUpdatePanel">
+                             	<ContentTemplate runat="server" id="parkingLotContentTemplate">
+                             		<div runat="server" id="alertDiv"></div>
 
-                            <div runat="server" id="alertDiv">
+                             		<!-- Page Heading -->
+                            		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                		<h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
+                                		<button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add Parking Lot</button>
+                           			</div>
 
-                                <!-- Success Alert -->
-                                <!--<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSuccess">
-                                    Parking lot successfully updated!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>-->
-
-                                <!-- Error Alert -->
-                                <!--<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertError">
-                                    Parking lot could not be updated!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>-->
-
-                            </div>
-
-                             <!-- Page Heading -->
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
-                                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add Parking Lot</button>
-                            </div>
-                                <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
-                                <asp:UpdatePanel runat="server" id="parkingLotUpdatePanel">
-                                    <ContentTemplate runat="server" id="parkingLotContentTemplate">
                                         <!-- Container to Hold all Programmatically Created HTML -->
-                                        <div runat="server" id="parkingLotContainer">
-                                        </div>
+                                        <div runat="server" id="parkingLotContainer"></div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             
@@ -424,7 +405,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
+                                <span>Copyright &copy; SpotCheck 2020</span>
                             </div>
                         </div>
                     </footer>
@@ -461,14 +442,9 @@
             </div>
         </form>
         
-        <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        
-        <!-- Custom scripts for all pages-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>        
         <script src="js/sb-admin-2.min.js"></script>
                 
     </body>

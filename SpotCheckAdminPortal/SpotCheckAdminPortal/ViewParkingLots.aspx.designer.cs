@@ -8,10 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI;
+
 namespace SpotCheckAdminPortal {
 	
 	
 	public partial class ViewParkingLots {
+
+		protected ScriptManager parkingLotScriptManager;
+
+		protected UpdatePanel parkingLotUpdatePanel;
 
 		protected System.Web.UI.HtmlControls.HtmlGenericControl viewParkingLotBody;
 

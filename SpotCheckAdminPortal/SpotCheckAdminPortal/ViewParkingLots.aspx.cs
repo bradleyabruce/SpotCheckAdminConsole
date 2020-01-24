@@ -24,14 +24,13 @@ namespace SpotCheckAdminPortal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Device d = new Device();
+            ParkingLot pl = new ParkingLot();
+
             //get information
             company = IoC.CurrentCompany;
-
-            Device d = new Device();
             devices = d.GetDeviceListFromCompanyID((int)company.CompanyID);
-
-            ParkingLot pl = new ParkingLot();
-            parkingLots = pl.GetParkingLotListFromCompanyID((int)company.CompanyID);
+            parkingLots = pl.GetParkingLotListFromCompanyID((int)company.CompanyID);  
 
             //Validate info
             bool validate = IoC.ValidateInfo();
@@ -52,7 +51,17 @@ namespace SpotCheckAdminPortal
                 ShowMessage("warning", "You do not have any parking lots set up yet.");
             }
 
+            //if async load
+            if (parkingLotScriptManager.IsInAsyncPostBack)
+            {
+                var es = viewParkingLotBody.Controls;
+                var sdf = viewParkingLotBody.Parent;
+                var wow = 2;
+            }
+        }
 
+        private void Page_LoadComplete(object sender, EventArgs e)
+        {
 
         }
 
@@ -249,20 +258,14 @@ namespace SpotCheckAdminPortal
         #region Methods
 
         private void LoadPage()
-        {
+        {            
             parkingLotContainer.Controls.Clear();
             CreateParkingLotDivs();
             CreateEditModals();
             CreateDeleteModals();
             CreateAddModal();
-
-            HtmlGenericControl body = viewParkingLotBody;
-            //body = this.Controls[2];    //Controls are <html>, <head>, <body>, <form>, and then the back half of the rest??
-
-            var wow = "s";
-            //var body = FindControlRecursive(this as Control, "page-top");
-            //HtmlGenericControl stupidAssDiv = FindControlRecursiveByClass(body, "modal-backdrop show");
-            //body.Controls.Remove(stupidAssDiv);
+            CompanyNameLiteral.Text = company.CompanyName;
+            //viewParkingLotBody.Attributes.Clear();
         }
 
         private void ShowMessage(string type, string message)
@@ -369,6 +372,7 @@ namespace SpotCheckAdminPortal
                 editButton.Attributes.Add("data-target", "#editModal" + parkingLot.LotID);
                 editButton.Attributes.Add("type", "button");
                 editButton.Attributes.Add("class", "btn btn-primary");
+                editButton.Attributes.Add("data-backdrop", "false");
                 editButton.InnerHtml = "Edit Parking Lot";
 
                 HtmlGenericControl deleteButton = new HtmlGenericControl("button");
@@ -376,6 +380,7 @@ namespace SpotCheckAdminPortal
                 deleteButton.Attributes.Add("data-target", "#deleteModal" + parkingLot.LotID);
                 deleteButton.Attributes.Add("type", "button");
                 deleteButton.Attributes.Add("class", "btn btn-danger");
+                deleteButton.Attributes.Add("data-backdrop", "false");
                 deleteButton.InnerHtml = "Delete Parking Lot";
 
                 innerDiv.Controls.Add(addressDiv);
@@ -403,7 +408,7 @@ namespace SpotCheckAdminPortal
             div1.Attributes.Add("id", "addModal");
 
             HtmlGenericControl div2 = new HtmlGenericControl("div");
-            div2.Attributes.Add("class", "modal-dialog");
+            div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
             div2.Attributes.Add("role", "document");
 
             HtmlGenericControl div3 = new HtmlGenericControl("div");
@@ -544,7 +549,7 @@ namespace SpotCheckAdminPortal
                 div1.Attributes.Add("id", "editModal" + parkingLot.LotID);
 
                 HtmlGenericControl div2 = new HtmlGenericControl("div");
-                div2.Attributes.Add("class", "modal-dialog");
+                div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
                 div2.Attributes.Add("role", "document");
 
                 HtmlGenericControl div3 = new HtmlGenericControl("div");
@@ -683,7 +688,7 @@ namespace SpotCheckAdminPortal
                 div1.Attributes.Add("id", "deleteModal" + parkingLot.LotID);
 
                 HtmlGenericControl div2 = new HtmlGenericControl("div");
-                div2.Attributes.Add("class", "modal-dialog");
+                div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
                 div2.Attributes.Add("role", "document");
 
                 HtmlGenericControl div3 = new HtmlGenericControl("div");
