@@ -10,10 +10,13 @@
 
 using System.Web.UI;
 
-namespace SpotCheckAdminPortal {
-	
+namespace SpotCheckAdminPortal {	
 	
 	public partial class ViewParkingLots {
+
+		protected System.Web.UI.HtmlControls.HtmlGenericControl loadingParkingLotDiv;
+
+		protected UpdateProgress parkingLotUpdateProgress;
 
 		protected ScriptManager parkingLotScriptManager;
 
@@ -21,7 +24,7 @@ namespace SpotCheckAdminPortal {
 
 		protected System.Web.UI.HtmlControls.HtmlGenericControl viewParkingLotBody;
 
-		protected System.Web.UI.HtmlControls.HtmlForm dashboardForm;
+		protected System.Web.UI.HtmlControls.HtmlForm parkingLotForm;
 		
 		protected System.Web.UI.WebControls.Literal CompanyNameLiteral;
 		
