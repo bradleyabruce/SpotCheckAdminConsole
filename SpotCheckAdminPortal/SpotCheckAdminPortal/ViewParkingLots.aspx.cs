@@ -8,7 +8,6 @@ using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal
 {
-
    public partial class ViewParkingLots : System.Web.UI.Page
    {
       #region Properties
@@ -160,10 +159,12 @@ namespace SpotCheckAdminPortal
          }
       }
 
-      private void btnCameraHyperlinkSubmit_Click(object sender, EventArgs e)
+      private void cameraHyperlinkSubmit_Click(object sender, EventArgs e)
       {
-         Button button = sender as Button;
+         LinkButton button = sender as LinkButton;
          string lotID = button.CommandArgument;
+         //TODO
+         //create link to viewcameras
       }
 
       private void btnAddSubmit_Click(object sender, EventArgs e)
@@ -295,26 +296,25 @@ namespace SpotCheckAdminPortal
          foreach (ParkingLot parkingLot in parkingLots)
          {
             List<Device> deployedCameras = parkingLot.GetCamerasDeployed();
-            Button btnCameraHyperlink = null;
+            LinkButton cameraHyperlink = null;
             int cameraCount = 0;
             if (deployedCameras != null)
             {
                cameraCount = deployedCameras.Count;
                if (cameraCount > 0)
                {
-                  btnCameraHyperlink = new Button();
-                  btnCameraHyperlink.ID = "cameraHyperLink" + parkingLot.LotID;
-                  btnCameraHyperlink.CssClass = "btn btn-primary btn-sm";
-                  btnCameraHyperlink.Text = "View Camera";
-                  btnCameraHyperlink.Click += new EventHandler(btnCameraHyperlinkSubmit_Click);
-                  btnCameraHyperlink.CommandArgument = Convert.ToString(parkingLot.LotID);
+                  cameraHyperlink = new LinkButton();
+                  cameraHyperlink.ID = "cameraHyperLink" + parkingLot.LotID;
+                  //cameraHyperlink.CssClass = "btn btn-primary btn-sm";
+                  cameraHyperlink.Text = cameraCount.ToString();
+                  cameraHyperlink.Click += new EventHandler(cameraHyperlinkSubmit_Click);
+                  cameraHyperlink.CommandArgument = Convert.ToString(parkingLot.LotID);
                }
             }
 
             //outer div
             HtmlGenericControl outerDiv = new HtmlGenericControl("div");
             outerDiv.Attributes.Add("class", "card shadow mb");
-            outerDiv.Attributes.Add("style", "width: 30%");
             outerDiv.Attributes.Add("data-parent", "parkingLotContainer");
 
             HyperLink link = new HyperLink();
@@ -324,9 +324,25 @@ namespace SpotCheckAdminPortal
             link.Attributes.Add("role", "button");
 
             HtmlGenericControl h6 = new HtmlGenericControl("h6");
+            HtmlGenericControl mobileIcon = new HtmlGenericControl("i");
+            if (parkingLot.TotalSpots > 0)
+            {
+               mobileIcon.Attributes.Add("class", "fas fa-fw fa-mobile-alt");
+               mobileIcon.Attributes.Add("style", "color: green; float: right; width:45%;");
+               mobileIcon.Attributes.Add("Title", "Parking Lot is visible to SpotCheck users.");
+            }
+            else
+            {
+               mobileIcon.Attributes.Add("class", "fas fa-fw fa-mobile-alt");
+               mobileIcon.Attributes.Add("style", "color: red; float: right; width:45%;");
+               mobileIcon.Attributes.Add("Title", "Parking Lot is not visible to SpotCheck users.");
+            }
+
             h6.InnerHtml = parkingLot.LotName;
             h6.Attributes.Add("class", "m-0 font-weight-bold text-primary");
+            h6.Attributes.Add("style", "float:left; width:45%;");
             link.Controls.Add(h6);
+            link.Controls.Add(mobileIcon);
 
             HtmlGenericControl middleDiv = new HtmlGenericControl("div");
             middleDiv.Attributes.Add("class", "collapse hide");
@@ -339,16 +355,23 @@ namespace SpotCheckAdminPortal
             addressDiv.InnerHtml = "<p><strong>" + parkingLot.Address + ", " + parkingLot.City + ", " + parkingLot.State + " " + parkingLot.ZipCode + "</strong></p> ";
 
             HtmlGenericControl totalSpotsDiv = new HtmlGenericControl("div");
-            totalSpotsDiv.InnerHtml = "<strong>Total Spots:</strong> " + parkingLot.TotalSpots;
+            totalSpotsDiv.InnerHtml = "<strong>Total Spots: </strong>" + parkingLot.TotalSpots;
 
             HtmlGenericControl openSpotsDiv = new HtmlGenericControl("div");
-            openSpotsDiv.InnerHtml = "<strong>Open Spots:</strong> " + parkingLot.OpenSpots;
+            openSpotsDiv.InnerHtml = "<strong>Open Spots: </strong>" + parkingLot.OpenSpots;            
+
+            HtmlGenericControl visitsDiv = new HtmlGenericControl("div");
+            visitsDiv.InnerHtml = "<strong>Visits this month: </strong>0";
 
             HtmlGenericControl camerasDiv = new HtmlGenericControl("div");
-            camerasDiv.InnerHtml = "<p><strong>Cameras Deployed:</strong> " + cameraCount + "</p>";
-            if (btnCameraHyperlink != null)
+            if (cameraHyperlink != null)
             {
-               camerasDiv.Controls.Add(btnCameraHyperlink);
+               camerasDiv.InnerHtml = "<strong>Cameras Deployed: </strong>";
+               camerasDiv.Controls.Add(cameraHyperlink);
+            }
+            else
+            {
+               camerasDiv.InnerHtml = "<strong>Cameras Deployed: </strong>0";
             }
 
             HtmlGenericControl editButton = new HtmlGenericControl("button");
@@ -357,6 +380,7 @@ namespace SpotCheckAdminPortal
             editButton.Attributes.Add("type", "button");
             editButton.Attributes.Add("class", "btn btn-primary");
             editButton.Attributes.Add("data-backdrop", "false");
+            editButton.Attributes.Add("style", "float: left; width: 49%;");
             editButton.InnerHtml = "Edit Parking Lot";
 
             HtmlGenericControl deleteButton = new HtmlGenericControl("button");
@@ -365,14 +389,18 @@ namespace SpotCheckAdminPortal
             deleteButton.Attributes.Add("type", "button");
             deleteButton.Attributes.Add("class", "btn btn-danger");
             deleteButton.Attributes.Add("data-backdrop", "false");
+            deleteButton.Attributes.Add("style", "float: right; width: 49%;");
             deleteButton.InnerHtml = "Delete Parking Lot";
 
             innerDiv.Controls.Add(addressDiv);
             innerDiv.Controls.Add(totalSpotsDiv);
             innerDiv.Controls.Add(openSpotsDiv);
+            innerDiv.Controls.Add(visitsDiv);
             innerDiv.Controls.Add(camerasDiv);
+            innerDiv.Controls.Add(new LiteralControl("<br />"));
             innerDiv.Controls.Add(editButton);
             innerDiv.Controls.Add(deleteButton);
+            innerDiv.Controls.Add(new LiteralControl("<br />"));
 
             middleDiv.Controls.Add(innerDiv);
 
@@ -424,6 +452,7 @@ namespace SpotCheckAdminPortal
          //body controls
          HtmlGenericControl divBody = new HtmlGenericControl("div");
          divBody.Attributes.Add("class", "modal-body");
+         divBody.Attributes.Add("style", "display: flex; flex-direction: column;");
 
          //name
          Label nameLabel = new Label();
@@ -431,6 +460,7 @@ namespace SpotCheckAdminPortal
          nameLabel.Text = "Name: ";
          TextBox addNameTextBox = new TextBox();
          addNameTextBox.ID = "addNameTextBox";
+         addNameTextBox.Attributes.Add("style", "float: right;");
 
          //address
          Label addressLabel = new Label();
@@ -438,6 +468,7 @@ namespace SpotCheckAdminPortal
          addressLabel.Text = "Address: ";
          TextBox addAddressTextBox = new TextBox();
          addAddressTextBox.ID = "addAddressTextBox";
+         addAddressTextBox.Attributes.Add("style", "float: right;");
 
          //city
          Label cityLabel = new Label();
@@ -445,6 +476,7 @@ namespace SpotCheckAdminPortal
          cityLabel.Text = "City: ";
          TextBox addCityTextBox = new TextBox();
          addCityTextBox.ID = "addCityTextBox";
+         addCityTextBox.Attributes.Add("style", "float: right;");
 
          //state
          Label stateLabel = new Label();
@@ -452,6 +484,7 @@ namespace SpotCheckAdminPortal
          stateLabel.Text = "State: ";
          TextBox addStateTextBox = new TextBox();
          addStateTextBox.ID = "addStateTextBox";
+         addStateTextBox.Attributes.Add("style", "float: right;");
 
          //zip
          Label zipCodeLabel = new Label();
@@ -459,11 +492,13 @@ namespace SpotCheckAdminPortal
          zipCodeLabel.Text = "Zip Code: ";
          TextBox addZipCodeTextBox = new TextBox();
          addZipCodeTextBox.ID = "addZipCodeTextBox";
+         addZipCodeTextBox.Attributes.Add("style", "float: right;");
 
          //Warning Label
          Label addWarning = new Label();
          addWarning.ID = "addWarningLabel";
-         addWarning.Text = "Parking Lots will not be visible to users on the iOS and Android App until you deploy a camera.";
+         addWarning.Text = "Parking Lot will not be visible to users on the SpotCheck App until you deploy a camera and add parking spots.";
+         addWarning.Attributes.Add("style", "text-align: center; color: red");
 
          divBody.Controls.Add(nameLabel);
          divBody.Controls.Add(addNameTextBox);
@@ -566,6 +601,7 @@ namespace SpotCheckAdminPortal
             //body controls
             HtmlGenericControl divBody = new HtmlGenericControl("div");
             divBody.Attributes.Add("class", "modal-body");
+            divBody.Attributes.Add("style", "display: flex; flex-direction: column;");
 
             //name
             Label nameLabel = new Label();
@@ -574,6 +610,7 @@ namespace SpotCheckAdminPortal
             TextBox editNameTextBox = new TextBox();
             editNameTextBox.ID = "editNameTextBox" + parkingLot.LotID;
             editNameTextBox.Attributes.Add("placeholder", parkingLot.LotName);
+            editNameTextBox.Attributes.Add("style", "float: right;");
 
             //address
             Label addressLabel = new Label();
@@ -582,6 +619,7 @@ namespace SpotCheckAdminPortal
             TextBox editAddressTextBox = new TextBox();
             editAddressTextBox.ID = "editAddressTextBox" + parkingLot.LotID;
             editAddressTextBox.Attributes.Add("placeholder", parkingLot.Address);
+            editAddressTextBox.Attributes.Add("style", "float: right;");
 
             //city
             Label cityLabel = new Label();
@@ -590,6 +628,7 @@ namespace SpotCheckAdminPortal
             TextBox editCityTextBox = new TextBox();
             editCityTextBox.ID = "editCityTextBox" + parkingLot.LotID;
             editCityTextBox.Attributes.Add("placeholder", parkingLot.City);
+            editCityTextBox.Attributes.Add("style", "float: right;");
 
             //state
             Label stateLabel = new Label();
@@ -598,6 +637,7 @@ namespace SpotCheckAdminPortal
             TextBox editStateTextBox = new TextBox();
             editStateTextBox.ID = "editStateTextBox" + parkingLot.LotID;
             editStateTextBox.Attributes.Add("placeholder", parkingLot.State);
+            editStateTextBox.Attributes.Add("style", "float: right;");
 
             //zip
             Label zipCodeLabel = new Label();
@@ -606,6 +646,7 @@ namespace SpotCheckAdminPortal
             TextBox editZipCodeTextBox = new TextBox();
             editZipCodeTextBox.ID = "editZipCodeTextBox" + parkingLot.LotID;
             editZipCodeTextBox.Attributes.Add("placeholder", parkingLot.ZipCode);
+            editZipCodeTextBox.Attributes.Add("style", "float: right;");
 
             divBody.Controls.Add(nameLabel);
             divBody.Controls.Add(editNameTextBox);
