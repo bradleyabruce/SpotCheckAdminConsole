@@ -39,6 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -81,6 +83,7 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ViewCameras.aspx" />
     <Content Include="Views\Web.config" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
@@ -2009,6 +2012,13 @@
     <Compile Include="DataLayer\Device_dl.cs" />
     <Compile Include="Models\ParkingLot.cs" />
     <Compile Include="DataLayer\ParkingLot_dl.cs" />
+    <Compile Include="ViewCameras.aspx.cs">
+      <DependentUpon>ViewCameras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCameras.aspx.designer.cs">
+      <DependentUpon>ViewCameras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewParkingLots.aspx.designer.cs">
       <DependentUpon>ViewParkingLots.aspx</DependentUpon>
     </Compile>
