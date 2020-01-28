@@ -35,7 +35,7 @@ namespace SpotCheckAdminPortal
          set
          {
             _currentDeviceList = value;
-            LoadCurrentDeviceListDivs();
+            CreateDeployedDeviceListDivs();
          }
       }
 
@@ -63,24 +63,14 @@ namespace SpotCheckAdminPortal
          if (parkingLots.Count > 0)
          {
             string paramParkingLot = Request.QueryString["ParkingLotID"];
-
-            CreateAddModal();
-
-            //if params are passed to page
-            if (paramParkingLot != null)
-            {
-               LoadParkingLotComboBox(paramParkingLot);
-            }
-            else
-            {
-               LoadParkingLotComboBox();
-            }
-
+            LoadParkingLotComboBox(paramParkingLot);  //param parkinglot will either be null or be a valid parkinglotID
          }
          else
          {
             ShowMessage("warning", "You do not have any parking lots set up yet.");
          }
+
+         LoadModals();
       }
 
       private void ParkingLotDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,6 +102,18 @@ namespace SpotCheckAdminPortal
          //add new camera to database
       }
 
+      private void btnEditSubmit_Click(object sender, EventArgs e)
+      {
+         Button addButton = sender as Button;
+         //modify 
+      }
+
+      private void btnUndeploySubmit_Click(object sender, EventArgs e)
+      {
+         Button undeployButton = sender as Button;
+         string deviceID = undeployButton.CommandArgument;
+      }
+
       #endregion Events
 
       #region Methods
@@ -120,7 +122,6 @@ namespace SpotCheckAdminPortal
       {
          bool forcePageUpdate = false;
 
-         HtmlGenericControl comboBoxDiv = new HtmlGenericControl("div");
          DropDownList parkingLotDropDownList = new DropDownList();
          parkingLotDropDownList.ID = "parkingLotDropDownList";
          parkingLotDropDownList.Width = 275;
@@ -160,8 +161,8 @@ namespace SpotCheckAdminPortal
             {
                parkingLotItem.Selected = false;
             }
-            parkingLotDropDownList.Items.Add(parkingLotItem);
-            
+
+            parkingLotDropDownList.Items.Add(parkingLotItem);            
          }
 
          HtmlGenericControl text = new HtmlGenericControl("p");
@@ -169,7 +170,6 @@ namespace SpotCheckAdminPortal
 
          comboBoxDiv.Controls.Add(text);
          comboBoxDiv.Controls.Add(parkingLotDropDownList);
-         cameraContainer.Controls.Add(comboBoxDiv);
 
          if (forcePageUpdate)
          {
@@ -327,13 +327,220 @@ namespace SpotCheckAdminPortal
          div2.Controls.Add(div3);
          div1.Controls.Add(div2);
 
-         cameraContainer.Controls.Add(div1);
+         modalDiv.Controls.Add(div1);
       }
 
-      private void LoadCurrentDeviceListDivs()
+      private void CreateDeployedEditModals()
       {
-         HtmlGenericControl propertyCameraDiv = new HtmlGenericControl("div");
-         propertyCameraDiv.Attributes.Add("style", "float: left; width: 40%; ");
+         if (currentDeviceList != null)
+         {
+            foreach (Device device in currentDeviceList)
+            {
+               HtmlGenericControl div1 = new HtmlGenericControl("div");
+               div1.Attributes.Add("class", "modal");
+               div1.Attributes.Add("tabindex", "-1");
+               div1.Attributes.Add("role", "dialog");
+               div1.Attributes.Add("id", "editModal" + device.DeviceID);
+               div1.Attributes.Add("style", "z-index:1;");
+
+               HtmlGenericControl div2 = new HtmlGenericControl("div");
+               div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
+               div2.Attributes.Add("role", "document");
+
+               HtmlGenericControl div3 = new HtmlGenericControl("div");
+               div3.Attributes.Add("class", "modal-content");
+
+               //header controls
+               HtmlGenericControl divHeader = new HtmlGenericControl("div");
+               divHeader.Attributes.Add("class", "modal-header");
+
+               HtmlGenericControl h5 = new HtmlGenericControl("h5");
+               h5.Attributes.Add("class", "modal-title");
+               h5.InnerHtml = "Edit Camera";
+
+               HtmlGenericControl btnTopClose = new HtmlGenericControl("button");
+               btnTopClose.Attributes.Add("type", "button");
+               btnTopClose.Attributes.Add("class", "close");
+               btnTopClose.Attributes.Add("data-dismiss", "modal");
+               btnTopClose.Attributes.Add("aria-label", "Close");
+
+               HtmlGenericControl btnCloseSpan = new HtmlGenericControl("span");
+               btnCloseSpan.Attributes.Add("aria-hidden", "true");
+               btnCloseSpan.InnerHtml = "&times;";
+
+               btnTopClose.Controls.Add(btnCloseSpan);
+               divHeader.Controls.Add(h5);
+               divHeader.Controls.Add(btnTopClose);
+
+               //body controls
+               HtmlGenericControl divBody = new HtmlGenericControl("div");
+               divBody.Attributes.Add("class", "modal-body");
+               divBody.Attributes.Add("style", "display: flex; flex-direction: column;");
+
+               //name
+               Label nameLabel = new Label();
+               nameLabel.ID = "editNameLabel" + device.DeviceID;
+               nameLabel.Text = "Name: ";
+               TextBox editNameTextBox = new TextBox();
+               editNameTextBox.ID = "editNameTextBox" + device.DeviceID;
+               editNameTextBox.Attributes.Add("placeholder", device.DeviceName);
+               editNameTextBox.Attributes.Add("style", "float: right;");
+
+               divBody.Controls.Add(nameLabel);
+               divBody.Controls.Add(editNameTextBox);
+               divBody.Controls.Add(new LiteralControl("<br />"));
+               divBody.Controls.Add(new LiteralControl("<br />"));
+
+               //footer controls
+               HtmlGenericControl divFooter = new HtmlGenericControl("div");
+               divFooter.Attributes.Add("class", "modal-footer");
+
+               HtmlGenericControl btnCloseFooter = new HtmlGenericControl("button");
+               btnCloseFooter.Attributes.Add("type", "button");
+               btnCloseFooter.Attributes.Add("class", "btn btn-secondary");
+               btnCloseFooter.Attributes.Add("data-dismiss", "modal");
+               btnCloseFooter.InnerHtml = "Cancel";
+
+               Button btnEditSubmit = new Button();
+               btnEditSubmit.ID = "btnEditSubmit" + device.DeviceID;
+               btnEditSubmit.CssClass = "btn btn-primary";
+               btnEditSubmit.Text = "Save";
+               btnEditSubmit.Click += new EventHandler(btnEditSubmit_Click);
+               btnEditSubmit.CommandArgument = Convert.ToString(device.DeviceID);
+
+               divFooter.Controls.Add(btnEditSubmit);
+               divFooter.Controls.Add(btnCloseFooter);
+
+               div3.Controls.Add(divHeader);
+               div3.Controls.Add(divBody);
+               div3.Controls.Add(divFooter);
+
+               div2.Controls.Add(div3);
+               div1.Controls.Add(div2);
+
+               modalDiv.Controls.Add(div1);
+            }
+         }
+      }
+
+      private void CreateDeployedUndeployModals()
+      {
+         if (currentDeviceList != null)
+         {
+            foreach (Device device in currentDeviceList)
+            {
+               HtmlGenericControl div1 = new HtmlGenericControl("div");
+               div1.Attributes.Add("class", "modal");
+               div1.Attributes.Add("tabindex", "-1");
+               div1.Attributes.Add("role", "dialog");
+               div1.Attributes.Add("id", "undeployModal" + device.DeviceID);
+               div1.Attributes.Add("style", "z-index:1;");
+
+               HtmlGenericControl div2 = new HtmlGenericControl("div");
+               div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
+               div2.Attributes.Add("role", "document");
+
+               HtmlGenericControl div3 = new HtmlGenericControl("div");
+               div3.Attributes.Add("class", "modal-content");
+
+               //header controls
+               HtmlGenericControl divHeader = new HtmlGenericControl("div");
+               divHeader.Attributes.Add("class", "modal-header");
+
+               HtmlGenericControl h5 = new HtmlGenericControl("h5");
+               h5.Attributes.Add("class", "modal-title");
+               h5.InnerHtml = "Undeploy Camera";
+
+               HtmlGenericControl btnTopClose = new HtmlGenericControl("button");
+               btnTopClose.Attributes.Add("type", "button");
+               btnTopClose.Attributes.Add("class", "close");
+               btnTopClose.Attributes.Add("data-dismiss", "modal");
+               btnTopClose.Attributes.Add("aria-label", "Close");
+
+               HtmlGenericControl btnCloseSpan = new HtmlGenericControl("span");
+               btnCloseSpan.Attributes.Add("aria-hidden", "true");
+               btnCloseSpan.InnerHtml = "&times;";
+
+               btnTopClose.Controls.Add(btnCloseSpan);
+               divHeader.Controls.Add(h5);
+               divHeader.Controls.Add(btnTopClose);
+
+               //body controls
+               HtmlGenericControl divBody = new HtmlGenericControl("div");
+               divBody.Attributes.Add("class", "modal-body");
+
+               //name
+               Label nameLabel = new Label();
+               nameLabel.ID = "undeployNameLabel" + device.DeviceID;
+               nameLabel.Text = device.DeviceName;
+               nameLabel.CssClass = "text-align: center;";
+
+               //warning
+               Label warningLabel = new Label();
+               nameLabel.ID = "warningUndeployLabel" + device.DeviceID;
+               nameLabel.Text = "Undeploying this camera from this parking lot will allow you to deploy it to a new parking lot or return it to SpotCheck.";
+               nameLabel.CssClass = "text-align: center;";
+
+               divBody.Controls.Add(nameLabel);
+               divBody.Controls.Add(new LiteralControl("<br />"));
+               divBody.Controls.Add(new LiteralControl("<br />"));
+               divBody.Controls.Add(warningLabel);
+
+               //footer controls
+               HtmlGenericControl divFooter = new HtmlGenericControl("div");
+               divFooter.Attributes.Add("class", "modal-footer");
+
+               HtmlGenericControl btnCloseFooter = new HtmlGenericControl("button");
+               btnCloseFooter.Attributes.Add("type", "button");
+               btnCloseFooter.Attributes.Add("class", "btn btn-secondary");
+               btnCloseFooter.Attributes.Add("data-dismiss", "modal");
+               btnCloseFooter.InnerHtml = "Cancel";
+
+               Button btnUndeploySubmit = new Button();
+               btnUndeploySubmit.ID = "btnUndeploySubmit" + device.DeviceID;
+               btnUndeploySubmit.CssClass = "btn btn-danger";
+               btnUndeploySubmit.Text = "Undeploy";
+               btnUndeploySubmit.Click += new EventHandler(btnUndeploySubmit_Click);
+               btnUndeploySubmit.CommandArgument = Convert.ToString(device.DeviceID);
+
+               divFooter.Controls.Add(btnUndeploySubmit);
+               divFooter.Controls.Add(btnCloseFooter);
+
+               div3.Controls.Add(divHeader);
+               div3.Controls.Add(divBody);
+               div3.Controls.Add(divFooter);
+
+               div2.Controls.Add(div3);
+               div1.Controls.Add(div2);
+
+               modalDiv.Controls.Add(div1);
+            }
+         }
+      }
+
+      private void CreateUnDeployedEditModals()
+      {
+
+      }
+
+      private void CreateUndeployedDeleteModals()
+      {
+
+      }
+
+      private void LoadModals()
+      {
+         modalDiv.Controls.Clear();
+         CreateDeployedEditModals();
+         CreateDeployedUndeployModals();
+         CreateUnDeployedEditModals();
+         CreateUndeployedDeleteModals();
+         CreateAddModal();
+      }
+
+      private void CreateDeployedDeviceListDivs()
+      {
+         deployedCameraContainer.Controls.Clear();
 
          foreach (Device device in currentDeviceList)
          {
@@ -410,12 +617,12 @@ namespace SpotCheckAdminPortal
 
             HtmlGenericControl deleteButton = new HtmlGenericControl("button");
             deleteButton.Attributes.Add("data-toggle", "modal");
-            deleteButton.Attributes.Add("data-target", "#deleteModal" + device.DeviceID);
+            deleteButton.Attributes.Add("data-target", "#undeployModal" + device.DeviceID);
             deleteButton.Attributes.Add("type", "button");
-            deleteButton.Attributes.Add("class", "btn btn-danger");
+            deleteButton.Attributes.Add("class", "btn btn-warning");
             deleteButton.Attributes.Add("data-backdrop", "false");
             deleteButton.Attributes.Add("style", "float: right; width: 49%;");
-            deleteButton.InnerHtml = "Delete Camera";
+            deleteButton.InnerHtml = "Undeploy Camera";
 
             innerDiv.Controls.Add(extAddressDiv);
             innerDiv.Controls.Add(localAddressDiv);
@@ -430,12 +637,12 @@ namespace SpotCheckAdminPortal
             outerDiv.Controls.Add(link);
             outerDiv.Controls.Add(middleDiv);
 
-            propertyCameraDiv.Controls.Add(outerDiv);
+            deployedCameraContainer.Controls.Add(outerDiv);
          }
 
-         cameraContainer.Controls.Add(propertyCameraDiv);
-
+         LoadModals();
       }
+
       #endregion Methods
    }
 }

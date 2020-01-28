@@ -138,8 +138,30 @@
                         </div>
 
                         <!-- Container to Hold all Programmatically Created HTML -->
-                        <div runat="server" id="cameraContainer"></div><!-- overflow-y: scroll; overflow-x: hidden; height: 75%; position: page;-->
+                        <div id="LeftRightContainer" runat="server" style="width: 100%; margin: auto; padding: 10px;">
 
+                           <div id="modalDiv" runat="server"></div>
+
+                           <!-- Left -->
+                           <div id="left" runat="server" style="width: 40%; float: left;">
+                              <div id="comboBoxDiv" runat="server"></div>
+                              <br />   
+                              <div runat="server" id="deployedCameraContainer"></div>
+                           </div>
+                           <!-- End Left -->
+
+                           <!-- Right -->
+                           <div id="right" runat="server" style="margin-left: 50%">
+                              <div id="undeployedCameraDiv" runat="server" style="flex: 1;">
+                                 <p>Wow</p>
+                              </div>
+                              <br />                          
+                              <div runat="server" id="undeployedCameraContainer" style="flex: 1;">
+                                 <p>Wow</p>
+                              </div>
+                           </div>
+                           <!-- End Right -->
+                        </div>
                      </ContentTemplate>
                   </asp:UpdatePanel>
 

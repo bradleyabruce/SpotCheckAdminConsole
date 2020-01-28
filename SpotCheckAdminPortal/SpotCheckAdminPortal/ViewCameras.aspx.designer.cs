@@ -96,12 +96,75 @@ namespace SpotCheckAdminPortal
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertDiv;
 
       /// <summary>
-      /// cameraContainer control.
+      /// LeftRightContainer control.
       /// </summary>
       /// <remarks>
       /// Auto-generated field.
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
-      protected global::System.Web.UI.HtmlControls.HtmlGenericControl cameraContainer;
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl LeftRightContainer;
+
+      /// <summary>
+      /// modalDiv control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalDiv;
+
+      /// <summary>
+      /// left control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl left;
+
+      /// <summary>
+      /// comboBoxDiv control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl comboBoxDiv;
+
+      /// <summary>
+      /// deployedCameraContainer control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl deployedCameraContainer;
+
+      /// <summary>
+      /// right control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl right;
+
+      /// <summary>
+      /// undeployedCameraDiv control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl undeployedCameraDiv;
+
+      /// <summary>
+      /// undeployedCameraContainer control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl undeployedCameraContainer;
    }
 }
