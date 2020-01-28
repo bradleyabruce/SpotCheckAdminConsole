@@ -138,7 +138,7 @@
                         </div>
 
                         <!-- Container to Hold all Programmatically Created HTML -->
-                        <div runat="server" id="cameraContainer" style="width: 30%;"></div><!-- overflow-y: scroll; overflow-x: hidden; height: 75%; position: page;-->
+                        <div runat="server" id="cameraContainer"></div><!-- overflow-y: scroll; overflow-x: hidden; height: 75%; position: page;-->
 
                      </ContentTemplate>
                   </asp:UpdatePanel>

@@ -162,7 +162,10 @@ namespace SpotCheckAdminPortal
       private void cameraHyperlinkSubmit_Click(object sender, EventArgs e)
       {
          LinkButton button = sender as LinkButton;
-         string lotID = button.CommandArgument;
+         int lotID = Int32.Parse(button.CommandArgument);
+
+         Response.Redirect("ViewCameras.aspx?ParkingLotID=" + lotID);
+
          //TODO
          //create link to viewcameras
       }
@@ -319,7 +322,7 @@ namespace SpotCheckAdminPortal
 
             HyperLink link = new HyperLink();
             link.NavigateUrl = "#collapseParkingLot" + parkingLot.LotID;
-            link.Attributes.Add("class", "d-block card-header py-3");
+            link.Attributes.Add("class", "d-block card-header py-3 collapsed");
             link.Attributes.Add("data-toggle", "collapse");
             link.Attributes.Add("role", "button");
 
@@ -539,13 +542,13 @@ namespace SpotCheckAdminPortal
          btnCloseFooter.Attributes.Add("data-dismiss", "modal");
          btnCloseFooter.InnerHtml = "Cancel";
 
-         Button btnEditSubmit = new Button();
-         btnEditSubmit.ID = "btnAddSubmit";
-         btnEditSubmit.CssClass = "btn btn-primary";
-         btnEditSubmit.Text = "Add";
-         btnEditSubmit.Click += new EventHandler(btnAddSubmit_Click);
+         Button btnAddSubmit = new Button();
+         btnAddSubmit.ID = "btnAddSubmit";
+         btnAddSubmit.CssClass = "btn btn-primary";
+         btnAddSubmit.Text = "Add";
+         btnAddSubmit.Click += new EventHandler(btnAddSubmit_Click);
 
-         divFooter.Controls.Add(btnEditSubmit);
+         divFooter.Controls.Add(btnAddSubmit);
          divFooter.Controls.Add(btnCloseFooter);
 
          div3.Controls.Add(divHeader);
@@ -559,7 +562,8 @@ namespace SpotCheckAdminPortal
       }
 
       public void CreateEditModals()
-      {
+      {       
+
          foreach (ParkingLot parkingLot in parkingLots)
          {
             HtmlGenericControl div1 = new HtmlGenericControl("div");
@@ -567,7 +571,7 @@ namespace SpotCheckAdminPortal
             div1.Attributes.Add("tabindex", "-1");
             div1.Attributes.Add("role", "dialog");
             div1.Attributes.Add("id", "editModal" + parkingLot.LotID);
-            div1.Attributes.Add("style", "z-index:1;");
+            div1.Attributes.Add("style", "z-index:1; width: 30%; ");
 
             HtmlGenericControl div2 = new HtmlGenericControl("div");
             div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
