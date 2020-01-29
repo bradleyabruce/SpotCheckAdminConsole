@@ -23,10 +23,10 @@ namespace SpotCheckAdminPortal
             company = IoC.CurrentCompany;
 
             Device d = new Device();
-            devices = d.GetDeviceListFromCompanyID((int)company.CompanyID);
+            devices = d.GetDeviceListFromCompanyID(company.CompanyID);
 
             ParkingLot pl = new ParkingLot();
-            parkingLots = pl.GetParkingLotListFromCompanyID((int)company.CompanyID);
+            parkingLots = pl.GetParkingLotListFromCompanyID(company.CompanyID);
 
 
             bool validate = IoC.ValidateInfo();

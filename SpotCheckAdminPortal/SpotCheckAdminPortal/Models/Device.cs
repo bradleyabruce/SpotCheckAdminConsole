@@ -8,17 +8,15 @@ namespace SpotCheckAdminPortal.Models
     {
         #region Properties
 
-        public int? DeviceID { get; set; }
+        public int DeviceID { get; set; }
         public string DeviceName { get; set; }
         public string LocalIpAddress { get; set; }
         public string ExternalIpAddress { get; set; }
         public string MacAddress { get; set; }
-        public int? LotID { get; set; }
-        public int? FloorNumber { get; set; }
         public DateTime LastUpdateDate { get; set; }
         public int? CompanyID { get; set; }
         public bool? TakeNewImage { get; set; }
-        public bool? IsDeployed { get; set; }
+        public int DeviceStatusID { get; set; }
         public int? ParkingLotID { get; set; }
 
         #endregion

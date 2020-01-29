@@ -143,7 +143,7 @@
                            <div id="modalDiv" runat="server"></div>
 
                            <!-- Left -->
-                           <div id="left" runat="server" style="width: 40%; float: left;">
+                           <div id="left" runat="server" style="width: 48%; float: left;">
                               <div id="comboBoxDiv" runat="server"></div>
                               <br />   
                               <div runat="server" id="deployedCameraContainer"></div>
@@ -151,13 +151,14 @@
                            <!-- End Left -->
 
                            <!-- Right -->
-                           <div id="right" runat="server" style="margin-left: 50%">
+                           <div id="right" runat="server" style="margin-left: 52%">
                               <div id="undeployedCameraDiv" runat="server" style="flex: 1;">
-                                 <p>Wow</p>
+                                 <h3 class="h4 mb-0 text-gray-800">Undeployed Cameras</h3>
                               </div>
-                              <br />                          
+                              <br />  
+                              <p></p>
+                              <br />
                               <div runat="server" id="undeployedCameraContainer" style="flex: 1;">
-                                 <p>Wow</p>
                               </div>
                            </div>
                            <!-- End Right -->

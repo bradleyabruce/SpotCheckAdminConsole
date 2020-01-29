@@ -7,7 +7,7 @@ namespace SpotCheckAdminPortal.Models
     {
         #region Properties
 
-        public int? CompanyID { get; set; }
+        public int CompanyID { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
@@ -22,7 +22,7 @@ namespace SpotCheckAdminPortal.Models
 
         public Company()
         {
-            this.CompanyID = null;
+            this.CompanyID = -1;
             this.CompanyName = null;
             this.Address = null;
             this.ZipCode = null;

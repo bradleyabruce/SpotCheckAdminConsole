@@ -29,8 +29,8 @@ namespace SpotCheckAdminPortal
 
          //get information
          company = IoC.CurrentCompany;
-         devices = d.GetDeviceListFromCompanyID((int)company.CompanyID);
-         parkingLots = pl.GetParkingLotListFromCompanyID((int)company.CompanyID);
+         devices = d.GetDeviceListFromCompanyID(company.CompanyID);
+         parkingLots = pl.GetParkingLotListFromCompanyID(company.CompanyID);
 
          //Validate info
          bool validate = IoC.ValidateInfo();
@@ -119,7 +119,7 @@ namespace SpotCheckAdminPortal
          if (editLot != null)
          {
             //reload parkingLotList
-            parkingLots = editLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
+            parkingLots = editLot.GetParkingLotListFromCompanyID(IoC.CurrentCompany.CompanyID);
             LoadPage();
             ShowMessage("success", "Parking lot successfully updated.");
          }
@@ -145,7 +145,7 @@ namespace SpotCheckAdminPortal
             if ((bool)deleteResult)
             {
                ShowMessage("success", "Parking lot successfully deleted.");
-               parkingLots = deleteLot.GetParkingLotListFromCompanyID((int)company.CompanyID);
+               parkingLots = deleteLot.GetParkingLotListFromCompanyID(company.CompanyID);
                LoadPage();
             }
             else
@@ -233,7 +233,7 @@ namespace SpotCheckAdminPortal
          if (newLot != null)
          {
             //reload parkingLotList
-            parkingLots = newLot.GetParkingLotListFromCompanyID((int)IoC.CurrentCompany.CompanyID);
+            parkingLots = newLot.GetParkingLotListFromCompanyID(IoC.CurrentCompany.CompanyID);
             LoadPage();
             ShowMessage("success", "Parking lot successfully added.");
          }
