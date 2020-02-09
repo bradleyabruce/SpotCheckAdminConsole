@@ -20,7 +20,8 @@ namespace SpotCheckAdminPortal
 
       #region Events
 
-      protected void Page_Init(object sender, EventArgs e){      }
+      protected void Page_Init(object sender, EventArgs e){ }
+
 
       protected void Page_Load(object sender, EventArgs e)
       {
@@ -67,7 +68,7 @@ namespace SpotCheckAdminPortal
 
          foreach (string controlID in controlIDsToFind)
          {
-            match = FindControlRecursive(parkingLotContainer, controlID);
+            match = IoC.FindControlRecursive(parkingLotContainer, controlID);
             if (match != null)
             {
                TextBox tb = match as TextBox;
@@ -181,7 +182,7 @@ namespace SpotCheckAdminPortal
 
          foreach (string controlID in controlIDsToFind)
          {
-            match = FindControlRecursive(parkingLotContainer, controlID);
+            match = IoC.FindControlRecursive(parkingLotContainer, controlID);
             if (match != null)
             {
                TextBox tb = match as TextBox;
@@ -331,13 +332,13 @@ namespace SpotCheckAdminPortal
             if (parkingLot.TotalSpots > 0)
             {
                mobileIcon.Attributes.Add("class", "fas fa-fw fa-mobile-alt");
-               mobileIcon.Attributes.Add("style", "color: green; float: right; width:45%;");
+               mobileIcon.Attributes.Add("style", "color: green; float: right; width:10%;");
                mobileIcon.Attributes.Add("Title", "Parking Lot is visible to SpotCheck users.");
             }
             else
             {
                mobileIcon.Attributes.Add("class", "fas fa-fw fa-mobile-alt");
-               mobileIcon.Attributes.Add("style", "color: red; float: right; width:45%;");
+               mobileIcon.Attributes.Add("style", "color: red; float: right; width:10%;");
                mobileIcon.Attributes.Add("Title", "Parking Lot is not visible to SpotCheck users.");
             }
 
@@ -571,7 +572,7 @@ namespace SpotCheckAdminPortal
             div1.Attributes.Add("tabindex", "-1");
             div1.Attributes.Add("role", "dialog");
             div1.Attributes.Add("id", "editModal" + parkingLot.LotID);
-            div1.Attributes.Add("style", "z-index:1; width: 30%; ");
+            div1.Attributes.Add("style", "z-index:1;");
 
             HtmlGenericControl div2 = new HtmlGenericControl("div");
             div2.Attributes.Add("class", "modal-dialog modal-dialog-centered");
@@ -608,9 +609,12 @@ namespace SpotCheckAdminPortal
             divBody.Attributes.Add("style", "display: flex; flex-direction: column;");
 
             //name
+            HtmlGenericControl nameDiv = new HtmlGenericControl("div");
+            nameDiv.Attributes.Add("style", "width: 100%; margin: auto; padding: 10px;");
             Label nameLabel = new Label();
             nameLabel.ID = "editNameLabel" + parkingLot.LotID;
             nameLabel.Text = "Name: ";
+            nameLabel.Attributes.Add("style", "float:left");
             TextBox editNameTextBox = new TextBox();
             editNameTextBox.ID = "editNameTextBox" + parkingLot.LotID;
             editNameTextBox.Attributes.Add("placeholder", parkingLot.LotName);
@@ -655,26 +659,21 @@ namespace SpotCheckAdminPortal
             divBody.Controls.Add(nameLabel);
             divBody.Controls.Add(editNameTextBox);
             divBody.Controls.Add(new LiteralControl("<br />"));
-            divBody.Controls.Add(new LiteralControl("<br />"));
 
             divBody.Controls.Add(addressLabel);
             divBody.Controls.Add(editAddressTextBox);
-            divBody.Controls.Add(new LiteralControl("<br />"));
             divBody.Controls.Add(new LiteralControl("<br />"));
 
             divBody.Controls.Add(cityLabel);
             divBody.Controls.Add(editCityTextBox);
             divBody.Controls.Add(new LiteralControl("<br />"));
-            divBody.Controls.Add(new LiteralControl("<br />"));
 
             divBody.Controls.Add(stateLabel);
             divBody.Controls.Add(editStateTextBox);
             divBody.Controls.Add(new LiteralControl("<br />"));
-            divBody.Controls.Add(new LiteralControl("<br />"));
 
             divBody.Controls.Add(zipCodeLabel);
             divBody.Controls.Add(editZipCodeTextBox);
-            divBody.Controls.Add(new LiteralControl("<br />"));
             divBody.Controls.Add(new LiteralControl("<br />"));
 
             //footer controls
@@ -799,19 +798,6 @@ namespace SpotCheckAdminPortal
             parkingLotContainer.Controls.Add(div1);
          }
       }
-
-      private Control FindControlRecursive(Control rootControl, string controlID)
-      {
-         if (rootControl.ID == controlID) return rootControl;
-
-         foreach (Control controlToSearch in rootControl.Controls)
-         {
-            Control controlToReturn = FindControlRecursive(controlToSearch, controlID);
-            if (controlToReturn != null) return controlToReturn;
-         }
-         return null;
-      }
-
       #endregion
    }
 }

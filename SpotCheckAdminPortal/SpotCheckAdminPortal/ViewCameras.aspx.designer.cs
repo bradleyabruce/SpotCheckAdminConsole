@@ -42,13 +42,22 @@ namespace SpotCheckAdminPortal
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl loadingCamerasDiv;
 
       /// <summary>
-      /// cameraUpdateProgress control.
+      /// deployedCameraUpdateProgress control.
       /// </summary>
       /// <remarks>
       /// Auto-generated field.
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
-      protected global::System.Web.UI.UpdateProgress cameraUpdateProgress;
+      protected global::System.Web.UI.UpdateProgress deployedCameraUpdateProgress;
+
+      /// <summary>
+      /// undeployedCameraUpdateProgress control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.UpdateProgress undeployedCameraUpdateProgress;
 
       /// <summary>
       /// CompanyNameLiteral control.
@@ -78,13 +87,13 @@ namespace SpotCheckAdminPortal
       protected global::System.Web.UI.ScriptManager cameraScriptManager;
 
       /// <summary>
-      /// cameraUpdatePanel control.
+      /// alertUpdatePanel control.
       /// </summary>
       /// <remarks>
       /// Auto-generated field.
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
-      protected global::System.Web.UI.UpdatePanel cameraUpdatePanel;
+      protected global::System.Web.UI.UpdatePanel alertUpdatePanel;
 
       /// <summary>
       /// alertDiv control.
@@ -105,6 +114,15 @@ namespace SpotCheckAdminPortal
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl LeftRightContainer;
 
       /// <summary>
+      /// modalUpdatePanel control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.UpdatePanel modalUpdatePanel;
+
+      /// <summary>
       /// modalDiv control.
       /// </summary>
       /// <remarks>
@@ -112,6 +130,24 @@ namespace SpotCheckAdminPortal
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalDiv;
+
+      /// <summary>
+      /// deployCameraContainerDiv control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl deployCameraContainerDiv;
+
+      /// <summary>
+      /// deployedCameraUpdatePanel control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.UpdatePanel deployedCameraUpdatePanel;
 
       /// <summary>
       /// left control.
@@ -141,6 +177,15 @@ namespace SpotCheckAdminPortal
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl deployedCameraContainer;
 
       /// <summary>
+      /// undeployedCameraUpdatePanel control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.UpdatePanel undeployedCameraUpdatePanel;
+
+      /// <summary>
       /// right control.
       /// </summary>
       /// <remarks>
@@ -166,5 +211,23 @@ namespace SpotCheckAdminPortal
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
       protected global::System.Web.UI.HtmlControls.HtmlGenericControl undeployedCameraContainer;
+
+      /// <summary>
+      /// deployModalUpdatePanel control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.UpdatePanel deployModalUpdatePanel;
+
+      /// <summary>
+      /// parkingLotDropDownDeployList control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.HtmlControls.HtmlGenericControl parkingLotDropDownDeployList;
    }
 }

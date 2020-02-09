@@ -16,6 +16,9 @@
    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
+   <!--Javascript -->
+   <script type="text/javascript" src="js/ViewCameras.js"></script>
+
    <!-- Custom styles for this template-->
    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
 </head>
@@ -24,10 +27,17 @@
 
    <form id="cameraForm" runat="server">
 
+      <!--<canvas id="imageCanvas" width="640" height="360" style="border: 1px solid black"></canvas>-->
+
       <div id="loadingCamerasDiv" runat="server">
 
-         <!--Loading Window -->
-         <asp:UpdateProgress runat="server" ID="cameraUpdateProgress" AssociatedUpdatePanelID="cameraUpdatePanel">
+         <!--Loading Windows -->
+         <asp:UpdateProgress runat="server" ID="deployedCameraUpdateProgress" AssociatedUpdatePanelID="deployedCameraUpdatePanel">
+            <ProgressTemplate>
+               <div style="opacity: 0.5; background: #000; width: 100%; height: 100%; z-index: 10; top: 0; left: 0; position: fixed;"></div>
+            </ProgressTemplate>
+         </asp:UpdateProgress>
+         <asp:UpdateProgress runat="server" ID="undeployedCameraUpdateProgress" AssociatedUpdatePanelID="undeployedCameraUpdatePanel">
             <ProgressTemplate>
                <div style="opacity: 0.5; background: #000; width: 100%; height: 100%; z-index: 10; top: 0; left: 0; position: fixed;"></div>
             </ProgressTemplate>
@@ -125,43 +135,108 @@
                <!-- Begin Page Content -->
                <div class="container-fluid" runat="server" id="camerasBodyDiv" style="position: relative">
                   <asp:ScriptManager ID="cameraScriptManager" runat="server"></asp:ScriptManager>
-                  <asp:UpdatePanel runat="server" ID="cameraUpdatePanel">
+
+                  <!-- Alert Div -->
+                  <asp:UpdatePanel runat="server" ID="alertUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false">
                      <ContentTemplate runat="server">
-
-                        <!-- Alert Div -->
                         <div runat="server" id="alertDiv"></div>
+                     </ContentTemplate>
+                  </asp:UpdatePanel>
 
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                           <h1 class="h3 mb-0 text-gray-800">Cameras</h1>
-                           <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Order New Camera</button>
-                        </div>
+                  <!-- Page Heading -->
+                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                     <h1 class="h3 mb-0 text-gray-800">Cameras</h1>
+                     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Order New Camera</button>
+                  </div>
 
-                        <!-- Container to Hold all Programmatically Created HTML -->
-                        <div id="LeftRightContainer" runat="server" style="width: 100%; margin: auto; padding: 10px;">
+                  <!-- Container to Hold all Programmatically Created HTML -->
+                  <div id="LeftRightContainer" runat="server" style="width: 100%; margin: auto; padding: 10px;">
 
+                     <asp:UpdatePanel runat="server" ID="modalUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                        <ContentTemplate runat="server">
                            <div id="modalDiv" runat="server"></div>
+                        </ContentTemplate>
+                     </asp:UpdatePanel>
 
-                           <!-- Left -->
+
+                     <!-- Separate Div just for deploy modals as they need to be handled differently -->
+                     <div id="deployCameraContainerDiv" runat="server"></div>
+
+                     <!-- Left -->
+                     <asp:UpdatePanel runat="server" ID="deployedCameraUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                        <ContentTemplate runat="server">
                            <div id="left" runat="server" style="width: 48%; float: left;">
                               <div id="comboBoxDiv" runat="server"></div>
-                              <br />   
+                              <br />
                               <div runat="server" id="deployedCameraContainer"></div>
                            </div>
-                           <!-- End Left -->
+                        </ContentTemplate>
+                     </asp:UpdatePanel>
+                     <!-- End Left -->
 
-                           <!-- Right -->
+                     <!-- Right -->
+                     <asp:UpdatePanel runat="server" ID="undeployedCameraUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                        <ContentTemplate runat="server">
                            <div id="right" runat="server" style="margin-left: 52%">
                               <div id="undeployedCameraDiv" runat="server" style="flex: 1;">
                                  <h3 class="h4 mb-0 text-gray-800">Undeployed Cameras</h3>
                               </div>
-                              <br />  
+                              <br />
                               <p></p>
                               <br />
                               <div runat="server" id="undeployedCameraContainer" style="flex: 1;">
                               </div>
                            </div>
-                           <!-- End Right -->
+                        </ContentTemplate>
+                     </asp:UpdatePanel>
+                     <!-- End Right -->
+                  </div>
+
+                  <!-- Deploy Camera Modal -->
+                  <asp:UpdatePanel ID="deployModalUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                     <ContentTemplate>
+                        <div id="deployModal" class="modal" tabindex="-1" role="dialog" style="z-index: 1">
+                           <div id="div2Deploy" class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                              <div id="div3Deploy" class="modal-content">
+                                 <div id="divHeaderDeploy" class="modal-header">
+                                    <h5 class="modal-title">Deploy Camera
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div id="divBodyDeploy" class="modal-body" style="width: 100%; margin: auto; padding: 10px;">
+                                    <!-- left side -->
+                                    <div id="leftBodyDeploy" style="width: 10%; float: left;">
+                                       <label id="parkingLotDropDownDeployLabel">Select parking lot to deploy camera at:</label>
+                                       <br />
+                                       <dropdownlist id="parkingLotDropDownDeployList" width="280" runat="server"></dropdownlist>
+                                       <br />
+                                       <br />
+                                       <!-- buttons -->
+                                       <button id="addParkingSpotCoordinateButton" type="button" class="btn btn-success" title="Add new parking space">
+                                          <i class="fas fa-crop-alt text-white"></i>
+                                       </button>
+                                       <br />
+                                       <button id="removeParkingSpotCoordinateButton" type="button" class="btn btn-warning" title="Remove single parking space">
+                                          <i class="fas fa-times text-white"></i>
+                                       </button>
+                                       <br />
+                                       <button id="removeAllParkingSpotCoordinatesButton" type="button" class="btn btn-danger" title="Clear all parking spaces">
+                                          <i class="fas fa-trash-alt text-white"></i>
+                                       </button>
+                                    </div>
+                                    <!-- right side -->
+                                    <div id="rightBodyDeploy" style="margin-left: 10%;">
+                                       <br />
+                                       <canvas id="imageCanvas" width="640" height="360" style="border: 1px solid black"></canvas>
+                                    </div>
+                                 </div>
+                                 <div id="divFooterDeploy" class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </ContentTemplate>
                   </asp:UpdatePanel>

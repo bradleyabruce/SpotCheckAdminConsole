@@ -1,6 +1,19 @@
 ﻿<%@ Page Language="C#" Inherits="SpotCheckAdminPortal.ViewParkingLots" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+   protected void Unnamed_ServerClick(object sender, EventArgs e)
+   {
+
+   }
+
+   protected void testButton_Click(object sender, EventArgs e)
+   {
+
+   }
+</script>
+
 
 <html>
 <head runat="server">
@@ -134,11 +147,25 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                            <h1 class="h3 mb-0 text-gray-800">Parking Lots</h1>
-                           <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add Parking Lot</button>
-                        </div>
+                           <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i>Add Parking Lot</button>
+                        </div>                      
 
                         <!-- Container to Hold all Programmatically Created HTML -->
-                        <div runat="server" id="parkingLotContainer" style="width: 30%;"></div><!-- overflow-y: scroll; overflow-x: hidden; height: 75%; position: page;-->
+                        <div id="LeftRightContainer" runat="server" style="width: 100%; margin: auto; padding: 10px;">
+
+
+                           <!-- Left -->
+                           <div id="left" runat="server" style="width: 40%; float: left;">
+                                 <div runat="server" id="parkingLotContainer"></div>
+                           </div>
+                           <!-- End Left -->
+
+                           <!-- Right -->
+                           <div id="right" runat="server" style="margin-left: 42%">
+
+                           </div>
+                           <!-- End Right -->
+                        </div>
 
                      </ContentTemplate>
                   </asp:UpdatePanel>

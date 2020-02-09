@@ -9,10 +9,15 @@
 //------------------------------------------------------------------------------
 
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SpotCheckAdminPortal {	
 	
 	public partial class ViewParkingLots {
+
+		protected Button testButton;
+
+		protected System.Web.UI.HtmlControls.HtmlGenericControl parkingLotBody;
 
 		protected System.Web.UI.HtmlControls.HtmlGenericControl loadingParkingLotDiv;
 

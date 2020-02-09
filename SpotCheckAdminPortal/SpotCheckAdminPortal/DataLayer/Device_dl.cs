@@ -22,50 +22,97 @@ namespace SpotCheckAdminPortal.DataLayer
          this.ParkingLotID = device.ParkingLotID;
       }
 
-      #region GetDeviceListFromCompanyID
+      #region Methods
 
       public new List<Device> GetDeviceListFromCompanyID(int companyID)
       {
-         List<Device> devices = new List<Device>();
-
          string url = IoC.API_URL + "device/getDevicesByCompanyID";
          string json = companyID.ToString();
 
          HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+         return ValidateResponse("GetDeviceListFromCompanyID", request) as List<Device>;
+      }
 
-         if (request != null)
+      public new Device Create()
+      {
+         string url = IoC.API_URL + "device/adminPortalAssignDevice";
+         string json = Connect_dl.BuildJson(this, true);    //remove date properties
+
+         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+         return ValidateResponse("Create", request) as Device;
+      }
+
+      #endregion End Methods
+
+      #region ValidateMethod
+
+      private object ValidateResponse(string method, HttpWebRequest request)
+      {
+         switch (method)
          {
-            Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-            HttpStatusCode code = response.FirstOrDefault().Key;
-            string httpResponse = response.FirstOrDefault().Value;
-
-            if (code == HttpStatusCode.OK)
-            {
-               //return devices
-               devices = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(httpResponse);
-               return devices;
-            }
-            else
-            {
-               if (httpResponse == "No devices are linked to this company.")
+            case "GetDeviceListFromCompanyID":
+               List<Device> devices = new List<Device>();
+               if (request != null)
                {
-                  //Return empty list
-                  return devices;
+                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                  HttpStatusCode code = response.FirstOrDefault().Key;
+                  string httpResponse = response.FirstOrDefault().Value;
+
+                  if (code == HttpStatusCode.OK)
+                  {
+                     //return devices
+                     devices = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(httpResponse);
+                     return devices;
+                  }
+                  else
+                  {
+                     if (httpResponse == "No devices are linked to this company.")
+                     {
+                        //Return empty list
+                        return devices;
+                     }
+                     else
+                     {
+                        //return null
+                        return null;
+                     }
+                  }
                }
                else
                {
                   //return null
                   return null;
                }
-            }
-         }
-         else
-         {
-            //return null
-            return null;
+
+            case "Create":
+               Device deviceCreate = new Device();
+               if (request != null)
+               {
+                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                  HttpStatusCode code = response.FirstOrDefault().Key;
+                  string httpResponse = response.FirstOrDefault().Value;
+
+                  if (code == HttpStatusCode.OK)
+                  {
+                     //return parking lot
+                     deviceCreate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
+                     return deviceCreate;
+                  }
+                  else
+                  {
+                     return null;
+                  }
+               }
+               else
+               {
+                  return null;
+               }
+            default:
+               return false;
          }
       }
 
-      #endregion GetDeviceListFromCompanyID
+      #endregion End Validate Method
    }
 }
+
