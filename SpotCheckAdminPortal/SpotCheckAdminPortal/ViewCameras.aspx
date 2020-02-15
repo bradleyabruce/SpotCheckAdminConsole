@@ -166,7 +166,10 @@
                      <asp:UpdatePanel runat="server" ID="deployedCameraUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false">
                         <ContentTemplate runat="server">
                            <div id="left" runat="server" style="width: 48%; float: left;">
-                              <div id="comboBoxDiv" runat="server"></div>
+                              <div id="comboBoxDiv" runat="server">
+                                <p>Select a parking lot to view cameras.</p>    
+                                <asp:DropDownList ID="parkingLotDropDownList" runat="server" AutoPostBack="true" ClientIDMode="Inherit" Style="width: 80%" OnPreRender="parkingLotDropDownList_PreRender"></asp:DropDownList>
+                              </div>
                               <br />
                               <div runat="server" id="deployedCameraContainer"></div>
                            </div>

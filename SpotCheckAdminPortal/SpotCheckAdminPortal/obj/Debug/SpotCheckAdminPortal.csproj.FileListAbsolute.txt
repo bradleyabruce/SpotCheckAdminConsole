@@ -1,3 +1,46 @@
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.dll.config
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.pdb
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Microsoft.Web.Infrastructure.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Helpers.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Razor.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Razor.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Helpers.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.xml
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csprojAssemblyReference.cache
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csproj.CopyComplete
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.dll
+C:/Users/bruceba/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.pdb
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.dll.config
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.pdb
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Microsoft.Web.Infrastructure.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Helpers.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Razor.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Razor.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Helpers.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.xml
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csproj.CopyComplete
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.dll
+B:/Projects/Senior Project/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.pdb
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/SpotCheckAdminPortal.pdb
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Microsoft.Web.Infrastructure.dll
@@ -8,57 +51,13 @@
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.dll
+/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Razor.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Helpers.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Deployment.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.WebPages.Razor.xml
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/System.Web.Mvc.xml
-/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/bin/Newtonsoft.Json.xml
-/Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csprojAssemblyReference.cache
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.csproj.CopyComplete
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.dll
 /Volumes/SeagateHDD/Projects/SeniorProject/SpotCheckAdminConsole/SpotCheckAdminPortal/SpotCheckAdminPortal/obj/Debug/SpotCheckAdminPortal.pdb
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll.config
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.pdb
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Newtonsoft.Json.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Helpers.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Mvc.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Razor.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Deployment.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Razor.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Razor.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Helpers.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Deployment.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Razor.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Mvc.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Newtonsoft.Json.xml
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.csprojAssemblyReference.cache
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.csproj.CopyComplete
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.dll
-C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.pdb
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll.config
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.pdb
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Microsoft.Web.Infrastructure.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Newtonsoft.Json.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Helpers.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Mvc.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Razor.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Deployment.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Razor.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Newtonsoft.Json.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Razor.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Helpers.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Deployment.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.WebPages.Razor.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Mvc.xml
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.csproj.CopyComplete
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.pdb
