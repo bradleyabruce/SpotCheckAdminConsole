@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SpotCheckAdminPortal.DataLayer;
+using SpotCheckAdminPortal.Enums;
 
 namespace SpotCheckAdminPortal.Models
 {
@@ -33,6 +34,30 @@ namespace SpotCheckAdminPortal.Models
       {
          Device_dl device_dl = new Device_dl(this);
          return device_dl.Create();
+      }
+
+      public Device Update()
+      {
+         Device_dl device_dl = new Device_dl(this);
+         return device_dl.Update();
+      }
+
+      public Device Fill()
+      {
+         Device_dl device_dl = new Device_dl(this);
+         return device_dl.Fill();
+      }
+
+      public bool IsDeployed()
+      {
+         if(this.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.Deployed || this.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.ReadyForSpots)
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
       }
 
       #endregion

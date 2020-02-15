@@ -44,6 +44,7 @@ C:\Users\bruceba\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPor
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll.config
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.dll
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\SpotCheckAdminPortal.pdb
+B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Microsoft.Web.Infrastructure.dll
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Newtonsoft.Json.dll
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Helpers.dll
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\System.Web.Mvc.dll
@@ -61,5 +62,3 @@ B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckA
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.csproj.CopyComplete
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.dll
 B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.pdb
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\bin\Microsoft.Web.Infrastructure.dll
-B:\Projects\Senior Project\SpotCheckAdminConsole\SpotCheckAdminPortal\SpotCheckAdminPortal\obj\Debug\SpotCheckAdminPortal.csprojAssemblyReference.cache

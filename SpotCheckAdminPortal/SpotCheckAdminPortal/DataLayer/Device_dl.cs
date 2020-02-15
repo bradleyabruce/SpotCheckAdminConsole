@@ -42,6 +42,24 @@ namespace SpotCheckAdminPortal.DataLayer
          return ValidateResponse("Create", request) as Device;
       }
 
+      public new Device Update()
+      {
+         string url = IoC.API_URL + "device/updateAndReturn";
+         string json = Connect_dl.BuildJson(this, true);
+
+         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+         return ValidateResponse("Update", request) as Device;
+      }
+
+      public new Device Fill()
+      {
+         string url = IoC.API_URL + "device/fill";
+         string json = this.DeviceID.ToString();
+
+         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+         return ValidateResponse("Fill", request) as Device;
+      }
+
       #endregion End Methods
 
       #region ValidateMethod
@@ -97,6 +115,53 @@ namespace SpotCheckAdminPortal.DataLayer
                      //return parking lot
                      deviceCreate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
                      return deviceCreate;
+                  }
+                  else
+                  {
+                     return null;
+                  }
+               }
+               else
+               {
+                  return null;
+               }
+
+            case "Update":
+               Device deviceUpdate = new Device();
+               if (request != null)
+               {
+                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                  HttpStatusCode code = response.FirstOrDefault().Key;
+                  string httpResponse = response.FirstOrDefault().Value;
+
+                  if (code == HttpStatusCode.OK)
+                  {
+                     //return parking lot
+                     deviceUpdate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
+                     return deviceUpdate;
+                  }
+                  else
+                  {
+                     return null;
+                  }
+               }
+               else
+               {
+                  return null;
+               }
+            case "Fill":
+               Device deviceFill = new Device();
+               if (request != null)
+               {
+                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                  HttpStatusCode code = response.FirstOrDefault().Key;
+                  string httpResponse = response.FirstOrDefault().Value;
+
+                  if (code == HttpStatusCode.OK)
+                  {
+                     //return parking lot
+                     deviceFill = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
+                     return deviceFill;
                   }
                   else
                   {

@@ -56,26 +56,39 @@ namespace SpotCheckAdminPortal
          {
             Response.Redirect("Dashboard.aspx");
          }
-
-         if (parkingLots.Count > 0)
-         {
-            //if the page url has params, auto load it
-            string paramParkingLot = Request.QueryString["ParkingLotID"];
-            LoadParkingLotComboBox(paramParkingLot);  //param parkinglot will either be null or be a valid parkinglotID
-         }
-         else
-         {
-            ShowMessage("warning", "You do not have any parking lots set up yet.");
-         }
-
-         //load undeployed list
-         CreateDeviceListDivs(undeployedStatues);
       }
 
       protected void Page_Load(object sender, EventArgs e)
       {
          //set label
          CompanyNameLiteral.Text = company.CompanyName;
+
+         if (parkingLots.Count > 0)
+         {
+            //on first page load, check for params in the url
+            //load undeployed devices
+            if (!cameraScriptManager.IsInAsyncPostBack)
+            {
+               string paramParkingLot = Request.QueryString["ParkingLotID"];
+               LoadParkingLotComboBox(paramParkingLot);  //param parkinglot will either be null or be a valid parkinglotID
+
+               //load undeployed list
+               CreateDeviceListDivs(undeployedStatues);
+            }
+            //in async loads, check that the selected id of our combo box is not not selected
+            else
+            {
+               LoadParkingLotComboBox();
+            }
+
+         }
+         else
+         {
+            ShowMessage("warning", "You do not have any parking lots set up yet.");
+
+            //load undeployed list
+            CreateDeviceListDivs(undeployedStatues);
+         }
       }
 
       private void ParkingLotDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +140,7 @@ namespace SpotCheckAdminPortal
                         newDevice.DeviceName = tb.Text;
                         tb.Text = "";
                      }
-                     break;                  
+                     break;
                }
             }
          }
@@ -142,20 +155,78 @@ namespace SpotCheckAdminPortal
 
             CreateDeviceListDivs(undeployedStatues);
             undeployedCameraUpdatePanel.Update();     //force update to only undeployed cameras (this also updates modals)
-            ShowMessage("success", "Parking lot successfully added.");
+            ShowMessage("success", "Device successfully ordered.");
          }
          else
          {
-            ShowMessage("danger", "Error Occurred. Parking lot could not be added.");
-            //ShowErrorMessage();
+            ShowMessage("danger", "Error Occurred. Device could not be ordered.");
          }
       }
 
       //TODO
       private void btnEditSubmit_Click(object sender, EventArgs e)
       {
-         Button addButton = sender as Button;
-         //modify 
+         Button button = sender as Button;
+         string deviceID = button.CommandArgument;
+
+         Device editDevice = new Device();
+         editDevice.DeviceID = Int32.Parse(deviceID);
+         editDevice = editDevice.Fill();
+
+         if (editDevice != null)
+         {
+            string[] controlIDsToFind = { "editNameTextBox" + deviceID };
+            Control match = null;
+
+            foreach (string controlID in controlIDsToFind)
+            {
+               match = IoC.FindControlRecursive(modalDiv, controlID);
+
+               if (match != null)
+               {
+                  TextBox tb = match as TextBox;
+
+                  switch (controlID)
+                  {
+                     case string a when controlID.Contains("Name"):
+                        if (tb.Text != "")
+                        {
+                           editDevice.DeviceName = tb.Text;
+                           tb.Text = "";
+                        }
+                        break;
+                  }
+               }
+            }
+
+            editDevice = editDevice.Update();
+            if (editDevice != null)
+            {
+               //reload undeployed camera list
+               globalDeviceList = editDevice.GetDeviceListFromCompanyID(company.CompanyID);
+
+               if (editDevice.IsDeployed())     //refresh the correct list
+               {
+                  CreateDeviceListDivs(deployedStatues);
+                  deployedCameraUpdatePanel.Update();     //force update to only deployed cameras (this also updates modals)
+               }
+               else
+               {
+                  CreateDeviceListDivs(undeployedStatues);
+                  undeployedCameraUpdatePanel.Update();     //force update to only undeployed cameras (this also updates modals)
+               }
+
+               ShowMessage("success", "Device successfully updated.");
+            }
+            else     //update failed
+            {
+               ShowMessage("danger", "Error Occurred. Device could not be updated.");
+            }
+         }
+         else     //fill failed
+         {
+            ShowMessage("danger", "Error Occurred. Device could not be found.");
+         }
       }
 
       //TODO
