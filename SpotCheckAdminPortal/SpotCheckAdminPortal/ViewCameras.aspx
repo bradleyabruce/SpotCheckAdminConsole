@@ -42,6 +42,17 @@
                <div style="opacity: 0.5; background: #000; width: 100%; height: 100%; z-index: 10; top: 0; left: 0; position: fixed;"></div>
             </ProgressTemplate>
          </asp:UpdateProgress>
+         <asp:UpdateProgress runat="server" ID="modalUpdateProgress" AssociatedUpdatePanelID="modalUpdatePanel">
+            <ProgressTemplate>
+               <div style="opacity: 0.5; background: #000; width: 100%; height: 100%; z-index: 10; top: 0; left: 0; position: fixed;"></div>
+            </ProgressTemplate>
+         </asp:UpdateProgress>
+         <asp:UpdateProgress runat="server" ID="deployModalUpdateProgress" AssociatedUpdatePanelID="deployModalUpdatePanel">
+            <ProgressTemplate>
+               <div style="opacity: 0.5; background: #000; width: 100%; height: 100%; z-index: 10; top: 0; left: 0; position: fixed;"></div>
+            </ProgressTemplate>
+         </asp:UpdateProgress>
+
       </div>
 
       <!-- Page Wrapper -->
@@ -146,7 +157,7 @@
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
                      <h1 class="h3 mb-0 text-gray-800">Cameras</h1>
-                     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i> Order New Camera</button>
+                     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-backdrop="false" data-target="#addModal"><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;Order New Camera</button>
                   </div>
 
                   <!-- Container to Hold all Programmatically Created HTML -->
@@ -167,8 +178,8 @@
                         <ContentTemplate runat="server">
                            <div id="left" runat="server" style="width: 48%; float: left;">
                               <div id="comboBoxDiv" runat="server">
-                                <p>Select a parking lot to view cameras.</p>    
-                                <asp:DropDownList ID="parkingLotDropDownList" runat="server" AutoPostBack="true" ClientIDMode="Inherit" Style="width: 80%" OnPreRender="parkingLotDropDownList_PreRender"></asp:DropDownList>
+                                 <p>Select a parking lot to view cameras.</p>
+                                 <asp:DropDownList ID="parkingLotDropDownList" runat="server" AutoPostBack="true" ClientIDMode="Inherit" Style="width: 80%" OnSelectedIndexChanged="parkingLotDropDownList_SelectedIndexChanged"></asp:DropDownList>
                               </div>
                               <br />
                               <div runat="server" id="deployedCameraContainer"></div>
