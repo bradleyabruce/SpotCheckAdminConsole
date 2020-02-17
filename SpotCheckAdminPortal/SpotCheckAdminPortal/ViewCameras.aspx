@@ -178,6 +178,7 @@
                         <ContentTemplate runat="server">
                            <div id="left" runat="server" style="width: 48%; float: left;">
                               <div id="comboBoxDiv" runat="server">
+                                 <h3 class="h4 mb-0 text-gray-800"><u>Deployed Cameras</u></h3>
                                  <p>Select a parking lot to view cameras.</p>
                                  <asp:DropDownList ID="parkingLotDropDownList" runat="server" AutoPostBack="true" ClientIDMode="Inherit" Style="width: 80%" OnSelectedIndexChanged="parkingLotDropDownList_SelectedIndexChanged"></asp:DropDownList>
                               </div>
@@ -193,8 +194,9 @@
                         <ContentTemplate runat="server">
                            <div id="right" runat="server" style="margin-left: 52%">
                               <div id="undeployedCameraDiv" runat="server" style="flex: 1;">
-                                 <h3 class="h4 mb-0 text-gray-800">Undeployed Cameras</h3>
+                                 <h3 class="h4 mb-0 text-gray-800"><u>Undeployed Cameras</u></h3>
                               </div>
+                              <br />
                               <br />
                               <p></p>
                               <br />

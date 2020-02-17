@@ -209,9 +209,35 @@ namespace SpotCheckAdminPortal
       //TODO
       private void btnDeleteSubmit_Click(object sender, EventArgs e)
       {
-         Button deleteButton = sender as Button;
-         string deviceID = deleteButton.CommandArgument;
-      }
+            Button button = sender as Button;
+            string deviceID = button.CommandArgument;
+
+            Device deleteDevice = new Device();
+            deleteDevice.DeviceID = Int32.Parse(deviceID);
+            deleteDevice = deleteDevice.Fill();
+
+            if (deleteDevice != null)
+            {
+                bool? deleteResult = deleteDevice.Delete();
+                if (deleteResult == true)
+                {
+                    //reload undeployed camera list
+                    globalDeviceList = deleteDevice.GetDeviceListFromCompanyID(company.CompanyID);
+                    CreateDeviceListDivs(undeployedStatues);
+                    undeployedCameraUpdatePanel.Update();     //force update to only undeployed cameras (this also updates modals)                    
+
+                    ShowMessage("success", "Device successfully deleted.");
+                }
+                else     //update failed
+                {
+                    ShowMessage("danger", "Error Occurred. Device could not be deleted.");
+                }
+            }
+            else     //fill failed
+            {
+                ShowMessage("danger", "Error Occurred. Device could not be found.");
+            }
+        }
 
       protected void parkingLotDropDownList_SelectedIndexChanged(object sender, EventArgs e)
       {

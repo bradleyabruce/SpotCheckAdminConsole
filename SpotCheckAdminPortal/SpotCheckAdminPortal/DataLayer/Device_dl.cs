@@ -60,6 +60,15 @@ namespace SpotCheckAdminPortal.DataLayer
          return ValidateResponse("Fill", request) as Device;
       }
 
+      public new bool? Delete()
+        {
+            string url = IoC.API_URL + "device/removeFromCompany";
+            string json = this.DeviceID.ToString();  
+
+            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+            return ValidateResponse("Delete", request) as bool?;
+        }
+
       #endregion End Methods
 
       #region ValidateMethod
@@ -172,7 +181,27 @@ namespace SpotCheckAdminPortal.DataLayer
                {
                   return null;
                }
-            default:
+                case "Delete":
+                    if (request != null)
+                    {
+                        Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                        HttpStatusCode code = response.FirstOrDefault().Key;
+                        string httpResponse = response.FirstOrDefault().Value;
+
+                        if (code == HttpStatusCode.OK)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                default:
                return false;
          }
       }
