@@ -65,6 +65,6 @@ namespace SpotCheckAdminPortal {
 		
 		protected System.Web.UI.UpdatePanel deployModalUpdatePanel;
 		
-		protected System.Web.UI.HtmlControls.HtmlGenericControl parkingLotDropDownDeployList;
+		protected System.Web.UI.WebControls.DropDownList deployParkingLotDropDownList;
 	}
 }

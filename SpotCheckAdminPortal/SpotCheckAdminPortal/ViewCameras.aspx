@@ -212,44 +212,48 @@
                   <asp:UpdatePanel ID="deployModalUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                      <ContentTemplate>
                         <div id="deployModal" class="modal" tabindex="-1" role="dialog" style="z-index: 1">
-                           <div id="div2Deploy" class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                           <div id="div2Deploy" class="modal-dialog modal-dialog-centered modal-xl" role="document">
                               <div id="div3Deploy" class="modal-content">
                                  <div id="divHeaderDeploy" class="modal-header">
                                     <h5 class="modal-title">Deploy Camera
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="deployCloseHeader">
                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                  </div>
-                                 <div id="divBodyDeploy" class="modal-body" style="width: 100%; margin: auto; padding: 10px;">
+                                 <div id="divBodyDeploy" class="modal-body" style="width: 100%; margin: auto;">
                                     <!-- left side -->
-                                    <div id="leftBodyDeploy" style="width: 10%; float: left;">
+                                    <div id="leftBodyDeploy" style="width: 35%; float: left;">
                                        <label id="parkingLotDropDownDeployLabel">Select parking lot to deploy camera at:</label>
                                        <br />
-                                       <dropdownlist id="parkingLotDropDownDeployList" width="280" runat="server"></dropdownlist>
+                                       <asp:DropDownList id="deployParkingLotDropDownList" runat="server" Width="250"></asp:DropDownList>
                                        <br />
                                        <br />
                                        <!-- buttons -->
-                                       <button id="addParkingSpotCoordinateButton" type="button" class="btn btn-success" title="Add new parking space">
+                                        <button type="button" id="addParkingSpotCoordinateButton" class="btn btn-success" title="Add new parking space" name="options" autocomplete="off">
                                           <i class="fas fa-crop-alt text-white"></i>
                                        </button>
-                                       <br />
-                                       <button id="removeParkingSpotCoordinateButton" type="button" class="btn btn-warning" title="Remove single parking space">
-                                          <i class="fas fa-times text-white"></i>
+
+                                       <button type="button" name="options" class="btn btn-warning" id="removeParkingSpotCoordinateButton" title="Remove single parking space" autocomplete="off">
+                                            <i class="fas fa-times text-white"></i> 
                                        </button>
-                                       <br />
+
+                                                        
                                        <button id="removeAllParkingSpotCoordinatesButton" type="button" class="btn btn-danger" title="Clear all parking spaces">
                                           <i class="fas fa-trash-alt text-white"></i>
                                        </button>
+                                                        
+                                       <button id="deployDone" class="btn btn-secondary" style="width: 180px; visibility: hidden;" type="button">Done</button>
+                                                        
                                     </div>
                                     <!-- right side -->
-                                    <div id="rightBodyDeploy" style="margin-left: 10%;">
+                                    <div id="rightBodyDeploy" style="margin-left: 35%;">
                                        <br />
                                        <canvas id="imageCanvas" width="640" height="360" style="border: 1px solid black"></canvas>
                                     </div>
                                  </div>
                                  <div id="divFooterDeploy" class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button id="deployCloseFooter" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                  </div>
                               </div>
                            </div>

@@ -64,7 +64,7 @@ namespace SpotCheckAdminPortal.Models
       {
          bool result = true;
 
-         if (CurrentCompany.CompanyID == null || DeviceList == null || ParkingLotList == null)
+         if (CurrentCompany.CompanyID == 0 || DeviceList == null || ParkingLotList == null)
          {
             result = false;
          }

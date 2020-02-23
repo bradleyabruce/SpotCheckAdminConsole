@@ -6,207 +6,211 @@ using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal.DataLayer
 {
-   public class Device_dl : Device
-   {
-      public Device_dl(Device device)
-      {
-         this.DeviceID = device.DeviceID;
-         this.DeviceName = device.DeviceName;
-         this.LocalIpAddress = device.LocalIpAddress;
-         this.ExternalIpAddress = device.ExternalIpAddress;
-         this.MacAddress = device.MacAddress;
-         this.LastUpdateDate = device.LastUpdateDate;
-         this.CompanyID = device.CompanyID;
-         this.TakeNewImage = device.TakeNewImage;
-         this.DeviceStatusID = device.DeviceStatusID;
-         this.ParkingLotID = device.ParkingLotID;
-      }
-
-      #region Methods
-
-      public new List<Device> GetDeviceListFromCompanyID(int companyID)
-      {
-         string url = IoC.API_URL + "device/getDevicesByCompanyID";
-         string json = companyID.ToString();
-
-         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
-         return ValidateResponse("GetDeviceListFromCompanyID", request) as List<Device>;
-      }
-
-      public new Device Create()
-      {
-         string url = IoC.API_URL + "device/adminPortalAssignDevice";
-         string json = Connect_dl.BuildJson(this, true);    //remove date properties
-
-         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
-         return ValidateResponse("Create", request) as Device;
-      }
-
-      public new Device Update()
-      {
-         string url = IoC.API_URL + "device/updateAndReturn";
-         string json = Connect_dl.BuildJson(this, true);
-
-         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
-         return ValidateResponse("Update", request) as Device;
-      }
-
-      public new Device Fill()
-      {
-         string url = IoC.API_URL + "device/fill";
-         string json = this.DeviceID.ToString();
-
-         HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
-         return ValidateResponse("Fill", request) as Device;
-      }
-
-      public new bool? Delete()
+    public class Device_dl : Device
+    {
+        public Device_dl(Device device)
         {
-            string url = IoC.API_URL + "device/removeFromCompany";
-            string json = this.DeviceID.ToString();  
-
-            HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
-            return ValidateResponse("Delete", request) as bool?;
+            this.DeviceID = device.DeviceID;
+            this.DeviceName = device.DeviceName;
+            this.LocalIpAddress = device.LocalIpAddress;
+            this.ExternalIpAddress = device.ExternalIpAddress;
+            this.MacAddress = device.MacAddress;
+            this.LastUpdateDate = device.LastUpdateDate;
+            this.CompanyID = device.CompanyID;
+            this.TakeNewImage = device.TakeNewImage;
+            this.DeviceStatusID = device.DeviceStatusID;
+            this.ParkingLotID = device.ParkingLotID;
         }
 
-      #endregion End Methods
+        #region Methods
 
-      #region ValidateMethod
+        public new List<Device> GetDeviceListFromCompanyID(int companyID)
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/getDevicesByCompanyID";
+                string json = companyID.ToString();
 
-      private object ValidateResponse(string method, HttpWebRequest request)
-      {
-         switch (method)
-         {
-            case "GetDeviceListFromCompanyID":
-               List<Device> devices = new List<Device>();
-               if (request != null)
-               {
-                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-                  HttpStatusCode code = response.FirstOrDefault().Key;
-                  string httpResponse = response.FirstOrDefault().Value;
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
 
-                  if (code == HttpStatusCode.OK)
-                  {
-                     //return devices
-                     devices = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(httpResponse);
-                     return devices;
-                  }
-                  else
-                  {
-                     if (httpResponse == "No devices are linked to this company.")
-                     {
-                        //Return empty list
-                        return devices;
-                     }
-                     else
-                     {
-                        //return null
-                        return null;
-                     }
-                  }
-               }
-               else
-               {
-                  //return null
-                  return null;
-               }
+                if (result.Item1)
+                {
+                    List<Device> devices = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Device>>(result.Item2);
+                    return devices;
+                }
+                else
+                {
+                    //return empty list
+                    List<Device> devices = new List<Device>();
+                    return devices;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-            case "Create":
-               Device deviceCreate = new Device();
-               if (request != null)
-               {
-                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-                  HttpStatusCode code = response.FirstOrDefault().Key;
-                  string httpResponse = response.FirstOrDefault().Value;
+        public new Device Create()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/adminPortalAssignDevice";
+                string json = Connect_dl.BuildJson(this, true);    //remove date properties
 
-                  if (code == HttpStatusCode.OK)
-                  {
-                     //return parking lot
-                     deviceCreate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
-                     return deviceCreate;
-                  }
-                  else
-                  {
-                     return null;
-                  }
-               }
-               else
-               {
-                  return null;
-               }
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
 
-            case "Update":
-               Device deviceUpdate = new Device();
-               if (request != null)
-               {
-                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-                  HttpStatusCode code = response.FirstOrDefault().Key;
-                  string httpResponse = response.FirstOrDefault().Value;
+                if (result.Item1)
+                {
+                    Device deviceCreate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(result.Item2);
+                    return deviceCreate;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-                  if (code == HttpStatusCode.OK)
-                  {
-                     //return parking lot
-                     deviceUpdate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
-                     return deviceUpdate;
-                  }
-                  else
-                  {
-                     return null;
-                  }
-               }
-               else
-               {
-                  return null;
-               }
-            case "Fill":
-               Device deviceFill = new Device();
-               if (request != null)
-               {
-                  Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-                  HttpStatusCode code = response.FirstOrDefault().Key;
-                  string httpResponse = response.FirstOrDefault().Value;
+        public new Device Update()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/updateAndReturn";
+                string json = Connect_dl.BuildJson(this, true);
 
-                  if (code == HttpStatusCode.OK)
-                  {
-                     //return parking lot
-                     deviceFill = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(httpResponse);
-                     return deviceFill;
-                  }
-                  else
-                  {
-                     return null;
-                  }
-               }
-               else
-               {
-                  return null;
-               }
-                case "Delete":
-                    if (request != null)
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    Device deviceUpdate = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(result.Item2);
+                    return deviceUpdate;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public new Device Fill()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/fill";
+                string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    Device deviceFill = Newtonsoft.Json.JsonConvert.DeserializeObject<Device>(result.Item2);
+                    return deviceFill;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public new bool Delete()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/removeFromCompany";
+                string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public new bool Undeploy()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/undeploy";
+                string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool,string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private Tuple<bool, string> ValidateResponse(HttpWebRequest request)
+        {
+            if (request != null)
+            {
+                Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
+                HttpStatusCode code = response.FirstOrDefault().Key;
+                string httpResponse = response.FirstOrDefault().Value;
+
+                if (code == HttpStatusCode.OK)
+                {
+                    return new Tuple<bool, string>(true, httpResponse);
+                }
+                else
+                {
+                    if (code == HttpStatusCode.Conflict)
                     {
-                        Dictionary<HttpStatusCode, string> response = Connect_dl.GetResponse(request);
-                        HttpStatusCode code = response.FirstOrDefault().Key;
-                        string httpResponse = response.FirstOrDefault().Value;
-
-                        if (code == HttpStatusCode.OK)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return new Tuple<bool, string>(false, "");
                     }
                     else
                     {
-                        return false;
+                        throw new Exception();
                     }
-                default:
-               return false;
-         }
-      }
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
 
-      #endregion End Validate Method
-   }
+        #endregion End Methods
+    }
 }
 
