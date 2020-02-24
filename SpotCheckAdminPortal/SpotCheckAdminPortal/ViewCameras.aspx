@@ -243,7 +243,7 @@
                                           <i class="fas fa-trash-alt text-white"></i>
                                        </button>
                                                         
-                                       <button id="deployDone" class="btn btn-secondary" style="width: 180px; visibility: hidden;" type="button">Done</button>
+                                       <button id="deployDone" class="btn btn-primary" style="width: 180px; visibility: hidden;" type="button">Done</button>
                                                         
                                     </div>
                                     <!-- right side -->
