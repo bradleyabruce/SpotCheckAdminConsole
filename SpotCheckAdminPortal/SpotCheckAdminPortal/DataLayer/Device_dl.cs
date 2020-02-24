@@ -180,6 +180,11 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
+      public new bool SendImageRequest()
+      {
+         return false;
+      }
+
         private Tuple<bool, string> ValidateResponse(HttpWebRequest request)
         {
             if (request != null)

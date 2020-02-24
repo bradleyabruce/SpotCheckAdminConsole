@@ -3,8 +3,6 @@
 var startX;
 var startY;
 
-var lastTempRect = null;
-
 var finalX;
 var finalY;
 
@@ -13,6 +11,8 @@ var tempY;
 
 var currentX;
 var currentY;
+
+var lastTempRect = null;
 
 var boxCoordinates = new Array();
 
@@ -27,6 +27,7 @@ function addEventListeners() {
 
    if (document.readyState == "complete") {
 
+      // Deploy Modal Event Handlers
       var addSpotButton = document.getElementById("addParkingSpotCoordinateButton");
       var removeSingleButton = document.getElementById("removeParkingSpotCoordinateButton");
       var removeAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
@@ -40,10 +41,12 @@ function addEventListeners() {
 
       btnDeployCloseFooter.addEventListener("click", deployClosed);
       btnDeployCloseHeader.addEventListener("click", deployClosed);
+
+      //Image Event Handlers    
    }
 }
 
-//Events
+//Generic Methods
 
 function deployClosed() {
    ResetAll();
@@ -82,6 +85,18 @@ function ResetAll() {
    doneButton.removeEventListener("click", doneAdding);
 }
 
+//End Generic Methods
+
+//Image Events
+
+//End Image Events
+
+//Image Methods
+
+//End Image Methods
+
+//Deploy Modal Events
+
 function removeSingleClick(e) {
    //we need to add an event listener to the canvas, and if we are hovered over the coordinates of an existing spot. Allow the user to click it and remove it
    document.body.style.cursor = "crosshair";
@@ -100,28 +115,6 @@ function removeSingleClick(e) {
    var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
    deleteAllButton.className = "btn btn-secondary";
    document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = true;
-}
-
-function doneDeleting() {
-
-   var addButton = document.getElementById("addParkingSpotCoordinateButton");
-   addButton.className = "btn btn-success";
-   document.getElementById("addParkingSpotCoordinateButton").disabled = false;
-
-   var doneButton = document.getElementById("deployDone");
-   doneButton.style = "visibility: hidden;";
-   doneButton.removeEventListener("click", doneDeleting);
-
-   var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
-   deleteAllButton.className = "btn btn-danger";
-   document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = false;
-
-
-   //clean up
-   var imageCanvas = document.getElementById("imageCanvas");
-   imageCanvas.removeEventListener("mousemove", getMouseMoveRemovePosition);
-   imageCanvas.removeEventListener("mousedown", getMouseDownRemovePosition);
-   document.body.style.cursor = "default";
 }
 
 function getMouseMoveRemovePosition(e) {
@@ -189,18 +182,6 @@ function getMouseDownRemovePosition(e) {
    }
 }
 
-
-function markForDelete(item, index) {
-   //determine if the current coordinates are within the values of an existing box
-
-   if ((currentY >= item.tlY && currentY <= item.tlY + item.h) && (currentX >= item.tlX && currentX <= (item.tlX + item.w))) {
-      item.hoveredForDelete = true;
-   }
-   else {
-      item.hoveredForDelete = false;
-   }
-}
-
 function removeAllClick(e) {
    //remove events from other buttons
    var imageCanvas = document.getElementById("imageCanvas");
@@ -236,29 +217,6 @@ function addSpotButtonClick(e) {
    document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = true;
 }
 
-function doneAdding() {
-   var doneButton = document.getElementById("deployDone");
-   doneButton.style = "visibility: hidden;";
-   doneButton.removeEventListener("click", doneAdding);
-
-   imageCanvas.removeEventListener("mousemove", getMouseMoveRemovePosition);
-   imageCanvas.removeEventListener("mousedown", getMouseDownRemovePosition);
-
-   imageCanvas.removeEventListener("mousedown", getMouseDownAddPosition);
-   imageCanvas.removeEventListener("mouseup", getMouseUpAddPosition);
-
-   document.body.style.cursor = "default";
-
-   var singleDelete = document.getElementById("removeParkingSpotCoordinateButton");
-   singleDelete.className = "btn btn-warning";
-   document.getElementById("removeParkingSpotCoordinateButton").disabled = false;
-
-   var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
-   deleteAllButton.className = "btn btn-danger";
-   document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = false;
-}
-
-
 function getMouseDownAddPosition(e) {
 
    imageCanvas = document.getElementById("imageCanvas");
@@ -279,8 +237,6 @@ function getMouseUpAddPosition(e) {
 
    //we can now remove our event listener on mouse movement, down, and up and reset the cursor
    imageCanvas.removeEventListener("mousemove", getMouseMoveAddPosition);
-   //
-
 
    //save our final box to our array and clean up the canvas
    addFinalBox();
@@ -295,6 +251,64 @@ function getMouseMoveAddPosition(e) {
    tempY = getCurrentY(e);
 
    drawTempBox();
+}
+
+//End Deploy Modal Events
+
+//Deploy Modal Methods
+
+function doneDeleting() {
+
+   var addButton = document.getElementById("addParkingSpotCoordinateButton");
+   addButton.className = "btn btn-success";
+   document.getElementById("addParkingSpotCoordinateButton").disabled = false;
+
+   var doneButton = document.getElementById("deployDone");
+   doneButton.style = "visibility: hidden;";
+   doneButton.removeEventListener("click", doneDeleting);
+
+   var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
+   deleteAllButton.className = "btn btn-danger";
+   document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = false;
+
+   //clean up
+   var imageCanvas = document.getElementById("imageCanvas");
+   imageCanvas.removeEventListener("mousemove", getMouseMoveRemovePosition);
+   imageCanvas.removeEventListener("mousedown", getMouseDownRemovePosition);
+   document.body.style.cursor = "default";
+}
+
+function markForDelete(item, index) {
+   //determine if the current coordinates are within the values of an existing box
+
+   if ((currentY >= item.tlY && currentY <= item.tlY + item.h) && (currentX >= item.tlX && currentX <= (item.tlX + item.w))) {
+      item.hoveredForDelete = true;
+   }
+   else {
+      item.hoveredForDelete = false;
+   }
+}
+
+function doneAdding() {
+   var doneButton = document.getElementById("deployDone");
+   doneButton.style = "visibility: hidden;";
+   doneButton.removeEventListener("click", doneAdding);
+
+   imageCanvas.removeEventListener("mousemove", getMouseMoveRemovePosition);
+   imageCanvas.removeEventListener("mousedown", getMouseDownRemovePosition);
+
+   imageCanvas.removeEventListener("mousedown", getMouseDownAddPosition);
+   imageCanvas.removeEventListener("mouseup", getMouseUpAddPosition);
+
+   document.body.style.cursor = "default";
+
+   var singleDelete = document.getElementById("removeParkingSpotCoordinateButton");
+   singleDelete.className = "btn btn-warning";
+   document.getElementById("removeParkingSpotCoordinateButton").disabled = false;
+
+   var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
+   deleteAllButton.className = "btn btn-danger";
+   document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = false;
 }
 
 function addFinalBox() {
@@ -373,9 +387,6 @@ function drawAllRects(item, index) {
       ctx.rect(item.tlX, item.tlY, item.w, item.h);
       ctx.stroke();
    }
-   else {
-
-   }
 }
 
 function clearCanvas() {
@@ -436,3 +447,5 @@ function drawTempBox() {
    ctx.rect(topLeftX, topLeftY, width, height);
    ctx.stroke();
 }
+
+//End Deploy Modal Methods

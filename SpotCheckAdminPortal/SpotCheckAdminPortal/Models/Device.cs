@@ -60,6 +60,12 @@ namespace SpotCheckAdminPortal.Models
             return device_dl.Undeploy();
         }
 
+      public bool SendImageRequest()
+      {
+         Device_dl device_dl = new Device_dl(this);
+         return device_dl.SendImageRequest();
+      }
+
         public bool IsDeployed()
         {
             if (this.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.Deployed || this.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.ReadyForSpots)
