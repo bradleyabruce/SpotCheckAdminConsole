@@ -244,7 +244,6 @@
                                        </button>
                                                         
                                        <button id="deployDone" class="btn btn-primary" style="width: 180px; visibility: hidden;" type="button">Done</button>
-                                                        
                                     </div>
                                     <!-- right side -->
                                     <div id="rightBodyDeploy" style="margin-left: 35%;">
@@ -272,6 +271,11 @@
                <div class="container my-auto">
                   <div class="copyright text-center my-auto">
                      <span>Copyright &copy; SpotCheck 2020</span>
+                                <asp:UpdatePanel id="hiddenInfoPanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                                    <ContentTemplate>
+                                        <asp:TextBox id="hiddenImageStringField" runat="server" Text="What the hell."></asp:TextBox>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                   </div>
                </div>
             </footer>

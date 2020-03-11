@@ -60,11 +60,11 @@ namespace SpotCheckAdminPortal.Models
             return device_dl.Undeploy();
         }
 
-      public bool SendImageRequest()
-      {
-         Device_dl device_dl = new Device_dl(this);
-         return device_dl.SendImageRequest();
-      }
+        public string GetEncodedImageString()
+        {
+            Device_dl device_dl = new Device_dl(this);
+            return device_dl.GetEncodedImageString();
+        }
 
         public bool IsDeployed()
         {
@@ -76,6 +76,12 @@ namespace SpotCheckAdminPortal.Models
             {
                 return false;
             }
+        }
+
+        public bool ClearImageFromDatabase()
+        {
+            Device_dl device_dl = new Device_dl(this);
+            return device_dl.ClearImageFromDatabase();
         }
 
         #endregion

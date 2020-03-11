@@ -180,10 +180,56 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
-      public new bool SendImageRequest()
-      {
-         return false;
-      }
+        public new string GetEncodedImageString()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/retrieveImageString";
+                string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    return result.Item2;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public new bool ClearImageFromDatabase()
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/clearImageFromDatabase";
+                string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         private Tuple<bool, string> ValidateResponse(HttpWebRequest request)
         {
