@@ -66,7 +66,7 @@ namespace SpotCheckAdminPortal.DataLayer
         public new bool? Delete()
         {
             string url = IoC.API_URL + "parkingLot/delete";
-            string json = Connect_dl.BuildJson(this);
+            string json = this.LotID.ToString();
 
             HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
             return ValidateResponse("Delete", request) as bool?;
