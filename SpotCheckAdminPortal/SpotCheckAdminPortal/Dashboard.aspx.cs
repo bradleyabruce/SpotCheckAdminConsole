@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SpotCheckAdminPortal.Enums;
 using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal
@@ -68,10 +69,20 @@ namespace SpotCheckAdminPortal
 
             //set page info per user
             CompanyNameLiteral.Text = company.CompanyName;
-            CameraDeploymentCountLiteral.Text = devices.Count.ToString();
+            CameraDeploymentCountLiteral.Text = getDeployedCamerasList().Count.ToString();
             ParkingLotsCountLiteral.Text = parkingLots.Count.ToString();
             ParkingSpotAvailabilityLiteral.Text = spotAvailability.ToString() + "%";
             ParkingSpotAvailabilityBar.Style.Add(System.Web.UI.HtmlTextWriterStyle.Width, spotAvailability.ToString() + "%");
+        }
+
+        private List<Device> getDeployedCamerasList()
+        {
+            return devices.FindAll(f => f.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.Deployed);
+        }
+
+        private List<Device> getUndeployedCameras()
+        {
+            return devices.FindAll(f => f.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.Undeployed || f.DeviceStatusID == (int)eDeviceStatus.DeviceStatus.WaitingForImage);
         }
 
         #endregion End Methods

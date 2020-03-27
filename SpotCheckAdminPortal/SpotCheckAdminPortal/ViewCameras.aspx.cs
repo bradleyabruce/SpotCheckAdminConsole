@@ -144,8 +144,6 @@ namespace SpotCheckAdminPortal
             //Send Request to Camera to take image
             if (SendCameraImageRequest(deviceID))
             {
-                ShowMessage("success", "Image request sent... Waiting on device.");
-
                 //Attempt to retreive image
                 Device currentDevice = new Device()
                 {
