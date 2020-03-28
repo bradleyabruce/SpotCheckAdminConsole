@@ -18,7 +18,7 @@ var boxCoordinates = new Array();
 
 var currentDeviceID;
 
-var imageString
+var imageDataString = "";
 
 //"Constructor"
 
@@ -27,28 +27,59 @@ document.addEventListener("readystatechange", addEventListeners);
 function addEventListeners() {
     //Only attempt to add event listeners after the page is fully loaded
 
+    Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+    function BeginRequestHandler(sender, args) {
+        //alert("postbackStarted");
+
+    }
+    function EndRequestHandler(sender, args) {
+        //we need to just in case, re add the event handlers
+
+        addEventHandlers();
+
+        //we need to check to see if an image string has been added and save it
+        var hiddenField = document.getElementById("hiddenImageStringField");
+        if (hiddenField.value)
+        {
+            imageDataSource = 'data:image/png;base64,' + hiddenField.value;
+
+            //trigger drawing
+            drawInitialImage();
+        }
+    }
+
     if (document.readyState == "complete") {
-
-        // Deploy Modal Event Handlers
-        var addSpotButton = document.getElementById("addParkingSpotCoordinateButton");
-        var removeSingleButton = document.getElementById("removeParkingSpotCoordinateButton");
-        var removeAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
-        var hiddenImageStringField = document.getElementById("hiddenImageStringField");
-
-        hiddenImageStringField.addEventListener("click", imageStringUpdated);
-        addSpotButton.addEventListener("click", addSpotButtonClick);
-        removeSingleButton.addEventListener("click", removeSingleClick);
-        removeAllButton.addEventListener("click", removeAllClick);
-
-        var btnDeployCloseFooter = document.getElementById("deployCloseFooter");
-        var btnDeployCloseHeader = document.getElementById("deployCloseHeader");
-
-        btnDeployCloseFooter.addEventListener("click", deployClosed);
-        btnDeployCloseHeader.addEventListener("click", deployClosed);
-
-        //Image Event Handlers    
+        //add initial events
+        addEventHandlers();        
     }
 }
+
+function addEventHandlers()
+{
+    // Deploy Modal Event Handlers
+
+    var addSpotButton = document.getElementById("addParkingSpotCoordinateButton");
+    var removeSingleButton = document.getElementById("removeParkingSpotCoordinateButton");
+    var removeAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
+
+    addSpotButton.addEventListener("click", addSpotButtonClick);
+    removeSingleButton.addEventListener("click", removeSingleClick);
+    removeAllButton.addEventListener("click", removeAllClick);
+
+    var btnDeployCloseFooter = document.getElementById("deployCloseFooter");
+    var btnDeployCloseHeader = document.getElementById("deployCloseHeader");
+
+    btnDeployCloseFooter.addEventListener("click", deployClosed);
+    btnDeployCloseHeader.addEventListener("click", deployClosed);
+
+    //Image Event Handlers
+
+    //var hiddenImageStringField = document.getElementById("hiddenImageStringField");
+        //imageStringUpdated();
+}
+
 
 //Generic Methods
 
@@ -69,7 +100,7 @@ function ResetAll() {
     tempY = null;
     currentX;
     currentY;
-    clearCanvas();
+    clearCanvas(true);
 
     var addButton = document.getElementById("addParkingSpotCoordinateButton");
     addButton.className = "btn btn-success";
@@ -91,20 +122,29 @@ function ResetAll() {
 
 //End Generic Methods
 
-//Image Events
+//Image Methods
 
-function imageStringUpdated(e)
-{
-    alert("wow");
-    imageString = e.value;
+function drawInitialImage() {
+
+    var imageCanvas = document.getElementById("imageCanvas");
+    var ctx = imageCanvas.getContext('2d');
+
     var image = new Image();
-    image.src = 'data:image/jpeg;base64,' + imageString;
-    document.body.appendChild(image);
+    image.onload = function () {
+        ctx.drawImage(image, 0, 0, 640, 360);
+    };
+    image.src = imageDataSource;
 }
 
-//End Image Events
+function drawImageAfterInitial()
+{
+    var image = new Image();
+    image.src = imageDataSource;
 
-//Image Methods
+    var imageCanvas = document.getElementById("imageCanvas");
+    var ctx = imageCanvas.getContext('2d');
+    ctx.drawImage(image, 0, 0, 640, 360);
+}
 
 //End Image Methods
 
@@ -136,7 +176,7 @@ function getMouseMoveRemovePosition(e) {
     currentY = getCurrentY(e)
 
     boxCoordinates.forEach(markForDelete);
-    clearCanvas();
+    clearCanvas(true);
     boxCoordinates.forEach(drawAllRects);
 }
 
@@ -190,7 +230,7 @@ function getMouseDownRemovePosition(e) {
     else {
         boxCoordinates = filteredArray;
 
-        clearCanvas();
+        clearCanvas(true);
         boxCoordinates.forEach(drawAllRects);
     }
 }
@@ -205,7 +245,7 @@ function removeAllClick(e) {
     document.body.style.cursor = "default";
 
     boxCoordinates = new Array();
-    clearCanvas();
+    clearCanvas(false);
 }
 
 function addSpotButtonClick(e) {
@@ -253,7 +293,7 @@ function getMouseUpAddPosition(e) {
 
     //save our final box to our array and clean up the canvas
     addFinalBox();
-    clearCanvas();
+    clearCanvas(true);
     boxCoordinates.forEach(drawAllRects);
 }
 
@@ -402,7 +442,7 @@ function drawAllRects(item, index) {
     }
 }
 
-function clearCanvas() {
+function clearCanvas(fillImage) {
     imageCanvas = document.getElementById("imageCanvas");
     var ctx = imageCanvas.getContext("2d");
     ctx.fillStyle = 'white';
@@ -410,14 +450,19 @@ function clearCanvas() {
     ctx.beginPath();
     ctx.fillRect(0, 0, imageCanvas.width, imageCanvas.height);
     ctx.stroke();
+    if (fillImage)
+    {
+        drawImageAfterInitial();
+    }    
 }
 
 function drawTempBox() {
 
     imageCanvas = document.getElementById("imageCanvas");
 
-    //clear our canvas of all shit
-    clearCanvas();
+    //clear the previous temp box
+    clearCanvas(true);
+
 
     //re-add the real boxes
     boxCoordinates.forEach(drawAllRects);

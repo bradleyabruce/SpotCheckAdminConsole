@@ -78,10 +78,10 @@ namespace SpotCheckAdminPortal.Models
             }
         }
 
-        public bool ClearImageFromDatabase()
+        public bool ClearImage()
         {
             Device_dl device_dl = new Device_dl(this);
-            return device_dl.ClearImageFromDatabase();
+            return device_dl.ClearImage();
         }
 
         #endregion

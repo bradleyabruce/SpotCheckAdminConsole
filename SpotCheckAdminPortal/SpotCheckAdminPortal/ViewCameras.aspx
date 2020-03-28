@@ -230,6 +230,8 @@
                                        <br />
                                        <br />
                                        <!-- buttons -->
+                                       <label id="buttonDeployLabel">SpotCheck Vision requires that you set the parking spots on the image. These parking spots will count towards the parking lot's total spot count. Use the add button to begin drawing parking spots with the mouse.</label>
+                                       <br />
                                         <button type="button" id="addParkingSpotCoordinateButton" class="btn btn-success" title="Add new parking space" name="options" autocomplete="off">
                                           <i class="fas fa-crop-alt text-white"></i>
                                        </button>
@@ -251,8 +253,8 @@
                                        <canvas id="imageCanvas" width="640" height="360" style="border: 1px solid black"></canvas>
                                     </div>
                                  </div>
-                                 <div id="divFooterDeploy" class="modal-footer">
-                                    <button id="deployCloseFooter" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                 <div id="divFooterDeploy" class="modal-footer" runat="server">
+                                    
                                  </div>
                               </div>
                            </div>
@@ -273,7 +275,11 @@
                      <span>Copyright &copy; SpotCheck 2020</span>
                                 <asp:UpdatePanel id="hiddenInfoPanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                                     <ContentTemplate>
-                                        <asp:TextBox id="hiddenImageStringField" runat="server" Text="What the hell."></asp:TextBox>
+                                        <div style="display:none;">
+                                            <asp:TextBox id="hiddenImageStringField" runat="server" ></asp:TextBox>
+                                            <asp:TextBox id="hiddenCameraIDField" runat="server"></asp:TextBox>
+                                            <asp:TextBox id="hiddenSpotCoordJsonField" runat="server"></asp:TextBox>
+                                        </div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                   </div>

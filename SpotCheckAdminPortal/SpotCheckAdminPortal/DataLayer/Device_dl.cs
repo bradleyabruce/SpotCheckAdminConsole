@@ -205,7 +205,7 @@ namespace SpotCheckAdminPortal.DataLayer
             }
         }
 
-        public new bool ClearImageFromDatabase()
+        public new bool ClearImage()
         {
             try
             {

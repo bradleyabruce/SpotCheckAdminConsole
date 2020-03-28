@@ -59,6 +59,7 @@ namespace SpotCheckAdminPortal
         protected void Page_Load(object sender, EventArgs e)
         {
             CreateDeviceListDivs(undeployedStatues);
+            CreateDeploySubmitButtonWithServerAndClientControls();
 
             //on first load only
             //check for params in the url
@@ -151,22 +152,28 @@ namespace SpotCheckAdminPortal
                 };
                 currentDevice.Fill();
                 string encodedImageString = currentDevice.GetEncodedImageString();
-                currentDevice.ClearImageFromDatabase();
+                currentDevice.ClearImage();
 
                 if(encodedImageString != null)
                 {
                     hiddenImageStringField.Text = encodedImageString;
+                    hiddenCameraIDField.Text = currentDevice.DeviceID.ToString();
+                    hiddenSpotCoordJsonField.Text = "";
                     hiddenInfoPanel.Update();
                     //from here, javascript should take over and do the rest for us
                 }
                 else
                 {
+                    currentDevice.ClearImage();
                     ShowMessage("danger", "Could not retrieve image from camera.");
                     deployModalUpdatePanel.Update();    //this will cause the modal to close on the user.
                 }
             }
             else
             {
+                Device device = new Device();
+                device.DeviceID = deviceID;
+                device.ClearImage();
                 ShowMessage("danger", "Could not send image request from camera.");
                 deployModalUpdatePanel.Update();    //this will cause the modal to close on the user.
             }
@@ -236,6 +243,12 @@ namespace SpotCheckAdminPortal
             {
                 ShowMessage("danger", "Error Occurred. Device could not be found.");
             }
+        }
+
+
+        private void deploySubmitButton_Click(object sender, EventArgs e)
+        {
+            ShowMessage("danger", "wow");
         }
 
         private void btnUndeploySubmit_Click(object sender, EventArgs e)
@@ -853,6 +866,26 @@ namespace SpotCheckAdminPortal
                     modalDiv.Controls.Add(div1);
                 }
             }
+        }
+
+        private void CreateDeploySubmitButtonWithServerAndClientControls()
+        {
+            Button deploySubmitButton = new Button();
+            deploySubmitButton.ID = "deploySubmit";
+            deploySubmitButton.Attributes.Add("type", "button");
+            deploySubmitButton.Attributes.Add("class", "btn btn-primary");
+            deploySubmitButton.Click += new EventHandler(deploySubmitButton_Click);
+            deploySubmitButton.Text = "Deploy";
+
+            HtmlGenericControl cancel = new HtmlGenericControl("button");
+            cancel.ID = "deployCloseFooter";
+            cancel.Attributes.Add("type", "button");
+            cancel.Attributes.Add("class", "btn btn-secondary");
+            cancel.Attributes.Add("data-dismiss", "modal");
+            cancel.InnerText = "Cancel";
+
+            divFooterDeploy.Controls.Add(deploySubmitButton);
+            divFooterDeploy.Controls.Add(cancel);
         }
 
         private void CreateUndeployedDeleteModals()

@@ -67,8 +67,14 @@ namespace SpotCheckAdminPortal {
 		
 		protected System.Web.UI.WebControls.DropDownList deployParkingLotDropDownList;
 		
+		protected System.Web.UI.HtmlControls.HtmlGenericControl divFooterDeploy;
+		
 		protected System.Web.UI.UpdatePanel hiddenInfoPanel;
 		
 		protected System.Web.UI.WebControls.TextBox hiddenImageStringField;
+		
+		protected System.Web.UI.WebControls.TextBox hiddenCameraIDField;
+		
+		protected System.Web.UI.WebControls.TextBox hiddenSpotCoordJsonField;
 	}
 }
