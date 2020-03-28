@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Newtonsoft.Json;
 using SpotCheckAdminPortal.Models;
 
 namespace SpotCheckAdminPortal.DataLayer
@@ -211,6 +212,31 @@ namespace SpotCheckAdminPortal.DataLayer
             {
                 string url = IoC.API_URL + "device/clearImageFromDatabase";
                 string json = this.DeviceID.ToString();
+
+                HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
+                Tuple<bool, string> result = ValidateResponse(request);
+
+                if (result.Item1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public new bool SaveSpots(List<Spot> spotList)
+        {
+            try
+            {
+                string url = IoC.API_URL + "device/saveSpots";
+                string json = JsonConvert.SerializeObject(spotList);
 
                 HttpWebRequest request = Connect_dl.BuildRequest(url, "POST", json);
                 Tuple<bool, string> result = ValidateResponse(request);

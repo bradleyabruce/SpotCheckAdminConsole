@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -154,7 +155,7 @@ namespace SpotCheckAdminPortal
                 string encodedImageString = currentDevice.GetEncodedImageString();
                 currentDevice.ClearImage();
 
-                if(encodedImageString != null)
+                if (encodedImageString != null)
                 {
                     hiddenImageStringField.Text = encodedImageString;
                     hiddenCameraIDField.Text = currentDevice.DeviceID.ToString();
@@ -248,7 +249,97 @@ namespace SpotCheckAdminPortal
 
         private void deploySubmitButton_Click(object sender, EventArgs e)
         {
-            ShowMessage("danger", "wow");
+            try
+            {
+                if (deployParkingLotDropDownList.SelectedValue != "0")  
+                {
+                    Device device = new Device
+                    {
+                        DeviceID = int.Parse(hiddenCameraIDField.Text)
+                    };
+                    ParkingLot parkingLot = new ParkingLot
+                    {
+                        LotID = int.Parse(deployParkingLotDropDownList.SelectedValue)
+                    };
+                    device = device.Fill();
+                    parkingLot = parkingLot.Fill();
+
+                    if (device != null && parkingLot != null)
+                    {
+                        List<Spot> spotsToDeploy = new List<Spot>();
+
+                        String spotCoordinateJson = hiddenSpotCoordJsonField.Text;
+
+                        if(spotCoordinateJson != "No Spots")
+                        {
+                            JavaScriptSerializer ser = new JavaScriptSerializer();
+                            var tempSpots = ser.Deserialize<List<TempSpot>>(spotCoordinateJson);
+
+                            foreach (TempSpot ts in tempSpots)
+                            {
+                                Spot spot = new Spot
+                                {
+                                    deviceId = device.DeviceID,
+                                    lotId = (int)parkingLot.LotID,
+                                    isOpen = true,
+                                    topLeftXCoordinate = ts.TopLeftXCoordinate,
+                                    topLeftYCoordinate = ts.TopLeftYCoordinate,
+                                    bottomRightXCoordinate = ts.BottomRightXCoordinate,
+                                    bottomRightYCoordinate = ts.BottomRightYCoordinate,
+                                    floorNum = 0
+                                };
+
+                                spotsToDeploy.Add(spot);
+                            }                            
+
+                            //save spots
+                            bool saveResult = device.SaveSpots(spotsToDeploy);
+
+                            if (saveResult)
+                            {
+                                //update device
+                                device.DeviceStatusID = (int)eDeviceStatus.DeviceStatus.Deployed;
+                                device.ParkingLotID = parkingLot.LotID;
+                                device.Update();
+
+                                //clear all fields for next deployment
+                                hiddenSpotCoordJsonField.Text = "";
+                                hiddenCameraIDField.Text = "";
+                                hiddenImageStringField.Text = "";
+
+                                //refresh screen and let user know it was successful
+                                ShowMessage("success", "Device successfully deployed with spots.");
+
+                                deployedCameraUpdatePanel.Update();
+                                undeployedCameraUpdatePanel.Update();
+                            }
+                            else
+                            {
+                                ShowMessage("danger", "Could not deploy camera.");
+                            }                                                    
+                        }
+                        else   //no spots 
+                        {
+                            ShowMessage("warning", "Every camera must have at lease one spot to deploy.");
+                        }
+
+
+                    }   //parking lot and device fill failed
+                    else   
+                    {
+                        ShowMessage("danger", "Could not deploy camera.");
+                    }
+                }
+                else   //the user did not make a lot selection
+                {
+                    ShowMessage("warning", "Please select a parking lot to deploy the camera at.");
+                }
+            }
+            catch
+            {
+                ShowMessage("danger", "Could not deploy camera.");
+            }
+
         }
 
         private void btnUndeploySubmit_Click(object sender, EventArgs e)

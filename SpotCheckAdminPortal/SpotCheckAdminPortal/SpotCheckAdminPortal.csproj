@@ -2030,6 +2030,8 @@
       <DependentUpon>ViewParkingLots.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Models\Spot.cs" />
+    <Compile Include="Models\TempSpot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\css\style.css.map" />

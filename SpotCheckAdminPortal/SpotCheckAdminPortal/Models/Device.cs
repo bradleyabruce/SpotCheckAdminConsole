@@ -84,6 +84,12 @@ namespace SpotCheckAdminPortal.Models
             return device_dl.ClearImage();
         }
 
+        public bool SaveSpots(List<Spot> spotList)
+        {
+            Device_dl device_dl = new Device_dl(this);
+            return device_dl.SaveSpots(spotList);
+        }
+
         #endregion
 
     }

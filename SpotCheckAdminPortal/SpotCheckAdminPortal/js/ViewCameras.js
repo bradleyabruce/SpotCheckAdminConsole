@@ -16,6 +16,7 @@ var lastTempRect = null;
 
 var boxCoordinates = new Array();
 
+
 var currentDeviceID;
 
 var imageDataString = "";
@@ -74,14 +75,44 @@ function addEventHandlers()
     btnDeployCloseFooter.addEventListener("click", deployClosed);
     btnDeployCloseHeader.addEventListener("click", deployClosed);
 
-    //Image Event Handlers
-
-    //var hiddenImageStringField = document.getElementById("hiddenImageStringField");
-        //imageStringUpdated();
+    var deploySubmitButton = document.getElementById("deploySubmit");
+    deploySubmitButton.addEventListener("click", saveSpotCoordinatesForDeployment);
 }
 
 
 //Generic Methods
+
+function saveSpotCoordinatesForDeployment()
+{
+    var hiddenField = document.getElementById("hiddenSpotCoordJsonField");
+    var spotCoordinates = new Array();
+
+    if (boxCoordinates.length > 0)
+    {
+        //we need to save the spotCoordinates to our secret field
+        for (i = 0; i < boxCoordinates.length; i++)
+        {
+            //we need to format the box coodinates to the correct type
+
+            var box = boxCoordinates[i];
+            var spot = new Object;
+            spot.TopLeftXCoordinate = box.tlX;
+            spot.TopLeftYCoordinate = box.tlY;
+            spot.BottomRightXCoordinate = box.tlX + box.w;
+            spot.BottomRightYCoordinate = box.tlY + box.h;
+            spotCoordinates.push(spot);
+        }
+
+        hiddenField.value = JSON.stringify(spotCoordinates);
+
+        //we need to clear all existing info
+        ResetAll();
+    }
+    else
+    {
+        hiddenField.value = "No Spots";
+    }
+}
 
 function deployClosed() {
     ResetAll();
@@ -118,6 +149,9 @@ function ResetAll() {
     doneButton.style = "visibility: hidden;";
     doneButton.removeEventListener("click", doneDeleting);
     doneButton.removeEventListener("click", doneAdding);
+
+    //enable submit
+    document.getElementById("deploySubmit").disabled = false;
 }
 
 //End Generic Methods
@@ -160,6 +194,9 @@ function removeSingleClick(e) {
     var doneButton = document.getElementById("deployDone");
     doneButton.style = "visibility: visible;";
     doneButton.addEventListener("click", doneDeleting);
+
+    //disable submit
+    document.getElementById("deploySubmit").disabled = true;
 
     var addButton = document.getElementById("addParkingSpotCoordinateButton");
     addButton.className = "btn btn-secondary";
@@ -245,7 +282,7 @@ function removeAllClick(e) {
     document.body.style.cursor = "default";
 
     boxCoordinates = new Array();
-    clearCanvas(false);
+    clearCanvas(true);
 }
 
 function addSpotButtonClick(e) {
@@ -260,6 +297,9 @@ function addSpotButtonClick(e) {
     var doneButton = document.getElementById("deployDone");
     doneButton.style = "visibility: visible;";
     doneButton.addEventListener("click", doneAdding);
+
+    //disable submit
+    document.getElementById("deploySubmit").disabled = true;
 
     var singleDelete = document.getElementById("removeParkingSpotCoordinateButton");
     singleDelete.className = "btn btn-secondary";
@@ -320,6 +360,9 @@ function doneDeleting() {
     doneButton.style = "visibility: hidden;";
     doneButton.removeEventListener("click", doneDeleting);
 
+    //enable submit
+    document.getElementById("deploySubmit").disabled = false;
+
     var deleteAllButton = document.getElementById("removeAllParkingSpotCoordinatesButton");
     deleteAllButton.className = "btn btn-danger";
     document.getElementById("removeAllParkingSpotCoordinatesButton").disabled = false;
@@ -346,6 +389,9 @@ function doneAdding() {
     var doneButton = document.getElementById("deployDone");
     doneButton.style = "visibility: hidden;";
     doneButton.removeEventListener("click", doneAdding);
+
+    //enable submit
+    document.getElementById("deploySubmit").disabled = false;
 
     imageCanvas.removeEventListener("mousemove", getMouseMoveRemovePosition);
     imageCanvas.removeEventListener("mousedown", getMouseDownRemovePosition);
