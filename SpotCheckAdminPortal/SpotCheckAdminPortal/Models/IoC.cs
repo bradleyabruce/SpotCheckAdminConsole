@@ -49,6 +49,19 @@ namespace SpotCheckAdminPortal.Models
          }
       }
 
+        static Tuple<string,string> _pageMessage;
+        public static Tuple<string, string> PageMessage
+        {
+            get
+            {
+                return _pageMessage;
+            }
+            set
+            {
+                _pageMessage = value;
+            }
+        }
+
       #endregion
 
       #region Methods

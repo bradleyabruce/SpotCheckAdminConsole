@@ -54,6 +54,12 @@ namespace SpotCheckAdminPortal
                 Response.Redirect("Dashboard.aspx");
             }
 
+            if(IoC.PageMessage != null)
+            {
+                ShowMessage(IoC.PageMessage.Item1, IoC.PageMessage.Item2);
+                IoC.PageMessage = null;
+            }
+
             populateDeployDropDownList();
         }
 
@@ -282,10 +288,10 @@ namespace SpotCheckAdminPortal
                                     deviceId = device.DeviceID,
                                     lotId = (int)parkingLot.LotID,
                                     isOpen = true,
-                                    topLeftXCoordinate = ts.TopLeftXCoordinate,
-                                    topLeftYCoordinate = ts.TopLeftYCoordinate,
-                                    bottomRightXCoordinate = ts.BottomRightXCoordinate,
-                                    bottomRightYCoordinate = ts.BottomRightYCoordinate,
+                                    topLeftXCoordinate = (ts.TopLeftXCoordinate * 2),
+                                    topLeftYCoordinate = (ts.TopLeftYCoordinate * 2),
+                                    bottomRightXCoordinate = (ts.BottomRightXCoordinate * 2),
+                                    bottomRightYCoordinate = (ts.BottomRightYCoordinate * 2),
                                     floorNum = 0
                                 };
 
@@ -308,10 +314,9 @@ namespace SpotCheckAdminPortal
                                 hiddenImageStringField.Text = "";
 
                                 //refresh screen and let user know it was successful
-                                ShowMessage("success", "Device successfully deployed with spots.");
-
-                                deployedCameraUpdatePanel.Update();
-                                undeployedCameraUpdatePanel.Update();
+                                Tuple<string, string> pageMessage = Tuple.Create("success", "Device was deployed!");
+                                IoC.PageMessage = pageMessage;
+                                Response.Redirect(Request.RawUrl);
                             }
                             else
                             {
@@ -356,15 +361,10 @@ namespace SpotCheckAdminPortal
                 bool undeployResult = undeployDevice.Undeploy();
                 if (undeployResult)
                 {
-                    //reload both camera lists
-                    globalDeviceList = undeployDevice.GetDeviceListFromCompanyID(company.CompanyID);
-                    CreateDeviceListDivs(undeployedStatues);
-                    CreateDeviceListDivs(deployedStatues);
-                    //force update (this also updates modals)
-                    undeployedCameraUpdatePanel.Update();
-                    deployModalUpdatePanel.Update();
-
-                    ShowMessage("success", "Device successfully undeployed.");
+                    //refresh screen and let user know it was successful
+                    Tuple<string, string> pageMessage = Tuple.Create("success", "Device successfully undeployed.");
+                    IoC.PageMessage = pageMessage;
+                    Response.Redirect(Request.RawUrl);
                 }
                 else     //updeploy failed
                 {
@@ -1242,6 +1242,15 @@ namespace SpotCheckAdminPortal
                 innerDiv.Controls.Add(extAddressDiv);
                 innerDiv.Controls.Add(localAddressDiv);
                 innerDiv.Controls.Add(macAddressDiv);
+
+                if (createType == "deployed")
+                {
+                    HtmlGenericControl spotWatchCountDiv = new HtmlGenericControl("div");
+                    spotWatchCountDiv.InnerHtml = "<strong>Parking Spots Being Checked: </strong>" + "3"; //+ device.GetSpotCount();
+                    innerDiv.Controls.Add(new LiteralControl("<br />"));
+                    innerDiv.Controls.Add(spotWatchCountDiv);
+                }
+
                 innerDiv.Controls.Add(new LiteralControl("<br />"));
                 innerDiv.Controls.Add(outerButtonContainer);
 
