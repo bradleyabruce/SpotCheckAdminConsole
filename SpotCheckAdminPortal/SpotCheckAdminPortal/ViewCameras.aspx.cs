@@ -1243,13 +1243,13 @@ namespace SpotCheckAdminPortal
                 innerDiv.Controls.Add(localAddressDiv);
                 innerDiv.Controls.Add(macAddressDiv);
 
-                if (createType == "deployed")
+                /*if (createType == "deployed")
                 {
                     HtmlGenericControl spotWatchCountDiv = new HtmlGenericControl("div");
                     spotWatchCountDiv.InnerHtml = "<strong>Parking Spots Being Checked: </strong>" + "3"; //+ device.GetSpotCount();
                     innerDiv.Controls.Add(new LiteralControl("<br />"));
                     innerDiv.Controls.Add(spotWatchCountDiv);
-                }
+                }*/
 
                 innerDiv.Controls.Add(new LiteralControl("<br />"));
                 innerDiv.Controls.Add(outerButtonContainer);
